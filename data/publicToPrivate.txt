@@ -1,0 +1,189 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentList {
+    private List<Student> studentsList= new ArrayList<>();
+    public void addStudent(Student a){
+        studentsList.add(a);
+    }
+    public void facultyPrint(String faculty){
+        System.out.println("Список студентов факультета "+faculty);
+        for(Student st:studentsList){
+            if(st.getFaculty().equals(faculty)){
+                System.out.println(st.toString());
+            }
+        }
+    }
+    public void groupPrint(String group){
+        System.out.println("Список студентов группы "+group);
+        for(Student st:studentsList){
+            if(st.getGroup().equals(group)){
+                System.out.println(st.toString());
+            }
+        }
+    }
+    public void yearOfBirthPrint(String year){
+        System.out.println("Список студентов, родившихся после "+year+" года");
+        for(Student st:studentsList){
+            if(parseYear(st.getDateOfBirth().substring(6))>parseYear(year)){
+                System.out.println(st.toString());}
+        }
+    }
+    public void yearOfBirthPrint(){
+        System.out.println("Список студентов, независимо от года рождения");
+        for(Student st:studentsList){
+            System.out.println(st.toString());}
+    }
+
+    public void facultyCoursePrint(String faculty,String course){
+        System.out.println("Список студентов факультета "+faculty+" курса "+course);
+        for(Student st:studentsList){
+            if(st.getFaculty().equals(faculty)&st.getCourse().equals(course)){
+                System.out.println(st.toString());}
+        }
+    }
+    public void facultyCoursePrint(String faculty) {
+        System.out.println("Список студентов факультета " + faculty + "всех курсов ");
+        for (Student st : studentsList) {
+            if (st.getFaculty().equals(faculty)) {
+                System.out.println(st.toString());
+            }
+        }
+    }
+
+    public void facultyCoursePrint(int course){
+        System.out.println("Список студентов всех факультетов, курса "+course);
+        for(Student st:studentsList){
+            if(Integer.parseInt(st.getCourse())==course){
+                System.out.println(st.toString());}
+        }
+    }
+    public int parseYear(String years){
+        return Integer.parseInt(years);
+    }
+
+}
+
+
+public class MoreStudents {
+    public static void main(String[] args) {
+        Student st1 = new Student("Иван", "Иванович", "Иванов", "01.01.1998", "38044555667712", "Психология", "1", "123");
+        Student st2 = new Student("Петр", "Петрович", "Петров", "12.04.1997", "38044555667713", "Журналистика", "2", "321");
+        Student st3 = new Student("Семен", "Семенович", "Семенов", "10.07.1996", "38044555667714", "Юридический", "3", "231");
+        Student st4 = new Student("Константин", "Иванович", "Галушко", "04.09.1999", "38044555667715", "Психология", "1", "123");
+        Student st5 = new Student("Сергей", "Петрович", "Пивоваров", "03.04.1998", "38044555667716", "Журналистика", "2", "321");
+        Student st6 = new Student("Василий", "Николаевич", "Пупкин", "07.01.1998", "38044555667717", "Юридический", "3", "231");
+        Student st7 = new Student("Анатолий", "Сергеевич", "Антонов", "03.12.1996", "38044555667718", "Психология", "1", "123");
+        Student st8 = new Student("Евгений", "Анатольевич", "Жуков", "15.07.1997", "38044555667719", "Журналистика", "2", "321");
+        Student st9 = new Student("Роман", "Семенович", "Решетников", "23.04.1998", "38044555667720", "Юридический", "3", "231");
+        Student st10 = new Student("Федор", "Викторович", "Блинов", "05.01.1998", "38044555667721", "Психология", "1", "123");
+        Student st11 = new Student("Виктор", "Андреевич", "Сидорченко", "12.05.1997", "38044555667722", "Журналистика", "2", "321");
+        Student st12 = new Student("Всеволод", "Богданович", "Ющенко", "14.12.1996", "38044555667723", "Юридический", "3", "231");
+        Student st13 = new Student("Геннадий", "Николаевич", "Порошенко", "13.09.1999", "38044555667724", "Психология", "1", "123");
+        Student st14 = new Student("Николай", "Петрович", "Соломатин", "11.09.1998", "38044555667725", "Журналистика", "2", "321");
+
+        StudentList newList=new StudentList();
+        newList.addStudent(st1);
+        newList.addStudent(st1);
+
+        newList.facultyPrint("Психология");//список студентов заданного факультета
+        newList.groupPrint("123");//список учебной группы
+        newList.yearOfBirthPrint("1997");//список студентов, родившихся после заданного года;
+        newList.facultyCoursePrint("Психология","1");//списки студентов для каждого факультета и курса;
+
+    }
+}import java.util.ArrayList;
+import java.util.List;
+
+private class StudentList {
+    private List<Student> studentsList= new ArrayList<>();
+    private void addStudent(Student a){
+        studentsList.add(a);
+    }
+    private void facultyPrint(String faculty){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "+faculty);
+        for(Student st:studentsList){
+            if(st.getFaculty().equals(faculty)){
+                System.out.println(st.toString());
+            }
+        }
+    }
+    private void groupPrint(String group){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "+group);
+        for(Student st:studentsList){
+            if(st.getGroup().equals(group)){
+                System.out.println(st.toString());
+            }
+        }
+    }
+    private void yearOfBirthPrint(String year){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ "+year+" пїЅпїЅпїЅпїЅ");
+        for(Student st:studentsList){
+            if(parseYear(st.getDateOfBirth().substring(6))>parseYear(year)){
+                System.out.println(st.toString());}
+        }
+    }
+    private void yearOfBirthPrint(){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        for(Student st:studentsList){
+            System.out.println(st.toString());}
+    }
+
+    private void facultyCoursePrint(String faculty,String course){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "+faculty+" пїЅпїЅпїЅпїЅпїЅ "+course);
+        for(Student st:studentsList){
+            if(st.getFaculty().equals(faculty)&st.getCourse().equals(course)){
+                System.out.println(st.toString());}
+        }
+    }
+    private void facultyCoursePrint(String faculty) {
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + faculty + "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ");
+        for (Student st : studentsList) {
+            if (st.getFaculty().equals(faculty)) {
+                System.out.println(st.toString());
+            }
+        }
+    }
+
+    private void facultyCoursePrint(int course){
+        System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ "+course);
+        for(Student st:studentsList){
+            if(Integer.parseInt(st.getCourse())==course){
+                System.out.println(st.toString());}
+        }
+    }
+    private int parseYear(String years){
+        return Integer.parseInt(years);
+    }
+
+}
+
+
+private class MoreStudents {
+    private static void main(String[] args) {
+        Student st1 = new Student("пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "01.01.1998", "38044555667712", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "1", "123");
+        Student st2 = new Student("пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "12.04.1997", "38044555667713", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "2", "321");
+        Student st3 = new Student("пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "10.07.1996", "38044555667714", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "3", "231");
+        Student st4 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "04.09.1999", "38044555667715", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "1", "123");
+        Student st5 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "03.04.1998", "38044555667716", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "2", "321");
+        Student st6 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "07.01.1998", "38044555667717", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "3", "231");
+        Student st7 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "03.12.1996", "38044555667718", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "1", "123");
+        Student st8 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "15.07.1997", "38044555667719", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "2", "321");
+        Student st9 = new Student("пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "23.04.1998", "38044555667720", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "3", "231");
+        Student st10 = new Student("пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "05.01.1998", "38044555667721", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "1", "123");
+        Student st11 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "12.05.1997", "38044555667722", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "2", "321");
+        Student st12 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "14.12.1996", "38044555667723", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "3", "231");
+        Student st13 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "13.09.1999", "38044555667724", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "1", "123");
+        Student st14 = new Student("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "11.09.1998", "38044555667725", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "2", "321");
+
+        StudentList newList=new StudentList();
+        newList.addStudent(st1);
+        newList.addStudent(st1);
+
+        newList.facultyPrint("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        newList.groupPrint("123");//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        newList.yearOfBirthPrint("1997");//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ;
+        newList.facultyCoursePrint("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ","1");//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ;
+
+    }
+}
