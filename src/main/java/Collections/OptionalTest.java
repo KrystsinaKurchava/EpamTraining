@@ -7,22 +7,25 @@ import java.util.*;
 
 public class OptionalTest {
     public static void main(String[] args) {
-        int length = 5;
-        ArrayList list = randomList(length);
+        int lengthList = 5;
+        final String nameOfPoemFile = "data/poem.txt";
+        final String nameOfParenthesesChoiceFile = "data/parentheses.txt";
+        ArrayList list = randomList(lengthList);
         System.out.println(list);
         sortPositiveAndNegative(list);
         System.out.println(list);
-        String nameOfPoem = "data/poem.txt";
-        poemString(nameOfPoem);
-        differentWords(nameOfPoem);
-        sortLine(nameOfPoem);
-        parenthesesChoice("data/parentheses.txt");
+        poemString(nameOfPoemFile);
+        differentWords(nameOfPoemFile);
+        sortLine(nameOfPoemFile);
+        parenthesesChoice(nameOfParenthesesChoiceFile);
     }
 
     private static ArrayList randomList(int length) {
+        final int extremumMax=30;
+        final int extremumMin=15;
         ArrayList<Integer> list = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {
-            list.add(i, (int) (Math.random() * 30) - 15);
+            list.add(i, (int) (Math.random() * extremumMax) - extremumMin);
         }
         return list;
     }

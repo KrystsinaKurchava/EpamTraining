@@ -1,9 +1,14 @@
 package Collections.Classes;
+
 import Collections.Enum.*;
 
 public class ChocolateCandy extends CandyBase {
     ChocoTypesEnum type;
-    Integer contentOfSugarInHundredGram;
+    private static final Integer contentCaloriesInHundredGram = 544;
+    private static final Integer contentOfSugarInHundredGramMilkChocolate = 6;
+    private static final Integer caloriesInHundredGramDarkChocolate = 4;
+    private static final Integer caloriesInHundredGramWhiteChocolate = 8;
+    private static final Integer InvalidContentOfSugar = -1;
 
     public ChocolateCandy(String name, Integer weightInGram, ChocoTypesEnum type) {
         super(name, weightInGram);
@@ -14,22 +19,18 @@ public class ChocolateCandy extends CandyBase {
     @Override
     public Integer getContentOfSugar() {
         switch (type) {
-            case MilkChocolate:
-                contentOfSugarInHundredGram = 6;
-                break;
-            case DarkChocolate:
-                contentOfSugarInHundredGram = 4;
-                break;
-            case WhiteChocolate:
-                contentOfSugarInHundredGram = 8;
-                break;
+            case MILK_CHOCOLATE:
+                return getWeightInGram() * contentOfSugarInHundredGramMilkChocolate / counterForHundredGram;
+            case DARK_CHOCOLATE:
+                return getWeightInGram() * caloriesInHundredGramDarkChocolate / counterForHundredGram;
+            case WHITE_CHOCOLATE:
+                return getWeightInGram() * caloriesInHundredGramWhiteChocolate / counterForHundredGram;
         }
-        return  getWeightInGram() * contentOfSugarInHundredGram / 100;
-
+        return InvalidContentOfSugar;
     }
 
     @Override
     public Integer getCalories() {
-        return getWeightInGram() * 544 / 100;
+        return getWeightInGram() * contentCaloriesInHundredGram / counterForHundredGram;
     }
 }

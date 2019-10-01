@@ -1,15 +1,12 @@
 package Collections.Classes;
-import Collections.Enum.*;
 
 public abstract class CandyBase {
     private String name;
-    private String type;
     private Integer weightInGram;
-
+    protected static final Integer counterForHundredGram = 100;
 
     public CandyBase(String name, Integer weightInGram) {
         this.name = name;
-
         this.weightInGram = weightInGram;
     }
 
@@ -21,16 +18,8 @@ public abstract class CandyBase {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public Integer getWeightInGram() {
         return weightInGram;
-    }
-
-    public void setWeightInGram(Integer weightInGram) {
-        this.weightInGram = weightInGram;
     }
 
     public abstract Integer getContentOfSugar();

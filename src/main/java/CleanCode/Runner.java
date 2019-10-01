@@ -1,3 +1,5 @@
+package CleanCode;
+
 import CleanCode.models.MilitaryType;
 import CleanCode.Planes.MilitaryPlane;
 import CleanCode.Planes.PassengerPlane;

@@ -1,3 +1,5 @@
+package CleanCode;
+
 import CleanCode.Planes.ExperimentalPlane;
 import CleanCode.models.MilitaryType;
 import CleanCode.Planes.MilitaryPlane;
@@ -5,10 +7,6 @@ import CleanCode.Planes.PassengerPlane;
 import CleanCode.Planes.Plane;
 
 import java.util.*;
-
-// version: 1.1
-// made by Vitali Shulha
-// 4-Jan-2019
 
 public class Airport {
     private List<? extends Plane> planes;

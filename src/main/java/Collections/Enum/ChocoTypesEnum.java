@@ -1,7 +1,7 @@
 package Collections.Enum;
 
 public enum ChocoTypesEnum {
-    MilkChocolate,
-    DarkChocolate,
-    WhiteChocolate;
+    MILK_CHOCOLATE,
+    DARK_CHOCOLATE,
+    WHITE_CHOCOLATE;
 }

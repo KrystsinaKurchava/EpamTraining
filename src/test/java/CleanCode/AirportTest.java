@@ -1,11 +1,13 @@
+package CleanCode;
+
 import CleanCode.Planes.ExperimentalPlane;
 import CleanCode.models.ClassificationLevel;
 import CleanCode.models.MilitaryType;
-import CleanCode.org.testng.Assert;
-import CleanCode.org.testng.annotations.Test;
 import CleanCode.Planes.MilitaryPlane;
 import CleanCode.Planes.PassengerPlane;
 import CleanCode.Planes.Plane;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;

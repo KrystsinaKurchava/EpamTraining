@@ -1,9 +1,15 @@
 package Collections.Classes;
+
 import Collections.Enum.*;
 
 public class Candy extends CandyBase {
-    CandyTypesEnum type;
-    Integer caloriesInHundredGram;
+    private CandyTypesEnum type;
+    private static final Integer caloriesInHundredGramHardCandy = 381;
+    private static final Integer caloriesInHundredGramRibbonCandy = 305;
+    private static final Integer caloriesInHundredGramVeganCandy = 289;
+    private static final Integer caloriesInHundredGramWaxCandy = 255;
+    private static final Integer InvalidCalories = -1;
+    private static final Integer contentOfSugarsInHundredGram = 96;
 
     public Candy(String name, Integer weightInGram, CandyTypesEnum type) {
         super(name, weightInGram);
@@ -12,25 +18,23 @@ public class Candy extends CandyBase {
 
     @Override
     public Integer getContentOfSugar() {
-        return getWeightInGram() * 96 / 100;
+        return getWeightInGram() * contentOfSugarsInHundredGram / counterForHundredGram;
     }
 
     @Override
     public Integer getCalories() {
         switch (type) {
-            case HardCandy:
-                caloriesInHundredGram = 381;
-                break;
-            case RibbonCandy:
-                caloriesInHundredGram = 305;
-                break;
-            case VeganCandy:
-                caloriesInHundredGram = 289;
-                break;
-            case WaxCandy:
-                caloriesInHundredGram = 446;
-                break;
+            case HARD_CANDY:
+                return getWeightInGram() * caloriesInHundredGramHardCandy / counterForHundredGram;
+            case RIBBON_CANDY:
+                return getWeightInGram() * caloriesInHundredGramRibbonCandy / counterForHundredGram;
+
+            case VEGAN_CANDY:
+                return getWeightInGram() * caloriesInHundredGramVeganCandy / counterForHundredGram;
+
+            case WAX_CANDY:
+                return getWeightInGram() * caloriesInHundredGramWaxCandy / counterForHundredGram;
         }
-        return getWeightInGram() * caloriesInHundredGram / 100;
+        return InvalidCalories;
     }
 }
