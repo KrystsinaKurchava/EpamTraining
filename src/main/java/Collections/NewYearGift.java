@@ -3,8 +3,6 @@ package Collections;
 import Collections.Classes.*;
 import Collections.Enum.*;
 
-import java.util.ArrayList;
-
 public class NewYearGift {
     private static final Integer initialSugarContent = 3;
     private static final Integer finalSugarContent = 7;
@@ -24,22 +22,22 @@ public class NewYearGift {
 
         NewYearsGiftArray gift = new NewYearsGiftArray();
 
-        gift.add(morning);
-        gift.add(evening);
-        gift.add(lunch);
-        gift.add(diner);
-        gift.add(hardCandy);
-        gift.add(ribbonCandy);
-        gift.add(waxCandy);
-        gift.add(veganCandy);
-        gift.add(waxCandyBig);
-        gift.add(hardCandyBig);
+        gift.addCandyToGift(morning);
+        gift.addCandyToGift(evening);
+        gift.addCandyToGift(lunch);
+        gift.addCandyToGift(diner);
+        gift.addCandyToGift(hardCandy);
+        gift.addCandyToGift(ribbonCandy);
+        gift.addCandyToGift(waxCandy);
+        gift.addCandyToGift(veganCandy);
+        gift.addCandyToGift(waxCandyBig);
+        gift.addCandyToGift(hardCandyBig);
 
         gift.sortOfGetCalories();
 
-        gift.weightGift();
+        gift.getWeightGift();
 
-        gift.choiceSweet(initialSugarContent, finalSugarContent);
+        gift.choiceSweetInTheRangeContentOfSugar(initialSugarContent, finalSugarContent);
 
     }
 

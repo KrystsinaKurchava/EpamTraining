@@ -6,7 +6,7 @@ import static java.lang.Integer.parseInt;
 public class StudentArray {
     private Student[] studentArray;
 
-    public StudentArray(int length){
+    public StudentArray(int length) {
         studentArray = new Student[length];
     }
 

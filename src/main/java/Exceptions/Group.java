@@ -12,35 +12,14 @@ public class Group {
         return nameOfGroup;
     }
 
-    public void setNameOfGroup(String nameOfGroup) {
-        this.nameOfGroup = nameOfGroup;
-    }
-
-    public Group(String nameOFGroup, Collection<Student> studentsInGroup) throws IllegalArgumentException {
-            if (studentsInGroup.size() == 0) throw new IllegalArgumentException("Группа пуста");
+    public Group(String nameOFGroup, Collection<Student> studentsInGroup) throws EmptyGroupException {
+            if (studentsInGroup.size() == 0) throw new EmptyGroupException("Группа пуста");
             this.nameOfGroup = nameOFGroup;
             this.studentsInGroup = new HashSet<Student>(studentsInGroup);
     }
 
     public void addStudentsInGroup(Student student){
             studentsInGroup.add(student);
-    }
-
-    public void removeStudentsInGroup(Student student) throws IllegalArgumentException {
-            if (studentsInGroup.size() == 1 && studentsInGroup.contains(student))
-                throw new IllegalArgumentException("Невозомжон удалить последнего студента. Группа не может быть пустой");
-            studentsInGroup.remove(student);
-    }
-
-    public Student getStudentByName (String name) {
-        for(Student student : studentsInGroup)
-        {
-            if(student.getNameOfStudent().equals(name)){
-                return student;
-            }
-        }
-
-        return null;
     }
 
     public Double getAverageAssessmentByGroup () {

@@ -6,16 +6,15 @@ import java.util.Scanner;
 public class MainTask {
 
     public static void main(String[] args) {
-        //Приветствие пользователя
-        hello();
-       /*Ввести число от 1 до 12. Вывести на консоль название месяца, соответствующего данному числу.
-        Осуществить проверку корректности ввода чисел.*/
-        mounthChoose();
-        /*Вывод случайных чисел без перехода на новую
-        строку и с переходом*/
-        int[] array = randomNumber();
-        showMyArrayinLine(array);
-        showMyArrayinNewLine(array);
+
+        printHelloUser();
+        monthChoose();
+
+        int[] array = getRandomNumber();
+        showMyRandomNumberInOneLine(array);
+        showMyRandomNumberInNewNextLine(array);
+
+
         //Отобразить в окне консоли аргументы командной строки в обратном порядке.
         System.out.println("Количество аргументов " + args.length);
         for (int i = args.length - 1; i > -1; i--) {
@@ -29,35 +28,35 @@ public class MainTask {
             System.out.println(args[i]);
         }
         for (int i = 0; i < args.length; i++) {
-            int argumentsCommanLine = Integer.parseInt(args[i]);
-            sum = sum + argumentsCommanLine;
-            product = product * argumentsCommanLine;
+            int argumentsCommandLine = Integer.parseInt(args[i]);
+            sum = sum + argumentsCommandLine;
+            product = product * argumentsCommandLine;
         }
         System.out.println("Произведение аргументов равно: " + product);
         System.out.println("Сумма аргументов равна: " + sum);
 
     }
 
-    private static void hello() {
+    private static void printHelloUser() {
         Scanner in = new Scanner(System.in);
         System.out.println("Как вас зовут?");
         String name = in.nextLine();
         System.out.println("Добро пожаловать, " + name);
     }
 
-    private static int[] randomNumber() {
-        Random rd = new Random();
+    private static int[] getRandomNumber() {
+        Random randomName = new Random();
         Scanner in = new Scanner(System.in);
         System.out.print("Введите количество случайных цифр: ");
         int count = in.nextInt();
         int[] value = new int[count];
         for (int i = 0; i < value.length; i++) {
-            value[i] = rd.nextInt();
+            value[i] = randomName.nextInt();
         }
         return value;
     }
 
-    private static void showMyArrayinLine(int[] value) {
+    private static void showMyRandomNumberInOneLine(int[] value) {
         System.out.print("Вывод случаных цифр без перехода на новую строку: ");
         for (int i = 0; i < value.length; i++) {
             System.out.print(value[i] + " ");
@@ -65,67 +64,67 @@ public class MainTask {
         System.out.println();
     }
 
-    private static void showMyArrayinNewLine(int[] value) {
+    private static void showMyRandomNumberInNewNextLine(int[] value) {
         System.out.println("Вывод случаных цифр с переходом на новую строку: ");
         for (int i = 0; i < value.length; i++) {
             System.out.println(value[i] + " ");
         }
     }
 
-    private static void mounthChoose() {
+    private static void monthChoose() {
 
         System.out.println("Введите номер месяца");
         do {
-            String mounth;
+            String month;
             Scanner in = new Scanner(System.in);
             try {
-                int numberOfMounth = in.nextInt();
-                if (numberOfMounth < 1 || numberOfMounth > 12) {
+                int numberOfMonth = in.nextInt();
+                if (numberOfMonth < 1 || numberOfMonth > 12) {
                     System.out.println("от 1 до 12");
                     continue;
                 }
-                switch (numberOfMounth) {
+                switch (numberOfMonth) {
                     case 1:
-                        mounth = "Январь";
+                        month = "Январь";
                         break;
                     case 2:
-                        mounth = "Февраль";
+                        month = "Февраль";
                         break;
                     case 3:
-                        mounth = "Март";
+                        month = "Март";
                         break;
                     case 4:
-                        mounth = "Апрель";
+                        month = "Апрель";
                         break;
                     case 5:
-                        mounth = "Май";
+                        month = "Май";
                         break;
                     case 6:
-                        mounth = "Июнь";
+                        month = "Июнь";
                         break;
                     case 7:
-                        mounth = "Июль";
+                        month = "Июль";
                         break;
                     case 8:
-                        mounth = "Август";
+                        month = "Август";
                         break;
                     case 9:
-                        mounth = "Сентябрь";
+                        month = "Сентябрь";
                         break;
                     case 10:
-                        mounth = "Октябрь";
+                        month = "Октябрь";
                         break;
                     case 11:
-                        mounth = "Ноябрь";
+                        month = "Ноябрь";
                         break;
                     case 12:
-                        mounth = "Декабрь";
+                        month = "Декабрь";
                         break;
                     default:
-                        mounth = "Некорректное ввод. Попробуйте еще раз";
+                        month = "Некорректное ввод. Попробуйте еще раз";
                         break;
                 }
-                System.out.println(mounth);
+                System.out.println(month);
                 return;
             } catch (Exception ex) {
                 System.out.println("Некорректное ввод. Введите число");

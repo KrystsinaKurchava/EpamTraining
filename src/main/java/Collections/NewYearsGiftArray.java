@@ -11,11 +11,11 @@ public class NewYearsGiftArray {
         newYearGift = new ArrayList<CandyBase>();
     }
 
-    public void add(CandyBase name) {
+    public void addCandyToGift(CandyBase name) {
         newYearGift.add(name);
     }
 
-    public Integer weightGift() {
+    public Integer getWeightGift() {
         Integer weightGift = 0;
         for (CandyBase giftWeightFor : newYearGift) {
             weightGift = weightGift + giftWeightFor.getWeightInGram();
@@ -32,7 +32,7 @@ public class NewYearsGiftArray {
         newYearGift.forEach(System.out::println);
     }
 
-    public void choiceSweet(Integer initialSugarContent, Integer finalSugarContent) {
+    public void choiceSweetInTheRangeContentOfSugar(Integer initialSugarContent, Integer finalSugarContent) {
         System.out.println("Кофеты, содержащие сахар в диапазоне от " + initialSugarContent + " до " + finalSugarContent + ":");
         for (CandyBase contentSugar : newYearGift) {
             if (contentSugar.getContentOfSugar() > initialSugarContent &&

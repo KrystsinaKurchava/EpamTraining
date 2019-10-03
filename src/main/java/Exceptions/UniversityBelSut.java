@@ -1,7 +1,6 @@
 package Exceptions;
-import java.util.Collection;
+
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class UniversityBelSut {
@@ -40,6 +39,7 @@ public class UniversityBelSut {
             oleg.setAssessment("Technology", 5);
             vitaly.setAssessment("Technology", 10);
 
+
             firstCourseCivilEngineering.add(anna);
             firstCourseCivilEngineering.add(vendy);
             firstCourseCivilEngineering.add(alina);
@@ -48,16 +48,16 @@ public class UniversityBelSut {
             firstCourseArchitect.add(vitaly);
 
             Group civilEngineeringGroup = new Group("CivilEngineeringGroup", firstCourseCivilEngineering);
-            civilEngineeringGroup.addStudentsInGroup(maxim);
 
             Group militaryEngineerGroup = new Group("MilitaryEngineerGroup", firstCourseCivilEngineering);
             Group machineMechanicsGroup = new Group("MachineMechanicsGroup", firstCourseCivilEngineering);
-
-
             Group architectGroup = new Group("ArchitectGroup", firstCourseCivilEngineering);
+
             buildingGroups.add(civilEngineeringGroup);
             militaryGroups.add(militaryEngineerGroup);
             machineGroups.add(machineMechanicsGroup);
+            civilEngineeringGroup.addStudentsInGroup(maxim);
+
 
             Faculty buildingFaculty = new Faculty("BuildingFaculty", buildingGroups);
             buildingFaculty.addGroupsInFaculty(architectGroup);
@@ -67,21 +67,36 @@ public class UniversityBelSut {
 
             Set<Faculty> belSUTFaculty = new HashSet<>();
             belSUTFaculty.add(buildingFaculty);
+
             University belSUT = new University("BelSUT", belSUTFaculty);
+
             belSUT.addFacultyInUniversity(militaryFaculty);
             belSUT.addFacultyInUniversity(machineFaculty);
             belSUT.addFacultyInUniversity(machineFaculty);
+
             calculateAverage(belSUT, "BuildingFaculty", "CivilEngineeringGroup", "Russian");
-        } catch (IllegalArgumentException e) {
+
+        } catch (DefaultSubjectException e) {
             e.getMessage();
+        } catch (InvalidRatingException e) {
+            e.getMessage();
+        } catch (EmptyGroupException e) {
+            e.getMessage();
+
+        } catch (EmptyFacultyException e) {
+            e.getMessage();
+        } catch (EmptyUniversityException e) {
+            e.getMessage();
+
+
         }
     }
-
-    private static Double calculateAverage(University university, String nameOfFaculty, String nameOFGroup, String subject) {
-        Group group = university.getFacultyByName(nameOfFaculty).getGroupByName(nameOFGroup);
-        return group.getAverageAssessmentForSubject(subject);
+        private static Double calculateAverage (University university, String nameOfFaculty, String nameOFGroup, String
+        subject){
+            Group group = university.getFacultyByName(nameOfFaculty).getGroupByName(nameOFGroup);
+            return group.getAverageAssessmentForSubject(subject);
+        }
     }
-}
 
 
 

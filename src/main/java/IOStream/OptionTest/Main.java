@@ -63,8 +63,7 @@ public class Main {
 
 
     public static void replacePublicToPrivate(String path,String pathResult) {
-        List<String> lines = new ArrayList<String>();
-        String line;
+      String line;
 
         try (BufferedReader fileReader = new BufferedReader(new FileReader(path));
              BufferedWriter fileWriter = new BufferedWriter(new FileWriter(pathResult))) {

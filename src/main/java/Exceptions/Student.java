@@ -1,18 +1,11 @@
 package Exceptions;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Student {
-    String nameOfStudent;
-    Map<String, Integer> assessment;
-
-    public String getNameOfStudent() {
-        return nameOfStudent;
-    }
-
-    public void setNameOfStudent(String nameOfStudent) {
-        this.nameOfStudent = nameOfStudent;
-    }
+    private String nameOfStudent;
+    private Map<String, Integer> assessment;
 
     public Student(String setNameOfStudent) {
         this.nameOfStudent = setNameOfStudent;
@@ -20,14 +13,10 @@ public class Student {
 
     }
 
-    public void setAssessment(String name, Integer ball) throws IllegalArgumentException {
-        if (name == null) throw new IllegalArgumentException("Студенту необходимо указать предмет");
-        if (ball < 0 || ball > 10) throw new IllegalArgumentException("Оценка должна быть в пределах от 1 до 10");
+    public void setAssessment(String name, Integer ball) throws DefaultSubjectException,InvalidRatingException {
+        if (name == null) throw new DefaultSubjectException("Студенту необходимо указать предмет");
+        if (ball < 0 || ball > 10) throw new InvalidRatingException("Оценка должна быть в пределах от 1 до 10");
         assessment.put(name, ball);
-    }
-
-    public void removeAssessment(String name, Integer ball) {
-        assessment.remove(name, ball);
     }
 
     public double averageAssessment() {
