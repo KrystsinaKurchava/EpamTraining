@@ -1,4 +1,10 @@
-package Exceptions;
+package exceptions;
+
+import exceptions.customExceptions.*;
+import exceptions.infrastructure.Faculty;
+import exceptions.infrastructure.Group;
+import exceptions.infrastructure.Student;
+import exceptions.infrastructure.University;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -73,8 +79,9 @@ public class UniversityBelSut {
             belSUT.addFacultyInUniversity(militaryFaculty);
             belSUT.addFacultyInUniversity(machineFaculty);
             belSUT.addFacultyInUniversity(machineFaculty);
-
+            belSUT.getAverageAssessmentBySubject("English");
             calculateAverage(belSUT, "BuildingFaculty", "CivilEngineeringGroup", "Russian");
+            anna.averageAssessment();
 
         } catch (DefaultSubjectException e) {
             e.getMessage();
@@ -82,21 +89,19 @@ public class UniversityBelSut {
             e.getMessage();
         } catch (EmptyGroupException e) {
             e.getMessage();
-
         } catch (EmptyFacultyException e) {
             e.getMessage();
         } catch (EmptyUniversityException e) {
             e.getMessage();
-
-
         }
     }
-        private static Double calculateAverage (University university, String nameOfFaculty, String nameOFGroup, String
-        subject){
-            Group group = university.getFacultyByName(nameOfFaculty).getGroupByName(nameOFGroup);
-            return group.getAverageAssessmentForSubject(subject);
-        }
+
+    private static Double calculateAverage(University university, String nameOfFaculty, String nameOfGroup, String
+            subject) {
+        Group group = university.getFacultyByName(nameOfFaculty).getGroupByName(nameOfGroup);
+        return group.getAverageAssessmentForSubject(subject);
     }
+}
 
 
 

@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class Student {
     private static int nextId = 0;

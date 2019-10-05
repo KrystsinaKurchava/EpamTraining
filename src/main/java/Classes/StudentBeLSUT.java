@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class StudentBeLSUT {
     public static void main(String[] args) {
