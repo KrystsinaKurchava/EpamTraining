@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class Student {
     private static int nextId = 0;
@@ -38,10 +38,6 @@ public class Student {
 
     private int id = nextId++;
 
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -50,72 +46,25 @@ public class Student {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
     public String getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
     public String getCourse() {
         return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
     }
 
     public String getGroup() {
         return group;
     }
-@Override
+
+    @Override
     public String toString() {
-        return  name +
+        return name +
                 " " + surname +
                 " " + patronymic +
                 ",  " + dateOfBirth +
@@ -124,7 +73,7 @@ public class Student {
                 ", факультет " + faculty +
                 ", курс " + course +
                 ", группа " + group +
-                ", номер " + id ;
+                ", номер " + id;
 
     }
 }

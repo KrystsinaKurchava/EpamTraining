@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class StudentBeLSUT {
     public static void main(String[] args) {
@@ -11,6 +11,7 @@ public class StudentBeLSUT {
         Student student7 = new Student("Карина", "Новикова", "Николаевна", "12.13.1997", "Речица", "4246783", "ГЭф", "4", "ГЭ");
         Student student8 = new Student("Кристина", "Рябина", "Адреевна", "12.13.1996", "Жлобин", "234689", "ПГС", "5", "ПС");
 
+
         StudentArray StudentBeLSUT = new StudentArray(8);
         StudentBeLSUT.addStudentInList(student1, 0);
         StudentBeLSUT.addStudentInList(student2, 1);
@@ -18,13 +19,19 @@ public class StudentBeLSUT {
         StudentBeLSUT.addStudentInList(student4, 3);
         StudentBeLSUT.addStudentInList(student5, 4);
         StudentBeLSUT.addStudentInList(student6, 5);
-        StudentBeLSUT.addStudentInList(student7,6);
-        StudentBeLSUT.addStudentInList(student8,7);
+        StudentBeLSUT.addStudentInList(student7, 6);
+        StudentBeLSUT.addStudentInList(student8, 7);
 
-        StudentBeLSUT.chooseStudentOneFaculty("ПГС");
-        StudentBeLSUT.chooseStudentAllFacultyAndCourse("ГЭФ", "3");
-        StudentBeLSUT.chooseStudentDateOfBirth("1998");
-        StudentBeLSUT.chooseStudentOneGroup("МФ");
+        final String pgsFacultyName = "ПГС";
+        final String gefFacultyName = "ГЭФ";
+        final String thirdCourseNumber = "3";
+        final String selectionDateOfBirth = "1998";
+        final String mfGroupName = "МФ";
+
+        StudentBeLSUT.chooseStudentOneFaculty(pgsFacultyName);
+        StudentBeLSUT.chooseStudentAllFacultyAndCourse(gefFacultyName, thirdCourseNumber);
+        StudentBeLSUT.chooseStudentDateOfBirth(selectionDateOfBirth);
+        StudentBeLSUT.chooseStudentOneGroup(mfGroupName);
 
     }
 }
