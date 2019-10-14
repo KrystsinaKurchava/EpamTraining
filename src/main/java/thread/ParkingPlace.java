@@ -36,6 +36,7 @@ public class ParkingPlace {
         freeSpaceLocker.lock();
         try {
             countOfPlaceFree = countOfPlaceFree + 1;
+            free.signal();
         } finally {
             freeSpaceLocker.unlock();
         }
