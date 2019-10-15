@@ -48,7 +48,7 @@ public class ParkingPlace {
                 return true;
             }
             try {
-                System.out.println("Ждать");
+                System.out.println("Ожидание пустого места");
                 free.await(1000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
