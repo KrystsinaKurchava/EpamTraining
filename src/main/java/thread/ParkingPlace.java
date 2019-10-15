@@ -19,7 +19,6 @@ public class ParkingPlace {
     }
 
     public int getCountOfPlaceFree() {
-
         return countOfPlaceFree;
     }
 
