@@ -1,4 +1,4 @@
-package thread;
+package thread.infrastructure;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +12,7 @@ public class ParkingPlace {
     private Lock freeSpaceLocker = new ReentrantLock();
     private Condition free = freeSpaceLocker.newCondition();
 
-    ParkingPlace() {
+    public ParkingPlace() {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите количество пустых мест на парковке");
         this.countOfPlaceFree = in.nextInt();

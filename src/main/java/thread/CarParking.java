@@ -1,6 +1,9 @@
 package thread;
 
-public class Main {
+import thread.infrastructure.Car;
+import thread.infrastructure.ParkingPlace;
+
+public class CarParking {
     final static long timeBetweenNextCar = 1400;
     final static long timeWaitingForToyota = 1300;
     final static long timeWaitingForHonda = 1400;

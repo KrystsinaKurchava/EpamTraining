@@ -1,9 +1,9 @@
-package thread;
+package thread.infrastructure;
 
-class Car {
+public class Car {
     private String name;
 
-    Car(String name) {
+    public Car(String name) {
         this.name = name;
     }
 
