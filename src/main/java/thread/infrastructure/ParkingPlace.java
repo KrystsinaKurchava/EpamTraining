@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ParkingPlace {
-
+    private final static int timeForAwait = 1000;
     private int countOfPlaceFree;
     private Lock freeSpaceLocker = new ReentrantLock();
     private Condition free = freeSpaceLocker.newCondition();
@@ -49,7 +49,7 @@ public class ParkingPlace {
             }
             try {
                 System.out.println("Ожидание пустого места");
-                free.await(1000, TimeUnit.MILLISECONDS);
+                free.await(timeForAwait, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -2,6 +2,7 @@ package thread.option;
 
 public class Airplane {
     private String name;
+    private final static int timeForAction = 3000;
 
     public Airplane(String name) {
         this.name = name;
@@ -25,7 +26,7 @@ public class Airplane {
         new Thread(() -> {
             this.takeTarmac(airport);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(timeForAction);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
