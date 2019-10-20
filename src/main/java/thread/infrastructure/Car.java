@@ -2,6 +2,7 @@ package thread.infrastructure;
 
 public class Car {
     private String name;
+    private final static  String CAR_REPRESENTATION = "car ";
 
     public Car(String name) {
         this.name = name;
@@ -11,25 +12,26 @@ public class Car {
         return name;
     }
 
-    public boolean doPark(ParkingPlace parking) {
-        if (parking.checkFreePlace(this)) {
+    private boolean doPark(ParkingPlace parking) {
+        if (parking.checkFreePlace()) {
             parking.reduceCountOfPlaceFree();
-            System.out.println("машина " + this.getName() + " припарковлась");
+            System.out.println(CAR_REPRESENTATION + this.getName() + " parked");
             return true;
         } else {
-            System.out.println("машина " + this.getName() + " уехала, не дождавшись места");
+            System.out.println(CAR_REPRESENTATION + this.getName() + " has gone: " +
+                    "timed out.");
             return false;
         }
     }
 
-    public void goOut(ParkingPlace parking) {
+    private void goOut(ParkingPlace parking) {
         parking.increaseCountOfPlaceFree();
-        System.out.println("машина " + this.getName() + " уехала со стоянки");
+        System.out.println(CAR_REPRESENTATION + this.getName() + " has gone.");
     }
 
     public void drive(ParkingPlace parking, long timeWaiting) {
         new Thread(() -> {
-            if (this.doPark(parking) == false) {
+            if (!doPark(parking)) {
                 return;
             }
             try {
@@ -41,6 +43,3 @@ public class Car {
         }).start();
     }
 }
-
-
-

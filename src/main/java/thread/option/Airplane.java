@@ -2,7 +2,8 @@ package thread.option;
 
 public class Airplane {
     private String name;
-    private final static int timeForAction = 3000;
+    private final static int TIME_FOR_ACTION = 3000;
+    private final static  String AIRPLANE_REPRESENTATION = "Airplane ";
 
     public Airplane(String name) {
         this.name = name;
@@ -12,21 +13,22 @@ public class Airplane {
         return name;
     }
 
-    public void takeTarmac(Airport airport) {
+    private void takeTarmac(Airport airport) {
         airport.decreaseCountFreeStrip(this);
-        System.out.println("Самолет " + this.getName() + " начал выход на полосу");
+        System.out.println(AIRPLANE_REPRESENTATION + this.getName() +
+                " begins output on the strip");
     }
 
-    public void freeTarmac(Airport airport) {
+    private void freeTarmac(Airport airport) {
         airport.increaseCountFreeStrip();
-        System.out.println("Самолет " + this.getName() + " взлетел");
+        System.out.println(AIRPLANE_REPRESENTATION + this.getName() + " takes off");
     }
 
     public void fly(Airport airport) {
         new Thread(() -> {
             this.takeTarmac(airport);
             try {
-                Thread.sleep(timeForAction);
+                Thread.sleep(TIME_FOR_ACTION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

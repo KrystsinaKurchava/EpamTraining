@@ -7,18 +7,18 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ParkingPlace {
-    private final static int timeForAwait = 1000;
+    private final static int TIME_FOR_AWAIT = 1000;
     private int countOfPlaceFree;
     private Lock freeSpaceLocker = new ReentrantLock();
     private Condition free = freeSpaceLocker.newCondition();
 
     public ParkingPlace() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите количество пустых мест на парковке");
+        System.out.println("Please, input count empty places at the parking.");
         this.countOfPlaceFree = in.nextInt();
     }
 
-    public int getCountOfPlaceFree() {
+    private int getCountOfPlaceFree() {
         return countOfPlaceFree;
     }
 
@@ -41,15 +41,15 @@ public class ParkingPlace {
         }
     }
 
-    public boolean checkFreePlace(Car car) {
+    public boolean checkFreePlace() {
         freeSpaceLocker.lock();
         try {
             if (this.getCountOfPlaceFree() > 0) {
                 return true;
             }
             try {
-                System.out.println("Ожидание пустого места");
-                free.await(timeForAwait, TimeUnit.MILLISECONDS);
+                System.out.println("Waiting empty place");
+                free.await(TIME_FOR_AWAIT, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
