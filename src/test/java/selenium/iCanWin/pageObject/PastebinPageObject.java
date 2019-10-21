@@ -1,4 +1,4 @@
-package selenium.iCanWin;
+package selenium.iCanWin.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

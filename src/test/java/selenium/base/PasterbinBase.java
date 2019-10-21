@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public abstract class PasterbinBase {
-    private WebDriver webDriver;
+public abstract class PasterbinBase extends PageObjectBase {
     @FindBy(css = "#paste_code")
     protected WebElement inputTextInNewPaste;
     @FindBy(xpath = "//*[@class='select2-selection__rendered' and @title='Never']/..")
@@ -18,13 +16,9 @@ public abstract class PasterbinBase {
     protected WebElement buttonForCreateNewPaste;
 
     public PasterbinBase(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+        super(webDriver);
     }
 
-    protected WebElement findElement(By by) {
-        return webDriver.findElement(by);
-    }
 
     public abstract void createNewPaste();
 }
