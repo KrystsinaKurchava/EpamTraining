@@ -2,7 +2,6 @@ package selenium.iCanWin.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import selenium.base.PasterbinBase;
 
 public class PastebinPageObject extends PasterbinBase {
@@ -22,7 +21,4 @@ public class PastebinPageObject extends PasterbinBase {
         inputPasteName.sendKeys(pasteNameText);
         buttonForCreateNewPaste.click();
     }
-
-
-
 }

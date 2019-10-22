@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class PageObjectBase {
     protected WebDriver webDriver;
 
-    private final int TIME_OUT_FOR_WAIT= 10;
+    private final int TIME_OUT_FOR_WAIT = 10;
+
     public PageObjectBase(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);

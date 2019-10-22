@@ -12,6 +12,7 @@ public class GoogleCloudSearchCalculator extends PageObjectBase {
     private WebElement searchForm;
 
     private final By calculatorLink = new By.ByXPath("//b[text() ='Google Cloud Platform Pricing Calculator']/parent::a");
+
     public GoogleCloudSearchCalculator(WebDriver webDriver) {
         super(webDriver);
     }
@@ -20,7 +21,5 @@ public class GoogleCloudSearchCalculator extends PageObjectBase {
         searchLine.sendKeys("Google Cloud Platform Pricing Calculator");
         searchForm.submit();
         findElement(calculatorLink).click();
-
-
     }
 }
