@@ -20,5 +20,7 @@ public class GoogleCloudSearchCalculator extends PageObjectBase {
         searchLine.sendKeys("Google Cloud Platform Pricing Calculator");
         searchForm.submit();
         findElement(calculatorLink).click();
+
+
     }
 }

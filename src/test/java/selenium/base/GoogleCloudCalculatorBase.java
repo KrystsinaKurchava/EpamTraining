@@ -5,10 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleCloudCalculatorBase extends PageObjectBase {
+   // @FindBy(css = ".hexagon-in2")
+    @FindBy(css= "md-tab-item.md-tab:nth-child(1) > div:nth-child(1) > div:nth-child(1)");
 
-    @FindBy(css = ".hexagon-in2")
     private WebElement partComputeEngine;
     @FindBy(css = "#input_53")
     private WebElement numberOfInstance;
@@ -50,11 +52,14 @@ public class GoogleCloudCalculatorBase extends PageObjectBase {
     private WebElement commitedUsage;
     private final By commitedUsage1year = new By.ByCssSelector("#select_option_83");
 
+    @FindBy(xpath = "//form[@name='ComputeEngineForm']//div//button[@aria-label='Add to Estimate']")
+    private WebElement addToEstimate;
+
     public GoogleCloudCalculatorBase(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void EnterFormValues(){
+    public void enterFormValues() throws InterruptedException {
         /*. Заполнить форму следующими данными:
          * Number of instances: 4
          * What are these instances for?: оставить пустым
@@ -69,6 +74,26 @@ public class GoogleCloudCalculatorBase extends PageObjectBase {
          * Commited usage: 1 Year
             7. Нажать Add to Estimate
          * */
+webDriver.wait(1000);
+        partComputeEngine.click();
+//        numberOfInstance.sendKeys("4");
+//        operationSystem.click();
+//        findElement(operationSystemElement);
+//        vmClass.click();
+//        findElement(vmRegular);
+//        machineType.click();
+//        findElement(machineTypeN1);
+//        numberOfGrup.click();
+//        findElement(numberOfGrupValue);
+//        GPUtype.click();
+//        findElement(GPUtypeNvidia);
+//        localSSd.click();
+//        findElement(localSSdValue);
+//        dataCenreLocation.click();
+//        findElement(dataCenreLocationValue);
+//        commitedUsage.click();
+//        findElement(commitedUsage1year);
+//        addToEstimate.click();
     }
 
 }

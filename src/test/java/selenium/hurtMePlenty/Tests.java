@@ -1,14 +1,12 @@
-package selenium.hurtMePlenty.pageObject;
+package selenium.hurtMePlenty;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import selenium.base.GoogleCloudCalculatorBase;
 import selenium.base.GoogleCloudSearchCalculator;
-import selenium.bringItOut.pageObject.PastebinHome;
-import selenium.bringItOut.pageObject.PastebinNewPaste;
 
 public class Tests {
     private static WebDriver webDriver;
@@ -24,9 +22,13 @@ public class Tests {
     }
 
     @Test
-    public void taskTask() {
+    public void taskTask() throws InterruptedException {
+
         webDriver.get("https://cloud.google.com/");
         GoogleCloudSearchCalculator googleCloudSearchCalculator = new GoogleCloudSearchCalculator(webDriver);
         googleCloudSearchCalculator.searchForCalculator();
+        GoogleCloudCalculatorBase input = new GoogleCloudCalculatorBase(webDriver);
+
+        input.enterFormValues();
     }
 }
