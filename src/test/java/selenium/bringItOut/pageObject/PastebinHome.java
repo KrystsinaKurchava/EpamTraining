@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import selenium.base.PasterbinBase;
 
 public class PastebinHome extends PasterbinBase {
-
     @FindBy(xpath = "//*[@class='select2-selection__rendered' and @title ='None']")
     private WebElement selectSyntax;
     private final By tenMinutesListElement = new By.ByXPath("//li[text() = '10 Minutes']");

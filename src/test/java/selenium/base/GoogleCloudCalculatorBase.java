@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoogleCloudCalculatorBase extends PageObjectBase {
+public abstract class GoogleCloudCalculatorBase extends PageObjectBase {
     @FindBy(css = "#maia-main iframe")
     private WebElement frame;
     @FindBy(css = "md-tab-item.md-tab:nth-child(1)")
@@ -41,9 +41,15 @@ public class GoogleCloudCalculatorBase extends PageObjectBase {
     private final By commitedUsage1year = new By.ByCssSelector("#select_option_83");
     @FindBy(xpath = "//form[@name='ComputeEngineForm']//div//button[@aria-label='Add to Estimate']")
     private WebElement addToEstimate;
+    @FindBy(css = "h2.md-title:nth-child(2) > b:nth-child(1)")
+    private WebElement resultOfCointing;
 
     public GoogleCloudCalculatorBase(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public String getResultOfCointing() {
+        return resultOfCointing.getText();
     }
 
     public void enterFormValues() {

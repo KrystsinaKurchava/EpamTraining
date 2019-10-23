@@ -1,14 +1,11 @@
-package selenium.hurtMePlenty;
-
+package selenium.hurtMePlenty.pageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import selenium.base.GoogleCloudCalculatorBase;
 
-
 public class ComparingResults extends GoogleCloudCalculatorBase {
-
     @FindBy(css = "#maia-main iframe")
     private WebElement frame;
     @FindBy(css = "md-list-item.md-1-line:nth-child(4)")
@@ -21,8 +18,6 @@ public class ComparingResults extends GoogleCloudCalculatorBase {
     private WebElement localSSD;
     @FindBy(css = "md-list-item.md-1-line:nth-child(12) > div:nth-child(1)")
     private WebElement commitmentTerm;
-    @FindBy(css = "h2.md-title:nth-child(2) > b:nth-child(1)")
-    private WebElement resultOfCointing;
 
     public ComparingResults(WebDriver webDriver) {
         super(webDriver);
@@ -46,9 +41,5 @@ public class ComparingResults extends GoogleCloudCalculatorBase {
 
     public String getCommitmentTerm() {
         return commitmentTerm.getText();
-    }
-
-    public String getResultOfCointing() {
-        return resultOfCointing.getText();
     }
 }

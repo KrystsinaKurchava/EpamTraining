@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import selenium.base.GoogleCloudCalculatorBase;
 import selenium.base.GoogleCloudSearchCalculator;
+import selenium.hurtMePlenty.pageObject.ComparingResults;
 
 public class Tests {
     private static final String RESULT_OF_COINTING = "Total " +

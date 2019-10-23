@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import selenium.base.PageObjectBase;
 
 public class PastebinNewPaste extends PageObjectBase {
-
     @FindBy(css = "#selectable>ol")
     private WebElement syntax;
     @FindBy(css = "#paste_code")

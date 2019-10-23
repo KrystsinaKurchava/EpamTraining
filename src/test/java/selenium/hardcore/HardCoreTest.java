@@ -4,11 +4,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import selenium.base.GoogleCloudSearchCalculator;
-import selenium.hurtMePlenty.ComparingResults;
+import selenium.hardcore.pageObject.GoogleCloudCalculatorWithEmail;
+import selenium.hardcore.pageObject.TrickEmailAddress;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,23 +29,18 @@ public class HardCoreTest {
 
     @Test
     public void taskTask() throws InterruptedException {
-
         webDriver.get("https://cloud.google.com/");
         mainHandler = webDriver.getWindowHandle();
         GoogleCloudSearchCalculator googleCloudSearchCalculator = new GoogleCloudSearchCalculator(webDriver);
         googleCloudSearchCalculator.searchForCalculator();
-        ComparingResults input = new ComparingResults(webDriver);
-        input.enterFormValues();
-        entFOrmTOTHeMAil create = new entFOrmTOTHeMAil(webDriver, mainHandler);
-        create.sentToTheMAil();
-        create.swithToMailWindow();
-        String email = create.createNewEmail();
+        GoogleCloudCalculatorWithEmail estimateEmailPage = new GoogleCloudCalculatorWithEmail(webDriver);
+        estimateEmailPage.enterFormValues();
+        TrickEmailAddress tenMailPage = new TrickEmailAddress(webDriver, mainHandler);
+        tenMailPage.switchToMailWindow();
+        String email = tenMailPage.createNewEmail();
         webDriver.switchTo().window(mainHandler);
-        create.inputEmail(email);
-
-        Assert.assertEquals(true, create.getResultOfCointing());
-
-
+        estimateEmailPage.sendEmail(email);
+        Assert.assertEquals(true, estimateEmailPage.getResultOfCointing().contains(tenMailPage.getRentCost()));
     }
 }
 
