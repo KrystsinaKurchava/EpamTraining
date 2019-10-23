@@ -30,7 +30,7 @@ public class Tests {
         webDriver.get("https://cloud.google.com/");
         GoogleCloudSearchCalculator googleCloudSearchCalculator = new GoogleCloudSearchCalculator(webDriver);
         googleCloudSearchCalculator.searchForCalculator();
-        GoogleCloudCalculatorBase input = new GoogleCloudCalculatorBase(webDriver);
+        ComparingResults input = new ComparingResults(webDriver);
         ComparingResults compare = new ComparingResults(webDriver);
 
         input.enterFormValues();

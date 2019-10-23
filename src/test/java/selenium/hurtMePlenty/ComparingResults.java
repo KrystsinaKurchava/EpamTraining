@@ -1,16 +1,18 @@
 package selenium.hurtMePlenty;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import selenium.base.PageObjectBase;
+import selenium.base.GoogleCloudCalculatorBase;
 
-public class ComparingResults extends PageObjectBase {
+
+public class ComparingResults extends GoogleCloudCalculatorBase {
 
     @FindBy(css = "#maia-main iframe")
     private WebElement frame;
     @FindBy(css = "md-list-item.md-1-line:nth-child(4)")
-    private WebElement vmRegular;
+    private WebElement vmRegularset;
     @FindBy(css = "md-list-item.md-1-line:nth-child(6) > div:nth-child(1)")
     private WebElement instanceType;
     @FindBy(css = "md-list-item.md-1-line:nth-child(8) > div:nth-child(1)")
@@ -22,8 +24,12 @@ public class ComparingResults extends PageObjectBase {
     @FindBy(css = "h2.md-title:nth-child(2) > b:nth-child(1)")
     private WebElement resultOfCointing;
 
+    public ComparingResults(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public String findVmRegular() {
-        return vmRegular.getText();
+        return vmRegularset.getText();
     }
 
     public String getInstanceType() {
@@ -44,9 +50,5 @@ public class ComparingResults extends PageObjectBase {
 
     public String getResultOfCointing() {
         return resultOfCointing.getText();
-    }
-
-    public ComparingResults(WebDriver webDriver) {
-        super(webDriver);
     }
 }
