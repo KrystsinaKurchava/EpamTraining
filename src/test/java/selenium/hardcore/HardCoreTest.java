@@ -15,21 +15,23 @@ import java.util.concurrent.TimeUnit;
 public class HardCoreTest {
     private static WebDriver webDriver;
     private static String mainHandler;
+    private final String LINK_FOR_CLOUD_GOOGLE = "https://cloud.google.com/";
+    private final int TIME_WAITING_PAGE = 10;
 
     @Before
     public void before() {
         webDriver = new FirefoxDriver();
-        webDriver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().pageLoadTimeout(TIME_WAITING_PAGE, TimeUnit.SECONDS);
     }
 
     @After
     public void tearDown() {
-        //webDriver.quit();
+        webDriver.quit();
     }
 
     @Test
-    public void taskTask() throws InterruptedException {
-        webDriver.get("https://cloud.google.com/");
+    public void taskTask() {
+        webDriver.get(LINK_FOR_CLOUD_GOOGLE);
         mainHandler = webDriver.getWindowHandle();
         GoogleCloudSearchCalculator googleCloudSearchCalculator = new GoogleCloudSearchCalculator(webDriver);
         googleCloudSearchCalculator.searchForCalculator();

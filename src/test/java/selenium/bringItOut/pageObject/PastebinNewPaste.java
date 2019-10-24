@@ -10,6 +10,7 @@ public class PastebinNewPaste extends PageObjectBase {
     private WebElement syntax;
     @FindBy(css = "#paste_code")
     private WebElement pasteText;
+    private final String ATTRIBUTE_FOR_CHECK = "class";
 
     public PastebinNewPaste(WebDriver webDriver) {
         super(webDriver);
@@ -24,6 +25,6 @@ public class PastebinNewPaste extends PageObjectBase {
     }
 
     public String checkBash() {
-        return syntax.getAttribute("class");
+        return syntax.getAttribute(ATTRIBUTE_FOR_CHECK);
     }
 }

@@ -9,9 +9,8 @@ import selenium.base.GoogleCloudCalculatorBase;
 public class GoogleCloudCalculatorWithEmail extends GoogleCloudCalculatorBase {
     @FindBy(css = "#email_quote")
     private WebElement buttonForSent;
-
     private final By inputEmailAddress = new By.ByCssSelector("#input_415");
-    private final By buttonSend = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
+    private final By buttonSendEmail = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
 
     public GoogleCloudCalculatorWithEmail(WebDriver webDriver) {
         super(webDriver);
@@ -20,6 +19,8 @@ public class GoogleCloudCalculatorWithEmail extends GoogleCloudCalculatorBase {
     public void sendEmail(String mail) {
         buttonForSent.click();
         findElement(inputEmailAddress).sendKeys(mail);
-        findElement(buttonSend).click();
+        WebElement buttonForScroll = findElement(inputEmailAddress);
+        scrollToElement(buttonForScroll);
+        findElement(buttonSendEmail).click();
     }
 }

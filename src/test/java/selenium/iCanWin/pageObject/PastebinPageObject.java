@@ -7,18 +7,18 @@ import selenium.base.PasterbinBase;
 public class PastebinPageObject extends PasterbinBase {
 
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
-    private final String newPasteText = "Hello from WebDriver";
-    private final String pasteNameText = "helloweb";
+    private final String NEW_PASTE_TEXT = "Hello from WebDriver";
+    private final String PASTE_NAME_TEXT = "helloweb";
 
     public PastebinPageObject(WebDriver webDriver) {
         super(webDriver);
     }
 
     public void createNewPaste() {
-        inputTextInNewPaste.sendKeys(newPasteText);
+        inputTextInNewPaste.sendKeys(NEW_PASTE_TEXT);
         selectPasteExpiration.click();
         findElement(tenMinutesListElement).click();
-        inputPasteName.sendKeys(pasteNameText);
+        inputPasteName.sendKeys(PASTE_NAME_TEXT);
         buttonForCreateNewPaste.click();
     }
 }
