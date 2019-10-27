@@ -5,20 +5,17 @@ import org.openqa.selenium.WebDriver;
 import selenium.base.PasterbinBase;
 
 public class PastebinPageObject extends PasterbinBase {
-
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
-    private final String NEW_PASTE_TEXT = "Hello from WebDriver";
-    private final String PASTE_NAME_TEXT = "helloweb";
 
     public PastebinPageObject(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void createNewPaste() {
-        inputTextInNewPaste.sendKeys(NEW_PASTE_TEXT);
+    public void createNewPaste(String textForPaste, String textPasteName) {
+        inputTextInNewPaste.sendKeys(textForPaste);
         selectPasteExpiration.click();
-        findElement(tenMinutesListElement).click();
-        inputPasteName.sendKeys(PASTE_NAME_TEXT);
+        findClickableElement(tenMinutesListElement).click();
+        inputPasteName.sendKeys(textPasteName);
         buttonForCreateNewPaste.click();
     }
 }

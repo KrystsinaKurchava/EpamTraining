@@ -18,7 +18,7 @@ public abstract class PageObjectBase {
         PageFactory.initElements(webDriver, this);
     }
 
-    protected WebElement findElement(By by) {
+    protected WebElement findClickableElement(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
         wait.until(ExpectedConditions.elementToBeClickable(by));
         return webDriver.findElement(by);

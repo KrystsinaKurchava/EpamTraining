@@ -8,7 +8,7 @@ import selenium.base.PageObjectBase;
 public class PastebinNewPaste extends PageObjectBase {
     @FindBy(css = "#selectable>ol")
     private WebElement syntax;
-    @FindBy(css = "#paste_code")
+    @FindBy(id = "paste_code")
     private WebElement pasteText;
     private final String ATTRIBUTE_FOR_CHECK = "class";
 
@@ -20,8 +20,9 @@ public class PastebinNewPaste extends PageObjectBase {
         return webDriver.getTitle();
     }
 
-    public String getCode() {
+    public String getText() {
         return pasteText.getText();
+
     }
 
     public String checkBash() {

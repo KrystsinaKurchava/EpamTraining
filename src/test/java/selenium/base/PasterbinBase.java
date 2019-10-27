@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public abstract class PasterbinBase extends PageObjectBase {
-    @FindBy(css = "#paste_code")
+    @FindBy(id = "paste_code")
     protected WebElement inputTextInNewPaste;
     @FindBy(xpath = "//*[@class='select2-selection__rendered' and @title='Never']/..")
     protected WebElement selectPasteExpiration;
@@ -18,5 +18,5 @@ public abstract class PasterbinBase extends PageObjectBase {
         super(webDriver);
     }
 
-    public abstract void createNewPaste();
+    public abstract void createNewPaste(String textForPaste, String textPasteName);
 }

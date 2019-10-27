@@ -1,12 +1,11 @@
-package selenium.hurtMePlenty.pageObject;
+package selenium.base.googleCloud;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import selenium.base.GoogleCloudCalculatorBase;
 
-public class ComparingResults extends GoogleCloudCalculatorBase {
-    @FindBy(css = "#maia-main iframe")
+public class ComparingResults extends GoogleCloudCalculatorPage {
+    @FindBy(id = "maia-main iframe")
     private WebElement frame;
     @FindBy(css = "md-list-item.md-1-line:nth-child(4)")
     private WebElement textVMRegularSet;
