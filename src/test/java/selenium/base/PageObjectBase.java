@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class PageObjectBase {
     protected WebDriver webDriver;
-    private final int TIME_OUT_FOR_WAIT = 30;
+    protected final int TIME_OUT_FOR_WAIT = 30;
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";
 
     public PageObjectBase(WebDriver webDriver) {

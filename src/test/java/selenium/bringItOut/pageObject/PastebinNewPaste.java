@@ -22,7 +22,6 @@ public class PastebinNewPaste extends PageObjectBase {
 
     public String getText() {
         return pasteText.getText();
-
     }
 
     public String checkBash() {
