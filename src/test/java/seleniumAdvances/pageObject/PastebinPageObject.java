@@ -7,11 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PasterbinBase;
 
 public class PastebinPageObject extends PasterbinBase {
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
-
     @FindBy(id = "notice")
     private WebElement notice;
 
@@ -54,5 +55,11 @@ public class PastebinPageObject extends PasterbinBase {
 
     protected void clickButtonWithJS(WebElement element) {
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].click()", element);
+    }
+
+    public String getTextExpected(String expectedText) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.textToBePresentInElement(inputTextInNewPaste, expectedText));
+        return inputTextInNewPaste.getText();
     }
 }
