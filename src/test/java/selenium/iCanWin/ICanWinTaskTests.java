@@ -2,35 +2,27 @@ package selenium.iCanWin;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import selenium.base.PageObjectBase;
 import selenium.bringItOut.pageObject.PastebinNewPaste;
 import selenium.iCanWin.pageObject.PastebinPageObject;
 
 public class ICanWinTaskTests {
-    WebDriver webDriver;
     private final String LINK_FOR_PASTERBIN = "https://pastebin.com/";
     private final String NEW_PASTE_TEXT = "Hello from WebDriver";
     private final String PASTE_NAME_TEXT = "helloweb";
 
-    @BeforeTest
-    public void setUp() {
-        webDriver = new FirefoxDriver();
+    @AfterTest(description = "Closing browser after tests run")
+    public void driverClose() {
+        PageObjectBase.quit();
     }
 
-    @AfterTest
-    public void tearDown() {
-        webDriver.quit();
-    }
-
-    @Test  (description = "I can win test")
+    @Test(description = "I can win test")
     public void pastebinNewPaste() {
-        webDriver.get(LINK_FOR_PASTERBIN);
-        PastebinPageObject page = new PastebinPageObject(webDriver);
+        PastebinPageObject page = new PastebinPageObject();
+        page.goToPage(LINK_FOR_PASTERBIN);
         page.createNewPaste(NEW_PASTE_TEXT, PASTE_NAME_TEXT);
-        PastebinNewPaste pastebinNewPaste = new PastebinNewPaste(webDriver);
-        Assert.assertEquals(NEW_PASTE_TEXT, pastebinNewPaste.getText(), "No matches found");
+        PastebinNewPaste pastebinNewPaste = new PastebinNewPaste();
+        Assert.assertEquals(NEW_PASTE_TEXT, pastebinNewPaste.getText(), "Text is different");
     }
 }

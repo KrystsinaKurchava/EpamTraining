@@ -1,18 +1,12 @@
 package selenium.base.googleCloud;
 
-import org.openqa.selenium.WebDriver;
-
 public class GoogleCloudService {
     private String mailHandler;
     private final Integer NUMBER_OF_INSTANCE = 4;
-    protected WebDriver webDriver;
-
-    public GoogleCloudService(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
+    private final String LINK_FOR_CLOUD_GOOGLE = "https://cloud.google.com/";
 
     public String enterFormValues() {
-        GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(webDriver);
+        GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage();
         googleCloudCalculatorPage.switchToFrame();
         googleCloudCalculatorPage.selectPartComputeEngineClick();
         googleCloudCalculatorPage.inputNumberOfInstanceValue(NUMBER_OF_INSTANCE);
@@ -39,34 +33,39 @@ public class GoogleCloudService {
     }
 
     public String getRentCost() {
-        TrickEmailsPage trickEmailsPage = new TrickEmailsPage(webDriver);
-        webDriver.switchTo().window(mailHandler);
+        TrickEmailsPage trickEmailsPage = new TrickEmailsPage();
+        trickEmailsPage.switchToWindow(mailHandler);
         trickEmailsPage.scrollToInputEmailAddress();
         trickEmailsPage.waitForAppearanceExpanderToMail();
         return trickEmailsPage.getMoneyValue();
     }
 
     public void sendEmail(String mail) {
-        GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage(webDriver);
+        GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage();
         googleCloudCalculatorEmailPage.buttonToSentEmailClick();
         googleCloudCalculatorEmailPage.enterEmailAddress(mail);
         googleCloudCalculatorEmailPage.scrollToEmailAddress();
         googleCloudCalculatorEmailPage.sendEmail();
     }
 
-    public GoogleCloudSearchResult searchForCalculator(String text) {
-        GoogleCloudSearchCalculator googleCloudSearch = new GoogleCloudSearchCalculator(webDriver);
+    public void searchForCalculator(String text) {
+        GoogleCloudSearchCalculator googleCloudSearch = new GoogleCloudSearchCalculator();
+        googleCloudSearch.goToPage(LINK_FOR_CLOUD_GOOGLE);
         googleCloudSearch.enterSearchLine(text);
         googleCloudSearch.startSearch();
-        return new GoogleCloudSearchResult(webDriver);
     }
 
-    public String createNewEmail(String handler) {
-        TrickEmailsPage tenMailPage = new TrickEmailsPage(webDriver);
-        mailHandler = tenMailPage.openMailPage(webDriver.getWindowHandle());
-        webDriver.switchTo().window(mailHandler);
+    public void goToTheCalculatorLink() {
+        new GoogleCloudSearchResult().goToTheCalculatorLink();
+    }
+
+    public String createNewEmail() {
+        TrickEmailsPage tenMailPage = new TrickEmailsPage();
+        String mainHandler = tenMailPage.getCurrentWindowHandler();
+        mailHandler = tenMailPage.openMailPage(tenMailPage.getCurrentWindowHandler());
+        tenMailPage.switchToWindow(mailHandler);
         String email = tenMailPage.createNewEmail();
-        webDriver.switchTo().window(handler);
+        tenMailPage.switchToWindow(mainHandler);
         return email;
     }
 }

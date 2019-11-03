@@ -15,11 +15,6 @@ public class TrickEmailsPage extends PageObjectBase {
     private final String EXECUTE_SCRIPT = "window.open(\"https://10minutemail.com/\")";
     private final int EMAIL_WAITING_TIMEOUT_IN_SECONDS = 5000;
 
-    public TrickEmailsPage(WebDriver webDriver) {
-        super(webDriver);
-
-    }
-
     public String openMailPage(String previousPageHandler) {
         ((JavascriptExecutor) webDriver).executeScript(EXECUTE_SCRIPT);
         Set<String> handles = webDriver.getWindowHandles();

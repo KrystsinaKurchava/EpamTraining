@@ -2,23 +2,17 @@ package seleniumAdvances.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.base.PasterbinBase;
 
 public class PastebinPageObject extends PasterbinBase {
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
     @FindBy(id = "notice")
     private WebElement notice;
-
-    public PastebinPageObject(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public void createNewPaste(String textForPaste, String textPasteName) {
         clickByElement(selectPasteExpiration).perform();

@@ -1,6 +1,5 @@
 package selenium.base.googleCloud;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,10 +16,6 @@ public class ComparingResults extends GoogleCloudCalculatorPage {
     private WebElement textLocalSSD;
     @FindBy(css = "md-list-item.md-1-line:nth-child(12) > div:nth-child(1)")
     private WebElement textCommitmentTerm;
-
-    public ComparingResults(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public String getVmRegular() {
         return textVMRegularSet.getText();

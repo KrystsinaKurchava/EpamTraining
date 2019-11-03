@@ -1,6 +1,5 @@
 package selenium.base.googleCloud;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import selenium.base.PageObjectBase;
@@ -50,10 +49,6 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
     private WebElement buttonAddToEstimate;
     @FindBy(css = "h2.md-title:nth-child(2) > b:nth-child(1)")
     private WebElement resultOfCointing;
-
-    public GoogleCloudCalculatorPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public String getResultOfCointing() {
         return resultOfCointing.getText();
