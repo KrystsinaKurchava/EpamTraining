@@ -3,32 +3,32 @@ package selenium.base.googleCloud;
 public class GoogleCloudService {
     private String mailHandler;
     private final Integer NUMBER_OF_INSTANCE = 4;
-    private final String LINK_FOR_CLOUD_GOOGLE = "https://cloud.google.com/";
+    private final String CLOUD_GOOGLE_LINK = "https://cloud.google.com/";
 
     public String enterFormValues() {
         GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage();
         googleCloudCalculatorPage.switchToFrame();
-        googleCloudCalculatorPage.selectPartComputeEngineClick();
-        googleCloudCalculatorPage.inputNumberOfInstanceValue(NUMBER_OF_INSTANCE);
-        googleCloudCalculatorPage.selectOperationSystemClick();
-        googleCloudCalculatorPage.selectOptionOperationSystemElementClick();
-        googleCloudCalculatorPage.selectVMClassClick();
-        googleCloudCalculatorPage.selectOptionVMRegularClick();
+        googleCloudCalculatorPage.partComputeEngineSelectClick();
+        googleCloudCalculatorPage.numberOfInstanceValueInput(NUMBER_OF_INSTANCE);
+        googleCloudCalculatorPage.operationSystemSelectClick();
+        googleCloudCalculatorPage.optionOperationSystemElementSelectClick();
+        googleCloudCalculatorPage.vmClassSelectClick();
+        googleCloudCalculatorPage.optionVMRegularSelectClick();
         googleCloudCalculatorPage.scrollToVMClassElement();
-        googleCloudCalculatorPage.selectMachineTypeClick();
-        googleCloudCalculatorPage.selectOptionMachineTypeClick();
-        googleCloudCalculatorPage.checkboxAddGrup();
-        googleCloudCalculatorPage.selectNumberOfGrupClick();
-        googleCloudCalculatorPage.selectOptionNumberOfGrupValueClick();
-        googleCloudCalculatorPage.selectGPUtypeClick();
-        googleCloudCalculatorPage.selectOptionGPUtypeNvidiaClick();
-        googleCloudCalculatorPage.selectLocalSSdClick();
-        googleCloudCalculatorPage.selectOptionLocalSSdValueClick();
-        googleCloudCalculatorPage.selectDataCenreLocationClick();
-        googleCloudCalculatorPage.selectOptionDataCenterLocationValueClick();
-        googleCloudCalculatorPage.selectCommitedUsageClick();
-        googleCloudCalculatorPage.selectOptionCommitedUsage1yearClick();
-        googleCloudCalculatorPage.buttonAddToEstimateClick();
+        googleCloudCalculatorPage.machineTypeSelectClick();
+        googleCloudCalculatorPage.optionMachineTypeSelectClick();
+        googleCloudCalculatorPage.addGrupCheckboxClick();
+        googleCloudCalculatorPage.numberOfGrupSelectClick();
+        googleCloudCalculatorPage.optionNumberOfGrupValueSelectClick();
+        googleCloudCalculatorPage.gpuTypeSelectClick();
+        googleCloudCalculatorPage.optionGPUtypeNvidiaSelectClick();
+        googleCloudCalculatorPage.localSSdSelectClick();
+        googleCloudCalculatorPage.optionLocalSSdValueSelectClick();
+        googleCloudCalculatorPage.dataCenreLocationSelectClick();
+        googleCloudCalculatorPage.optionDataCenterLocationValueSelectClick();
+        googleCloudCalculatorPage.commitedUsageSelectClick();
+        googleCloudCalculatorPage.optionCommitedUsage1yearSelectClick();
+        googleCloudCalculatorPage.addToEstimateButtonClick();
         return googleCloudCalculatorPage.getResultOfCointing();
     }
 
@@ -42,7 +42,7 @@ public class GoogleCloudService {
 
     public void sendEmail(String mail) {
         GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage();
-        googleCloudCalculatorEmailPage.buttonToSentEmailClick();
+        googleCloudCalculatorEmailPage.sendEmailButtonClick();
         googleCloudCalculatorEmailPage.enterEmailAddress(mail);
         googleCloudCalculatorEmailPage.scrollToEmailAddress();
         googleCloudCalculatorEmailPage.sendEmail();
@@ -50,7 +50,7 @@ public class GoogleCloudService {
 
     public void searchForCalculator(String text) {
         GoogleCloudSearchCalculator googleCloudSearch = new GoogleCloudSearchCalculator();
-        googleCloudSearch.goToPage(LINK_FOR_CLOUD_GOOGLE);
+        googleCloudSearch.goToPage(CLOUD_GOOGLE_LINK);
         googleCloudSearch.enterSearchLine(text);
         googleCloudSearch.startSearch();
     }

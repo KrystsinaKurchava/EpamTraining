@@ -23,6 +23,6 @@ public class ICanWinTaskTests {
         page.goToPage(LINK_FOR_PASTERBIN);
         page.createNewPaste(NEW_PASTE_TEXT, PASTE_NAME_TEXT);
         PastebinNewPaste pastebinNewPaste = new PastebinNewPaste();
-        Assert.assertEquals(NEW_PASTE_TEXT, pastebinNewPaste.getText(), "Text is different");
+        Assert.assertEquals(pastebinNewPaste.getText(), NEW_PASTE_TEXT, "Text is different");
     }
 }

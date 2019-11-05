@@ -6,11 +6,12 @@ import selenium.base.PasterbinBase;
 public class PastebinPageObject extends PasterbinBase {
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
 
+    @Override
     public void createNewPaste(String textForPaste, String textPasteName) {
-        inputTextInNewPaste.sendKeys(textForPaste);
-        selectPasteExpiration.click();
+        textInNewPasteInput.sendKeys(textForPaste);
+        pasteExpirationSelect.click();
         findClickableElement(tenMinutesListElement).click();
-        inputPasteName.sendKeys(textPasteName);
-        buttonForCreateNewPaste.click();
+        pasteNameInput.sendKeys(textPasteName);
+        forCreateNewPasteButton.click();
     }
 }

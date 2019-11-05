@@ -28,16 +28,16 @@ public class BringItOutTests {
         pastebinHome.createNewPaste(TEXT_FOR_PASTE, TEXT_PASTE_NAME);
         PastebinNewPaste pastebinNewPaste = new PastebinNewPaste();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals("[Bash] how to gain dominance among developers - Pastebin.com",
-                pastebinNewPaste.getTitle(), "Page title is unexpected");
-        softAssert.assertEquals("git config --global user.name" +
+        softAssert.assertEquals(pastebinNewPaste.getTitle(), "[Bash] how to gain dominance among developers - Pastebin.com",
+                "Page title is unexpected");
+        softAssert.assertEquals(pastebinNewPaste.getText(), "git config --global user.name" +
                         "  \"New Sheriff in Town\"\n" +
                         "git reset $(git commit-tree HEAD^{tree} -m " +
                         "\"Legacy code\")\n" +
                         "git push origin master --force",
-                pastebinNewPaste.getText(), "The content of the text is different");
-        softAssert.assertEquals("bash",
-                pastebinNewPaste.checkBash(), "Bash does not match");
+                "The content of the text is different");
+        softAssert.assertEquals(pastebinNewPaste.checkBash(), "bash",
+                "Bash does not match");
         softAssert.assertAll("Bring it out test failed");
     }
 }

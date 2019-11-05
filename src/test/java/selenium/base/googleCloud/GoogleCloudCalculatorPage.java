@@ -8,45 +8,45 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
     @FindBy(css = "#maia-main iframe")
     private WebElement frame;
     @FindBy(css = "md-tab-item.md-tab:nth-child(1)")
-    private WebElement selectPartComputeEngine;
+    private WebElement partComputeEngineSelect;
     @FindBy(id = "input_53")
-    private WebElement inputNumberOfInstance;
+    private WebElement numberOfInstanceInput;
     @FindBy(id = "select_65")
-    private WebElement selectOperationSystem;
+    private WebElement operationSystemSelect;
     @FindBy(id = "select_option_55")
-    private WebElement selectOptionOperationSystemElement;
+    private WebElement optionOperationSystemElementSelect;
     @FindBy(id = "select_69")
-    private WebElement selectVMClass;
+    private WebElement vmClassSelect;
     @FindBy(id = "select_option_67")
-    private WebElement selectOptionVMRegular;
+    private WebElement optionVMRegularSelect;
     @FindBy(id = "select_76")
-    private WebElement selectMachineType;
+    private WebElement machineTypeSelect;
     @FindBy(id = "select_option_217")
-    private WebElement selectOptionMachineType;
+    private WebElement optionMachineTypeSelect;
     @FindBy(css = "md-checkbox[aria-label='Add GPUs']")
-    private WebElement checkboxAddGrup;
+    private WebElement addGrupCheckbox;
     @FindBy(id = "select_348")
-    private WebElement selectNumberOfGrup;
+    private WebElement numberOfGrupSelect;
     @FindBy(id = "select_option_353")
-    private WebElement selectOptionNumberOfGrupValue;
+    private WebElement optionNumberOfGrupValueSelect;
     @FindBy(id = "select_350")
-    private WebElement selectGPUtype;
+    private WebElement gpuTypeSelect;
     @FindBy(id = "select_option_360")
-    private WebElement selectOptionGPUtypeNvidia;
+    private WebElement optionGPUtypeNvidiaSelect;
     @FindBy(id = "select_78")
-    private WebElement selectLocalSSd;
+    private WebElement localSSdSelect;
     @FindBy(id = "select_option_171")
-    private WebElement selectOptionLocalSSdValue;
+    private WebElement optionLocalSSdValueSelect;
     @FindBy(id = "select_80")
-    private WebElement selectDataCenreLocation;
+    private WebElement dataCenreLocationSelect;
     @FindBy(id = "select_option_185")
-    private WebElement selectOptionDataCenterLocationValue;
+    private WebElement optionDataCenterLocationValueSelect;
     @FindBy(id = "select_value_label_52")
-    private WebElement selectCommitedUsage;
+    private WebElement commitedUsageSelect;
     @FindBy(id = "select_option_83")
-    private WebElement selectOptionCommitedUsage1year;
+    private WebElement optionCommitedUsage1yearSelect;
     @FindBy(xpath = "//form[@name='ComputeEngineForm']//div//button[@aria-label='Add to Estimate']")
-    private WebElement buttonAddToEstimate;
+    private WebElement addToEstimateButton;
     @FindBy(css = "h2.md-title:nth-child(2) > b:nth-child(1)")
     private WebElement resultOfCointing;
 
@@ -58,87 +58,87 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
         webDriver.switchTo().frame(frame);
     }
 
-    public void selectPartComputeEngineClick() {
-        selectPartComputeEngine.click();
+    public void partComputeEngineSelectClick() {
+        partComputeEngineSelect.click();
     }
 
-    public void inputNumberOfInstanceValue(Integer numberOfInstance) {
-        inputNumberOfInstance.sendKeys(numberOfInstance.toString());
+    public void numberOfInstanceValueInput(Integer numberOfInstance) {
+        numberOfInstanceInput.sendKeys(numberOfInstance.toString());
     }
 
-    public void selectOperationSystemClick() {
-        selectOperationSystem.click();
+    public void operationSystemSelectClick() {
+        operationSystemSelect.click();
     }
 
-    public void selectOptionOperationSystemElementClick() {
-        selectOptionOperationSystemElement.click();
+    public void optionOperationSystemElementSelectClick() {
+        optionOperationSystemElementSelect.click();
     }
 
-    public void selectVMClassClick() {
-        selectVMClass.click();
+    public void vmClassSelectClick() {
+        vmClassSelect.click();
     }
 
-    public void selectOptionVMRegularClick() {
-        selectOptionVMRegular.click();
+    public void optionVMRegularSelectClick() {
+        optionVMRegularSelect.click();
     }
 
     public void scrollToVMClassElement() {
-        scrollToElement(selectVMClass);
+        scrollToElement(vmClassSelect);
     }
 
-    public void selectMachineTypeClick() {
-        selectMachineType.click();
+    public void machineTypeSelectClick() {
+        machineTypeSelect.click();
     }
 
-    public void selectOptionMachineTypeClick() {
-        selectOptionMachineType.click();
+    public void optionMachineTypeSelectClick() {
+        optionMachineTypeSelect.click();
     }
 
-    public void checkboxAddGrup() {
-        checkboxAddGrup.click();
+    public void addGrupCheckboxClick() {
+        addGrupCheckbox.click();
     }
 
-    public void selectNumberOfGrupClick() {
-        selectNumberOfGrup.click();
+    public void numberOfGrupSelectClick() {
+        numberOfGrupSelect.click();
     }
 
-    public void selectOptionNumberOfGrupValueClick() {
-        selectOptionNumberOfGrupValue.click();
+    public void optionNumberOfGrupValueSelectClick() {
+        optionNumberOfGrupValueSelect.click();
     }
 
-    public void selectGPUtypeClick() {
-        selectGPUtype.click();
+    public void gpuTypeSelectClick() {
+        gpuTypeSelect.click();
     }
 
-    public void selectOptionGPUtypeNvidiaClick() {
-        selectOptionGPUtypeNvidia.click();
+    public void optionGPUtypeNvidiaSelectClick() {
+        optionGPUtypeNvidiaSelect.click();
     }
 
-    public void selectLocalSSdClick() {
-        selectLocalSSd.click();
+    public void localSSdSelectClick() {
+        localSSdSelect.click();
     }
 
-    public void selectOptionLocalSSdValueClick() {
-        selectOptionLocalSSdValue.click();
+    public void optionLocalSSdValueSelectClick() {
+        optionLocalSSdValueSelect.click();
     }
 
-    public void selectDataCenreLocationClick() {
-        selectDataCenreLocation.click();
+    public void dataCenreLocationSelectClick() {
+        dataCenreLocationSelect.click();
     }
 
-    public void selectOptionDataCenterLocationValueClick() {
-        selectOptionDataCenterLocationValue.click();
+    public void optionDataCenterLocationValueSelectClick() {
+        optionDataCenterLocationValueSelect.click();
     }
 
-    public void selectCommitedUsageClick() {
-        selectCommitedUsage.click();
+    public void commitedUsageSelectClick() {
+        commitedUsageSelect.click();
     }
 
-    public void selectOptionCommitedUsage1yearClick() {
-        selectOptionCommitedUsage1year.click();
+    public void optionCommitedUsage1yearSelectClick() {
+        optionCommitedUsage1yearSelect.click();
     }
 
-    public void buttonAddToEstimateClick() {
-        buttonAddToEstimate.click();
+    public void addToEstimateButtonClick() {
+        addToEstimateButton.click();
     }
 }

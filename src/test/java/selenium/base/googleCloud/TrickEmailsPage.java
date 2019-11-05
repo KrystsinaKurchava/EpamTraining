@@ -8,8 +8,8 @@ import selenium.base.PageObjectBase;
 import java.util.Set;
 
 public class TrickEmailsPage extends PageObjectBase {
-    private By inputEmailAddress = new By.ById("mailAddress");
-    private By expanderEmailText = new By.ById("messagesList");
+    private By emailAddressInput = new By.ById("mailAddress");
+    private By emailTextExpander = new By.ById("messagesList");
     private By cellMoney = new By.ByCssSelector(".quote td:last-child h3");
     private final String ATTRIBUTE_VALUE = "value";
     private final String EXECUTE_SCRIPT = "window.open(\"https://10minutemail.com/\")";
@@ -26,17 +26,17 @@ public class TrickEmailsPage extends PageObjectBase {
     }
 
     public String createNewEmail() {
-        return findClickableElement(inputEmailAddress).getAttribute(ATTRIBUTE_VALUE);
+        return findClickableElement(emailAddressInput).getAttribute(ATTRIBUTE_VALUE);
     }
 
     public void scrollToInputEmailAddress() {
-        WebElement buttonForScroll = findClickableElement(inputEmailAddress);
+        WebElement buttonForScroll = findClickableElement(emailAddressInput);
         scrollToElement(buttonForScroll);
     }
 
     public void waitForAppearanceExpanderToMail() {
         WebDriverWait wait = new WebDriverWait(webDriver, EMAIL_WAITING_TIMEOUT_IN_SECONDS);
-        wait.until(ExpectedConditions.elementToBeClickable(expanderEmailText)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(emailTextExpander)).click();
     }
 
     public String getMoneyValue() {

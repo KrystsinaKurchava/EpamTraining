@@ -1,14 +1,15 @@
 package selenium.base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PageObjectBase {
@@ -17,7 +18,15 @@ public abstract class PageObjectBase {
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";
 
     static {
-        webDriver = new FirefoxDriver();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setPlatform(Platform.WINDOWS);
+        capabilities.setBrowserName("firefox");
+        try {
+            webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                    capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
         webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
     }

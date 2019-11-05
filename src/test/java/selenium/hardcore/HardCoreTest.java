@@ -31,12 +31,12 @@ public class HardCoreTest {
     public void compareResultOfCointing() {
         ComparingResults compare = new ComparingResults();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals("VM class: regular", compare.getVmRegular(), "Virtual Machine" + COMPARE_MISTAKE_TEXT);
-        softAssert.assertEquals("Instance type: n1-standard-8", compare.getTextInstanceType(), "Instance type" + COMPARE_MISTAKE_TEXT);
-        softAssert.assertEquals("Region: Frankfurt", compare.getRegion(), "Region" + COMPARE_MISTAKE_TEXT);
-        softAssert.assertEquals("Total available local SSD space 2x375 GB", compare.getLocalSSd(), "Hard drive" + COMPARE_MISTAKE_TEXT);
-        softAssert.assertEquals("Commitment term: 1 Year", compare.getTextCommitmentTerm(), "Term" + COMPARE_MISTAKE_TEXT);
-        softAssert.assertEquals(RESULT_OF_COINTING, compare.getResultOfCointing(), "Counting" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getVmRegular(), "VM class: regular", "Virtual Machine" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getTextInstanceType(), "Instance type: n1-standard-8", "Instance type" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getRegion(), "Region: Frankfurt", "Region" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getLocalSSd(), "Total available local SSD space 2x375 GB", "Hard drive" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getTextCommitmentTerm(), "Commitment term: 1 Year", "Term" + COMPARE_MISTAKE_TEXT);
+        softAssert.assertEquals(compare.getResultOfCointing(), RESULT_OF_COINTING, "Counting" + COMPARE_MISTAKE_TEXT);
         softAssert.assertAll("No matches found");
     }
 

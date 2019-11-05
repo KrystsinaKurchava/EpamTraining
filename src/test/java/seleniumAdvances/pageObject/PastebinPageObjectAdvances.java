@@ -8,19 +8,21 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.base.PasterbinBase;
 
-public class PastebinPageObject extends PasterbinBase {
+public class PastebinPageObjectAdvances extends PasterbinBase {
     private final By tenMinutesListElement = By.xpath("//li[text()='10 Minutes']");
     @FindBy(id = "notice")
     private WebElement notice;
 
+    @Override
     public void createNewPaste(String textForPaste, String textPasteName) {
-        clickByElement(selectPasteExpiration).perform();
+        clickByElement(pasteExpirationSelect).perform();
         clickByElement(findClickableElement(tenMinutesListElement)).perform();
-        enterTextToElement(inputTextInNewPaste, textForPaste).perform();
-        enterTextToElement(inputPasteName, textPasteName).perform();
+        enterTextToElement(textInNewPasteInput, textForPaste).perform();
+        enterTextToElement(pasteNameInput, textPasteName).perform();
         highlightElement(notice);
-        clickButtonWithJS(buttonForCreateNewPaste);
+        clickButtonWithJS(forCreateNewPasteButton);
     }
 
     private Action clickByElement(WebElement element) {
@@ -53,7 +55,7 @@ public class PastebinPageObject extends PasterbinBase {
 
     public String getTextExpected(String expectedText) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.textToBePresentInElement(inputTextInNewPaste, expectedText));
-        return inputTextInNewPaste.getText();
+        wait.until(ExpectedConditions.textToBePresentInElement(textInNewPasteInput, expectedText));
+        return textInNewPasteInput.getText();
     }
 }

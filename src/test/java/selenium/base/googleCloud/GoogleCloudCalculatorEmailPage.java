@@ -7,24 +7,24 @@ import selenium.base.PageObjectBase;
 
 public class GoogleCloudCalculatorEmailPage extends PageObjectBase {
     @FindBy(id = "email_quote")
-    private WebElement buttonForSent;
-    private final By inputEmailAddress = new By.ById("input_415");
-    private final By buttonSendEmail = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
+    private WebElement forSendButton;
+    private final By emailAddressInput = new By.ById("input_415");
+    private final By sendEmailButton = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
 
-    public void buttonToSentEmailClick() {
-        buttonForSent.click();
+    public void sendEmailButtonClick() {
+        forSendButton.click();
     }
 
     public void enterEmailAddress(String mail) {
-        findClickableElement(inputEmailAddress).sendKeys(mail);
+        findClickableElement(emailAddressInput).sendKeys(mail);
     }
 
     public void scrollToEmailAddress() {
-        WebElement buttonForScroll = findClickableElement(inputEmailAddress);
+        WebElement buttonForScroll = findClickableElement(emailAddressInput);
         scrollToElement(buttonForScroll);
     }
 
     public void sendEmail() {
-        findClickableElement(buttonSendEmail).click();
+        findClickableElement(sendEmailButton).click();
     }
 }
