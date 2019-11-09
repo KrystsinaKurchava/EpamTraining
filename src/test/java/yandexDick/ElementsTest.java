@@ -76,8 +76,7 @@ public class ElementsTest {
         new ContainsPartObject()
                 .doubleClickToOpenPack(packageName);
         Assert.assertEquals(new ContainsPartObject()
-                        .doubleClickToOpenPack(packageName)
-                        .getPackageName(packageName), packageName,
+                        .getPackageName(), packageName,
                 "Package was not created or inaccessible");
     }
 

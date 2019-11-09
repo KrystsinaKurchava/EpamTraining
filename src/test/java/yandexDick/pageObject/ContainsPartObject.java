@@ -32,23 +32,21 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
-        doubleClickByCssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
+        doubleClickByXPathSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
         return this;
     }
 
-    public String getPackageName(String packageName) {
+    public String getPackageName() {
         By nameOfDoc = By.className("listing-heading__title");
-        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.textToBe(nameOfDoc, packageName));
-        return webDriver.findElement(nameOfDoc).getText();
+        return findClickableElement(nameOfDoc).getText();
     }
 
     public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
-        doubleClickByCssSelector("//span[@title='" + name + "']/../../..");
+        doubleClickByXPathSelector("//span[@title='" + name + "']/../../..");
         return new NewDocumentCreatePO();
     }
 
-    private void doubleClickByCssSelector(String selector) {
+    private void doubleClickByXPathSelector(String selector) {
         new Actions(webDriver)
                 .moveToElement(findClickableElement(By.xpath(selector)))
                 .doubleClick()

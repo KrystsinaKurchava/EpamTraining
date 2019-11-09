@@ -10,7 +10,9 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.Random;
 
 public class Service {
-    private static final int maxStringLength = 10;
+    private static final int MIN_STRING_LENGTH = 4;
+    private static final int MAX_STRING_LENGTH = 20;
+    private static final int LOGIN_WAITING = 2000;
     private static final String ALFANUMERICAL_ALL_CAPS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random random = new Random();
     WebDriver webDriver;
@@ -25,14 +27,15 @@ public class Service {
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(LOGIN_WAITING);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     public static String getRandomString() {
-        int stringLength = random.nextInt(maxStringLength);
+        int stringLength = random.nextInt(MAX_STRING_LENGTH);
+        stringLength = stringLength < MIN_STRING_LENGTH ? MIN_STRING_LENGTH : stringLength;
         StringBuilder stringBuilder = new StringBuilder(stringLength);
         for (int i = 0; i < stringLength; i++) {
             stringBuilder.append(ALFANUMERICAL_ALL_CAPS.charAt(random.nextInt(ALFANUMERICAL_ALL_CAPS.length())));
