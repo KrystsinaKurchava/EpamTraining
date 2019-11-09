@@ -20,13 +20,19 @@ public class Service {
         goToPage.clickToGoOnLoginPage()
                 .inputLoginLabelClick()
                 .inputLoginDate(user.getUsername())
-                .clickToConfirmationLoginButton()
+                .clickToSignInButton()
                 .inputPasswordLabelClick()
                 .inputPasswordDate(user.getPassword())
-                .clickToConfirmationPasswordButton();
+                .clickToSignInButton();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static String getRandomString(int stringLength) {
+    public static String getRandomString() {
+        int stringLength = random.nextInt(maxStringLength);
         StringBuilder stringBuilder = new StringBuilder(stringLength);
         for (int i = 0; i < stringLength; i++) {
             stringBuilder.append(ALFANUMERICAL_ALL_CAPS.charAt(random.nextInt(ALFANUMERICAL_ALL_CAPS.length())));
@@ -36,7 +42,7 @@ public class Service {
 
     public String createNewPackage() {
         MainMenu mainManu = new MainMenu();
-        String packageName = getRandomString(random.nextInt(maxStringLength));
+        String packageName = getRandomString();
         mainManu.сlickToGoOnFilePage();
         mainManu.clickCreateSMTButton();
         mainManu
@@ -48,7 +54,7 @@ public class Service {
 
     public String createNewDocument(String packageName, String text) {
         MainMenu mainMenu = new MainMenu();
-        String documentName = getRandomString(random.nextInt(maxStringLength));
+        String documentName = getRandomString();
         mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName);
         mainMenu.clickCreateSMTButton();

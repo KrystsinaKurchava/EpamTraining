@@ -70,12 +70,14 @@ public class ElementsTest {
         softAssert.assertAll("Title page and button is different");
     }
 
-    @Test(description = "")
+    @Test(description = "", priority = 1)
     public void createNewPackageTest() {
         packageName = new Service().createNewPackage();
+        new ContainsPartObject()
+                .doubleClickToOpenPack(packageName);
         Assert.assertEquals(new ContainsPartObject()
                         .doubleClickToOpenPack(packageName)
-                        .getPackageName(), packageName,
+                        .getPackageName(packageName), packageName,
                 "Package was not created or inaccessible");
     }
 

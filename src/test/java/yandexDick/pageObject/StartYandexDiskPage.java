@@ -7,13 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class StartYandexDiskPage extends PageObjectBase {
-    private final By enterButton = By.cssSelector("a.button:nth-child(2)");
+    private final By enterButton = By.cssSelector(".button_login");
     private final By loginLabelInput = By.className("passp-form-field__label");
     private final By loginInput = By.id("passp-field-login");
     private final By passwordLabelInput = By.className("passp-form-field__label");
     private final By passwordInput = By.id("passp-field-passwd");
-    private final By confirmationLoginButton = By.cssSelector("button.button2_theme_action:nth-child(1)");
-    private final By confirmationPasswordButton = By.cssSelector("button.control:nth-child(1)");
+    private final By confirmationPasswordButton = By.cssSelector(".passp-sign-in-button>button[type='submit']");
 
     public String errorMessage() {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
@@ -41,18 +40,8 @@ public class StartYandexDiskPage extends PageObjectBase {
         return this;
     }
 
-    public StartYandexDiskPage inputLoginClick() {
-        findClickableElement(loginInput).click();
-        return this;
-    }
-
     public StartYandexDiskPage inputLoginDate(String username) {
         findClickableElement(loginInput).sendKeys(username);
-        return this;
-    }
-
-    public StartYandexDiskPage clickToConfirmationLoginButton() {
-        findClickableElement(confirmationLoginButton).click();
         return this;
     }
 
@@ -62,18 +51,12 @@ public class StartYandexDiskPage extends PageObjectBase {
         return this;
     }
 
-    public StartYandexDiskPage inputPasswordClick() {
-        findClickableElement(passwordInput)
-                .click();
-        return this;
-    }
-
     public StartYandexDiskPage inputPasswordDate(String password) {
         findClickableElement(passwordInput).sendKeys(password);
         return this;
     }
 
-    public StartYandexDiskPage clickToConfirmationPasswordButton() {
+    public StartYandexDiskPage clickToSignInButton() {
         findClickableElement(confirmationPasswordButton).click();
         return this;
     }

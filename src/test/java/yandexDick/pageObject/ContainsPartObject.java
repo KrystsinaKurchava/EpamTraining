@@ -1,10 +1,13 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class ContainsPartObject extends PageObjectBase {
@@ -28,15 +31,16 @@ public class ContainsPartObject extends PageObjectBase {
         return findVisibleElement(pageHistoryTitle).getAttribute(innerHTMLAttribute);
     }
 
-
     public ContainsPartObject doubleClickToOpenPack(String name) {
-        doubleClickByCssSelector("//span[text()='" + name + "']/../../..");
+        doubleClickByCssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
         return this;
     }
 
-    public String getPackageName() {
+    public String getPackageName(String packageName) {
         By nameOfDoc = By.className("listing-heading__title");
-        return findClickableElement(nameOfDoc).getText();
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.textToBe(nameOfDoc, packageName));
+        return webDriver.findElement(nameOfDoc).getText();
     }
 
     public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
@@ -45,9 +49,10 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     private void doubleClickByCssSelector(String selector) {
-        Actions builder = new Actions(webDriver);
-        By nameOfDoc = By.cssSelector(selector);
-        builder.doubleClick(findClickableElement(nameOfDoc));
+        new Actions(webDriver)
+                .moveToElement(findClickableElement(By.xpath(selector)))
+                .doubleClick()
+                .perform();
     }
 
     public WebElement findCreatedPack(String name) {
