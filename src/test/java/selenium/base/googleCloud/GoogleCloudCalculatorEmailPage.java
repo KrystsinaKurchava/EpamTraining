@@ -11,7 +11,7 @@ public class GoogleCloudCalculatorEmailPage extends PageObjectBase {
     private final By emailAddressInput = new By.ById("input_415");
     private final By sendEmailButton = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
 
-    public void sendEmailButtonClick() {
+    public void clickSendEmailButton() {
         forSendButton.click();
     }
 

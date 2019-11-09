@@ -8,27 +8,27 @@ public class GoogleCloudService {
     public String enterFormValues() {
         GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage();
         googleCloudCalculatorPage.switchToFrame();
-        googleCloudCalculatorPage.partComputeEngineSelectClick();
-        googleCloudCalculatorPage.numberOfInstanceValueInput(NUMBER_OF_INSTANCE);
-        googleCloudCalculatorPage.operationSystemSelectClick();
-        googleCloudCalculatorPage.optionOperationSystemElementSelectClick();
-        googleCloudCalculatorPage.vmClassSelectClick();
-        googleCloudCalculatorPage.optionVMRegularSelectClick();
+        googleCloudCalculatorPage.clickPartComputeEngineSelect();
+        googleCloudCalculatorPage.inputNumberOfInstanceValue(NUMBER_OF_INSTANCE);
+        googleCloudCalculatorPage.clickOperationSystemSelect();
+        googleCloudCalculatorPage.clickOptionOperationSystemElementSelect();
+        googleCloudCalculatorPage.clickVMClassSelect();
+        googleCloudCalculatorPage.clickOptionVMRegularSelect();
         googleCloudCalculatorPage.scrollToVMClassElement();
-        googleCloudCalculatorPage.machineTypeSelectClick();
-        googleCloudCalculatorPage.optionMachineTypeSelectClick();
-        googleCloudCalculatorPage.addGrupCheckboxClick();
-        googleCloudCalculatorPage.numberOfGrupSelectClick();
-        googleCloudCalculatorPage.optionNumberOfGrupValueSelectClick();
-        googleCloudCalculatorPage.gpuTypeSelectClick();
-        googleCloudCalculatorPage.optionGPUtypeNvidiaSelectClick();
-        googleCloudCalculatorPage.localSSdSelectClick();
-        googleCloudCalculatorPage.optionLocalSSdValueSelectClick();
-        googleCloudCalculatorPage.dataCenreLocationSelectClick();
-        googleCloudCalculatorPage.optionDataCenterLocationValueSelectClick();
-        googleCloudCalculatorPage.commitedUsageSelectClick();
-        googleCloudCalculatorPage.optionCommitedUsage1yearSelectClick();
-        googleCloudCalculatorPage.addToEstimateButtonClick();
+        googleCloudCalculatorPage.clickMachineTypeSelect();
+        googleCloudCalculatorPage.clickOptionMachineTypeSelect();
+        googleCloudCalculatorPage.clickAddGrupCheckbox();
+        googleCloudCalculatorPage.clickNumberOfGrupSelect();
+        googleCloudCalculatorPage.clickOptionNumberOfGrupValueSelect();
+        googleCloudCalculatorPage.clickGPUTypeSelect();
+        googleCloudCalculatorPage.clickOptionGPUtypeNvidiaSelect();
+        googleCloudCalculatorPage.clickLocalSSdSelect();
+        googleCloudCalculatorPage.clickOptionLocalSSdValueSelect();
+        googleCloudCalculatorPage.clickDataCenreLocationSelect();
+        googleCloudCalculatorPage.clickOptionDataCenterLocationValueSelect();
+        googleCloudCalculatorPage.clickCommitedUsageSelect();
+        googleCloudCalculatorPage.clickOptionCommitedUsage1yearSelect();
+        googleCloudCalculatorPage.clickAddToEstimateButton();
         return googleCloudCalculatorPage.getResultOfCointing();
     }
 
@@ -42,7 +42,7 @@ public class GoogleCloudService {
 
     public void sendEmail(String mail) {
         GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage();
-        googleCloudCalculatorEmailPage.sendEmailButtonClick();
+        googleCloudCalculatorEmailPage.clickSendEmailButton();
         googleCloudCalculatorEmailPage.enterEmailAddress(mail);
         googleCloudCalculatorEmailPage.scrollToEmailAddress();
         googleCloudCalculatorEmailPage.sendEmail();
