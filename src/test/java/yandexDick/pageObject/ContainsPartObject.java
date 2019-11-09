@@ -42,7 +42,7 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
-        doubleClickByXPathSelector("//span[@title='" + name + "']/../../..");
+        doubleClickByXPathSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
         return new NewDocumentCreatePO();
     }
 
@@ -54,12 +54,12 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public WebElement findCreatedPack(String name) {
-        By nameOfPack = By.cssSelector("//span[text()='" + name + "']/../../..");
+        By nameOfPack = By.cssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
         return findClickableElement(nameOfPack);
     }
 
     public WebElement findCreatedDoc(String name) {
-        By nameOfDoc = By.cssSelector("//span[@title='" + name + "']/../../..");
+        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
         return findClickableElement(nameOfDoc);
     }
 
@@ -74,7 +74,7 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public Boolean checkThatDocumentExist(String name) {
-        By nameOfDoc = By.cssSelector("//span[@title='" + name + "']/../../..");
+        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
         try {
             findClickableElement(nameOfDoc);
             return true;
