@@ -13,25 +13,13 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PageObjectBase {
-    protected static WebDriver webDriver;
     protected static final int TIME_OUT_FOR_WAIT = 30;
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";
 
-    static {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setPlatform(Platform.WINDOWS);
-        capabilities.setBrowserName("firefox");
-        try {
-            webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
-                    capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-    }
+    protected   WebDriver webDriver;
 
     public PageObjectBase() {
+        webDriver= WebDriverSingleton.getWebDriver();
         PageFactory.initElements(webDriver, this);
     }
 
@@ -48,8 +36,8 @@ public abstract class PageObjectBase {
     }
 
     public static void quit() {
-        webDriver.quit();
-    }
+        WebDriverSingleton.getWebDriver().quit();
+       }
 
     protected WebElement findClickableElement(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
