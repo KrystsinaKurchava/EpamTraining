@@ -45,6 +45,12 @@ public abstract class PageObjectBase {
         return webDriver.findElement(by);
     }
 
+    protected WebElement findVisibleElement(By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+        return webDriver.findElement(by);
+    }
+
     protected void scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) webDriver).executeScript(SCROLL_ARGUMENT, webElement);
     }

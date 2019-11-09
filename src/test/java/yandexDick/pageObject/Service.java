@@ -1,27 +1,30 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.Random;
 
 public class Service {
+    private static final int maxStringLength = 10;
     private static final String ALFANUMERICAL_ALL_CAPS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random random = new Random();
-WebDriver webDriver;
+    WebDriver webDriver;
 
     public void loginYandexDisk(User user) {
         StartYandexDiskPage goToPage = new StartYandexDiskPage();
         goToPage.clickToGoOnLoginPage()
-                .inputLoginClick()
+                .inputLoginLabelClick()
                 .inputLoginDate(user.getUsername())
                 .clickToConfirmationLoginButton()
-                .inputPasswordClick()
+                .inputPasswordLabelClick()
                 .inputPasswordDate(user.getPassword())
                 .clickToConfirmationPasswordButton();
     }
-
 
     public static String getRandomString(int stringLength) {
         StringBuilder stringBuilder = new StringBuilder(stringLength);
@@ -31,38 +34,79 @@ WebDriver webDriver;
         return stringBuilder.toString();
     }
 
-
-    public String createNewPackage(int lenght) {
+    public String createNewPackage() {
         MainMenu mainManu = new MainMenu();
-       String sfsdd= getRandomString(lenght);
+        String packageName = getRandomString(random.nextInt(maxStringLength));
         mainManu.сlickToGoOnFilePage();
         mainManu.clickCreateSMTButton();
-        mainManu.clickCreateNewPackageButton()
-                .inputNameOfNewPackage(sfsdd)
+        mainManu
+                .clickCreateNewPackageButton()
+                .inputNameOfNewPackage(packageName)
                 .saveButtonClick();
-   return  sfsdd;
+        return packageName;
     }
 
-    public void createNewDocument(String text, String packageName) {
-        MainMenu mainManu = new MainMenu();
-        mainManu.сlickToGoOnFilePage()
+    public String createNewDocument(String packageName, String text) {
+        MainMenu mainMenu = new MainMenu();
+        String documentName = getRandomString(random.nextInt(maxStringLength));
+        mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName);
-        mainManu.clickCreateSMTButton();
-        mainManu.clickCreateNewDocumentButton()
+        mainMenu.clickCreateSMTButton();
+        mainMenu.clickCreateNewDocumentButton()
+                .clickDocumentTitle()
+                .enterDocumentTitle(documentName)
                 .typeText(text)
+                .saveDocument()
                 .returnToYandexPage();
+        return documentName;
     }
 
+    public String getDocumentText(String name, String packageName) {
 
-    public ContainsPartObject moveElementInTheTrash(By element) {
+        return new MainMenu().сlickToGoOnFilePage()
+                .doubleClickToOpenPack(packageName)
+                .doubleClickToOpenDoc(name)
+                .getText();
+    }
+
+    public void moveElementInTheTrash(String packageName, String documentName) {
         Actions builder = new Actions(webDriver);
-        getTrashAddress
+        ContainsPartObject contain = new ContainsPartObject();
+        MainMenu mainMenu = new MainMenu();
+        mainMenu
+                .сlickToGoOnFilePage()
+                .doubleClickToOpenPack(packageName);
+        WebElement trash = mainMenu.getTrashAddress();
         Action dragAndDrop = builder
-                .clickAndHold(findClickableElement(element))
-                .moveToElement(findClickableElement(element))
-                .release(otherElement)
+                .clickAndHold(contain.findCreatedDoc(documentName))
+                .moveToElement(trash)
+                .release(trash)
                 .build();
-
         dragAndDrop.perform();
     }
+
+    public void cleanTrash() {
+        new MainMenu()
+                .сlickToGoOnTrashPage()
+                .clickButtonToCleanTrash()
+                .clickButtonToConfirmationCleanTrash();
+    }
+
+    public Boolean checkButtonsExist() {
+        MainMenu mainManu = new MainMenu();
+        try {
+            mainManu.сlickToGoOnFilePage();
+            mainManu.сlickToGoOnTrashPage();
+            mainManu.сlickToGoOnFotoPage();
+            mainManu.сlickToGoOnGeneralAccessPage();
+            mainManu.сlickToGoOnHistoryPage();
+            mainManu.сlickToGoOnArchivePage();
+            mainManu.сlickToGoOnLastPage();
+
+            return true;
+        } catch (NotFoundException e) {
+            return false;
+        }
+    }
+
 }

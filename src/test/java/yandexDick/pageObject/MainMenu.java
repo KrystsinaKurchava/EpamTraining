@@ -6,26 +6,25 @@ import selenium.base.PageObjectBase;
 
 public class MainMenu extends PageObjectBase {
     private final By filePage = By.cssSelector("#\\/disk");
-    private final By trachPage = By.cssSelector("#\\/trash");
+    private final By trashPage = By.cssSelector("#\\/trash");
     private final By fotoPage = By.cssSelector("a[href='/client/photo']");
-    private final By generalAccessPage = By.cssSelector("a[href='/client/published']");
-    private final By historyPage = By.cssSelector(".navigation__link_current");
+    private final By generalAccessPage = By.cssSelector("a[href='/client/shared']");
+    private final By historyPage = By.cssSelector("a[href='/client/journal']");
     private final By archivePage = By.cssSelector("a[href='/client/mail']");
     private final By lastPage = By.cssSelector("a[href='/client/recent']");
-
-    private final By createSomethingNewButton = By.cssSelector("button.button2_tone_default:nth-child(1)");
-    private final By createNewPackageButton = By.cssSelector("button.create-resource-button:nth-child(1)");
-    private final By createNewDocumentButton = By.cssSelector("button.create-resource-button:nth-child(2)");
-    private final By nameOfNewPackageInput = By.cssSelector("input.textinput__control:nth-child(1)");
-    private final By saveButton = By.cssSelector("button.button2_size_m:nth-child(1)");
+    private final By createSomethingNewButton = By.cssSelector(".create-resource-popup-with-anchor>button");
+    private final By createNewPackageButton = By.xpath("//span[contains(@class, 'file-icon_dir_plus')]/parent::button");
+    private final By createNewDocumentButton = By.xpath("//span[contains(@class, 'file-icon_doc')]/parent::button");
+    private final By nameOfNewPackageInput = By.cssSelector(".rename-dialog__rename-form input");
+    private final By saveButton = By.className("confirmation-dialog__button");
 
     public ContainsPartObject сlickToGoOnFilePage() {
         findClickableElement(filePage).click();
         return new ContainsPartObject();
     }
 
-    public ContainsPartObject сlickToGoOnTrachPage() {
-        findClickableElement(trachPage).click();
+    public ContainsPartObject сlickToGoOnTrashPage() {
+        findClickableElement(trashPage).click();
         return new ContainsPartObject();
     }
 
@@ -69,16 +68,17 @@ public class MainMenu extends PageObjectBase {
         return this;
     }
 
-    public ContainsPartObject  saveButtonClick() {
+    public ContainsPartObject saveButtonClick() {
         findClickableElement(saveButton).click();
         return new ContainsPartObject();
     }
 
     public NewDocumentCreatePO clickCreateNewDocumentButton() {
         findClickableElement(createNewDocumentButton).click();
-    return new NewDocumentCreatePO();
+        return new NewDocumentCreatePO();
     }
-    public WebElement getTrashAddress(){
-       return findClickableElement(trachPage);
-            }
+
+    public WebElement getTrashAddress() {
+        return findClickableElement(trashPage);
+    }
 }

@@ -1,48 +1,82 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import selenium.base.PageObjectBase;
 
 public class ContainsPartObject extends PageObjectBase {
-   // private final By pageLastTitle = By.cssSelector(".listing-heading__title");
-//    private final By pagePhotoTitle = By.cssSelector(".listing-heading__title");
-    //должно быть Публичные ссылки, а не просто общий доступ
-    private final By pagePublicAccessTitle = By.cssSelector("a[href='/client/published']");
+    private static final String innerHTMLAttribute = "innerHTML";
+    private final By pagePublicAccessTitle = By.cssSelector(".listing-stub__desc>h1");
     private final By pageHistoryTitle = By.cssSelector(".journal-filter__header");
-   //    private final By pageArchiveTitle = By.cssSelector(".listing-heading__title");
-//    private final By pageTrashTitle = By.cssSelector(".listing-heading__title");
-
     private final By pageTitleCommon = By.cssSelector(".listing-heading__title");
-    private final By createdPackageORDocument = By.cssSelector("div.listing-item:nth-child(1)");
+    private final By createdPackageOrDocument = By.cssSelector("div.listing-item:nth-child(1)");
+    private final By trashCleanButton = By.className("client-listing__clean-trash-button");
+    private final By confirmationTrashCleanButton = By.className("js-confirmation-accept");
 
     public String getCommonTitleContainPage() {
-        return findClickableElement(pageTitleCommon).getText();
+        return findVisibleElement(pageTitleCommon).getAttribute(innerHTMLAttribute);
     }
+
     public String getPublicAccessTitleContainPage() {
-        return findClickableElement(pagePublicAccessTitle).getText();
+        return findVisibleElement(pagePublicAccessTitle).getAttribute(innerHTMLAttribute);
     }
+
     public String getHistoryPageTitleContainPage() {
-        return findClickableElement(pageHistoryTitle).getText();
+        return findVisibleElement(pageHistoryTitle).getAttribute(innerHTMLAttribute);
     }
 
-    //CHECK
-    public ContainsPartObject findCreatedPAckageOrDoc(){
-        findClickableElement(createdPackageORDocument);
-        return new ContainsPartObject();
+
+    public ContainsPartObject doubleClickToOpenPack(String name) {
+        doubleClickByCssSelector("//span[text()='" + name + "']/../../..");
+        return this;
     }
 
-    public ContainsPartObject doubleClickToOpenPack(String name){
-        Actions builder = new Actions(webDriver);
-        By nameOfPack = By.cssSelector("//span[text()='"+name+"']/../../..");
-        builder.doubleClick(findClickableElement(nameOfPack));
-        return new ContainsPartObject();
+    public String getPackageName() {
+        By nameOfDoc = By.className("listing-heading__title");
+        return findClickableElement(nameOfDoc).getText();
     }
-    public NewDocumentCreatePO doubleClickToOpenDoc(){
-        Actions builder = new Actions(webDriver);
-        builder.doubleClick(findClickableElement(createdPackageORDocument));
+
+    public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
+        doubleClickByCssSelector("//span[@title='" + name + "']/../../..");
         return new NewDocumentCreatePO();
     }
 
+    private void doubleClickByCssSelector(String selector) {
+        Actions builder = new Actions(webDriver);
+        By nameOfDoc = By.cssSelector(selector);
+        builder.doubleClick(findClickableElement(nameOfDoc));
+    }
+
+    public WebElement findCreatedPack(String name) {
+        By nameOfPack = By.cssSelector("//span[text()='" + name + "']/../../..");
+        return findClickableElement(nameOfPack);
+    }
+
+    public WebElement findCreatedDoc(String name) {
+        By nameOfDoc = By.cssSelector("//span[@title='" + name + "']/../../..");
+        return findClickableElement(nameOfDoc);
+    }
+
+    public ContainsPartObject clickButtonToCleanTrash() {
+        findClickableElement(trashCleanButton).click();
+        return this;
+    }
+
+    public ContainsPartObject clickButtonToConfirmationCleanTrash() {
+        findClickableElement(confirmationTrashCleanButton).click();
+        return this;
+    }
+
+    public Boolean checkThatDocumentExist(String name) {
+        By nameOfDoc = By.cssSelector("//span[@title='" + name + "']/../../..");
+        try {
+            findClickableElement(nameOfDoc);
+            return true;
+        } catch (NotFoundException e) {
+            return false;
+        }
+    }
 }

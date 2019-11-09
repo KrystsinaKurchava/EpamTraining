@@ -3,7 +3,8 @@ package yandexDick.pageObject;
 import java.util.ResourceBundle;
 
 public class TestDataReader {
-    private static ResourceBundle resourceBundle = ResourceBundle.getBundle(System.getProperty("environment"));
+    //System.getProperty("environment")
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("testResource");
 
     public static String getTestData(String key) {
         return resourceBundle.getString(key);
