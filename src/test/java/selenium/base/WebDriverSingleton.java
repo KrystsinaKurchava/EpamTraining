@@ -27,8 +27,8 @@ static {
 
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
-            //System.getProperty("browser")
-            switch ("chrome") {
+            //
+            switch (System.getProperty("browser")) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     webDriver = new FirefoxDriver();
