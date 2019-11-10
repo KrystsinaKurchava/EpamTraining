@@ -19,7 +19,7 @@ public class ElementsTest {
     private final String HISTORY_PAGE_NAME = "История";
     private final String ARCHIVE_PAGE_NAME = "Архив";
     private final String TRASH_PAGE_NAME = "Корзина";
-    private String packageName = "JZFKKNFJ";
+    private String packageName;
     private String documentName;
 
     @BeforeMethod(description = "")

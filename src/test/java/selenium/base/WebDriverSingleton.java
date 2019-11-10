@@ -27,22 +27,24 @@ static {
 
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
-            //
             switch (System.getProperty("browser")) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     webDriver = new FirefoxDriver();
+                    break;
                 }
                 case "edge": {
                     WebDriverManager.edgedriver().setup();
                     webDriver = new EdgeDriver();
+                    break;
                 }
                 case "chrome" :{
                     WebDriverManager.chromedriver().setup();
                     webDriver = new ChromeDriver();
+                    break;
                 }
                 default: {
-                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    DesiredCapabilities capabilities = new   DesiredCapabilities();
                     capabilities.setPlatform(Platform.WINDOWS);
                     capabilities.setBrowserName("firefox");
                     try {

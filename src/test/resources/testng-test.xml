@@ -2,8 +2,8 @@
 
 <suite name="testng-test" verbose="1" >
     <test name="ElementsTest"   >
-        <packages>
-            <package name="yandexDick" />
-        </packages>
+        <classes>
+            <class name="yandexDick.ElementsTest" />
+        </classes>
     </test>
 </suite>
