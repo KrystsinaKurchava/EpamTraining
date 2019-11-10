@@ -1,17 +1,11 @@
 package selenium.base;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public abstract class PageObjectBase {
     protected static final int TIME_OUT_FOR_WAIT = 30;
@@ -30,10 +24,6 @@ public abstract class PageObjectBase {
 
     public void switchToWindow(String handler) {
         webDriver.switchTo().window(handler);
-    }
-
-    public void closeCurrentWindow() {
-        webDriver.close();
     }
 
     public String getCurrentWindowHandler() {

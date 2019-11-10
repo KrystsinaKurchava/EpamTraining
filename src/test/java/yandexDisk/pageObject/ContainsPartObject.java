@@ -1,30 +1,29 @@
-package yandexDick.pageObject;
+package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import selenium.base.PageObjectBase;
 
 public class ContainsPartObject extends PageObjectBase {
     private static final String innerHTMLAttribute = "innerHTML";
-    private final By pagePublicAccessTitle = By.cssSelector(".listing-stub__desc>h1");
-    private final By pageHistoryTitle = By.cssSelector(".journal-filter__header");
-    private final By pageTitleCommon = By.cssSelector(".listing-heading__title");
-    private final By createdPackageOrDocument = By.cssSelector("div.listing-item:nth-child(1)");
+    private final By publicAccessPageTitle = By.cssSelector(".listing-stub__desc>h1");
+    private final By historyPageTitle = By.cssSelector(".journal-filter__header");
+    private final By commonPageTitle = By.cssSelector(".listing-heading__title");
     private final By trashCleanButton = By.className("client-listing__clean-trash-button");
     private final By confirmationTrashCleanButton = By.className("js-confirmation-accept");
+    private final By packageName = By.className("listing-heading__title");
 
     public String getCommonTitleContainPage() {
-        return findPresenceElement(pageTitleCommon).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(commonPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public String getPublicAccessTitleContainPage() {
-        return findPresenceElement(pagePublicAccessTitle).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(publicAccessPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public String getHistoryPageTitleContainPage() {
-        return findPresenceElement(pageHistoryTitle).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(historyPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
@@ -33,26 +32,24 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public String getPackageName() {
-        By nameOfDoc = By.className("listing-heading__title");
-        return findClickableElement(nameOfDoc).getText();
+        return findClickableElement(packageName).getText();
     }
 
-    public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
+    public NewDocumentCreatePageObject doubleClickToOpenDoc(String name) {
         doubleClickByXPathSelector("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
-        return new NewDocumentCreatePO();
+        return new NewDocumentCreatePageObject();
     }
 
     private void doubleClickByXPathSelector(String selector) {
-        WebElement asd = findClickableElement(By.xpath(selector));
+        WebElement webElement = findClickableElement(By.xpath(selector));
         new Actions(webDriver)
-              //  .moveToElement(asd)
-                .doubleClick(asd)
+                .doubleClick(webElement)
                 .perform();
     }
 
     public WebElement findCreatedDoc(String name) {
-        By nameOfDoc = By.xpath("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
-        return findClickableElement(nameOfDoc);
+        By nameOfDocument = By.xpath("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
+        return findClickableElement(nameOfDocument);
     }
 
     public ContainsPartObject clickCreatedDoc(String name) {
@@ -78,11 +75,11 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public Boolean checkThatDocumentExist(String name) {
-        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
+        By nameOfDocument = By.cssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
         try {
-            findClickableElement(nameOfDoc);
+            findClickableElement(nameOfDocument);
             return true;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

@@ -1,4 +1,4 @@
-package yandexDick.pageObject;
+package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
@@ -13,17 +13,18 @@ public class StartYandexDiskPage extends PageObjectBase {
     private final By passwordLabelInput = By.className("passp-form-field__label");
     private final By passwordInput = By.id("passp-field-passwd");
     private final By confirmationPasswordButton = By.cssSelector(".passp-sign-in-button>button[type='submit']");
+    private final By errorText = By.className("passp-form-field__error");
+    private final By profileIcon = By.className("user2");
 
     public String errorMessage() {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        By error = By.className("passp-form-field__error");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(error));
-        return webDriver.findElement(error).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorText));
+        return webDriver.findElement(errorText).getText();
     }
-    public Boolean checkPersonalCabinetExist(){
-        By nameOfDoc = By.className("user2");
+
+    public Boolean checkPersonalCabinetExist() {
         try {
-            findClickableElement(nameOfDoc);
+            findClickableElement(profileIcon);
             return true;
         } catch (NotFoundException e) {
             return false;
@@ -46,8 +47,7 @@ public class StartYandexDiskPage extends PageObjectBase {
     }
 
     public StartYandexDiskPage inputPasswordLabelClick() {
-        findClickableElement(passwordLabelInput)
-                .click();
+        findClickableElement(passwordLabelInput).click();
         return this;
     }
 

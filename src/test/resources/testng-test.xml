@@ -3,7 +3,7 @@
 <suite name="testng-test" verbose="1" >
     <test name="ElementsTest"   >
         <classes>
-            <class name="yandexDick.ElementsTest" />
+            <class name="yandexDisk.tests.ElementsTest" />
         </classes>
     </test>
 </suite>

@@ -1,4 +1,6 @@
-package yandexDick.pageObject;
+package yandexDisk.service;
+
+import yandexDisk.model.User;
 
 public class UserCreator {
 
@@ -18,5 +20,3 @@ public class UserCreator {
         return new User(TestDataReader.getTestData(TESTDATA_USER_NAME), "");
     }
 }
-
-

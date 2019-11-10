@@ -1,7 +1,6 @@
-package yandexDick.pageObject;
+package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import selenium.base.PageObjectBase;
 
@@ -75,9 +74,9 @@ public class MainMenu extends PageObjectBase {
         return new ContainsPartObject();
     }
 
-    public NewDocumentCreatePO clickCreateNewDocumentButton() {
+    public NewDocumentCreatePageObject clickCreateNewDocumentButton() {
         findClickableElement(createNewDocumentButton).click();
-        return new NewDocumentCreatePO();
+        return new NewDocumentCreatePageObject();
     }
 
     public WebElement getTrashAddress() {
