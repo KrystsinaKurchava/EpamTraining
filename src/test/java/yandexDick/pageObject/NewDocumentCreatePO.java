@@ -1,26 +1,36 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class NewDocumentCreatePO extends PageObjectBase {
-    private final By toTypePlace = By.cssSelector("#WACViewPanel_EditingElement > p:nth-child(1)");
+    private final By toTypePlace = By.id("WACViewPanel_EditingElement");
     private final By documentStatus = By.id("BreadcrumbSaveStatus");
     private final By documentTitle = By.id("BreadcrumbTitle");
+    private final By closeButton = By.id("btnjClose-Menu32");
+    private final By frame = By.tagName("iframe");
 
-    public NewDocumentCreatePO typeText(String text) {
-        findClickableElement(toTypePlace).sendKeys(text); //wait
+
+    public NewDocumentCreatePO switchToMainIFrame() {
+        webDriver.switchTo().frame(findPresenceElement(frame));
         return this;
     }
 
-    public ContainsPartObject returnToYandexPage() {
-        Actions builder = new Actions(webDriver);
-        builder.keyDown(Keys.CONTROL + "w").keyUp(Keys.CONTROL + "w").build().perform();
-        return new ContainsPartObject();
+    public NewDocumentCreatePO clickTextInput() {
+        findClickableElement(toTypePlace).click();
+        return this;
+    }
+
+    public NewDocumentCreatePO clickCloseButton() {
+        findClickableElement(closeButton).click();
+        return this;
+    }
+
+    public NewDocumentCreatePO typeText(String text) {
+        findClickableElement(toTypePlace).sendKeys(text);
+        return this;
     }
 
     public NewDocumentCreatePO saveDocument() {
@@ -34,13 +44,20 @@ public class NewDocumentCreatePO extends PageObjectBase {
         return findClickableElement(toTypePlace).getText();
     }
 
-    public NewDocumentCreatePO clickDocumentTitle() {
-        findClickableElement(documentTitle).click();
+    public NewDocumentCreatePO clickFileMenuButton() {
+        findClickableElement(By.cssSelector("button[data-unique-id='FileMenu']")).click();
+        return this;
+    }
+
+    public NewDocumentCreatePO clickRenameButton() {
+        findClickableElement(By.id("jbtnRenameDialog-Menu48")).click();
         return this;
     }
 
     public NewDocumentCreatePO enterDocumentTitle(String text) {
-        findClickableElement(documentTitle).sendKeys(text);
+        findClickableElement(By.id("txtDocumentName")).clear();
+        findClickableElement(By.id("txtDocumentName")).sendKeys(text);
+        findClickableElement(By.id("WACDialogActionButton")).click();
         return this;
     }
 }

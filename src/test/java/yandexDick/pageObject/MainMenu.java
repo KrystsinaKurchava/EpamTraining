@@ -1,12 +1,13 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import selenium.base.PageObjectBase;
 
 public class MainMenu extends PageObjectBase {
-    private final By filePage = By.cssSelector("#\\/disk");
-    private final By trashPage = By.cssSelector("#\\/trash");
+    private final By filePage = By.id("/disk");
+    private final By trashPage = By.id("/trash");
     private final By fotoPage = By.cssSelector("a[href='/client/photo']");
     private final By generalAccessPage = By.cssSelector("a[href='/client/shared']");
     private final By historyPage = By.cssSelector("a[href='/client/journal']");
@@ -64,6 +65,7 @@ public class MainMenu extends PageObjectBase {
     }
 
     public MainMenu inputNameOfNewPackage(String name) {
+        findClickableElement(nameOfNewPackageInput).clear();
         findClickableElement(nameOfNewPackageInput).sendKeys(name);
         return this;
     }

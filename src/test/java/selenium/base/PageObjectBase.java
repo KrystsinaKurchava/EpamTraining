@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PageObjectBase {
@@ -31,8 +32,22 @@ public abstract class PageObjectBase {
         webDriver.switchTo().window(handler);
     }
 
+    public void closeCurrentWindow() {
+        webDriver.close();
+    }
+
     public String getCurrentWindowHandler() {
         return webDriver.getWindowHandle();
+    }
+
+    public String getOtherWindowHandler() {
+        String previousPageHandler = getCurrentWindowHandler();
+        Set<String> handles = webDriver.getWindowHandles();
+        for (String handler : handles)
+            if (!previousPageHandler.equals(handler)) {
+                return handler;
+            }
+        return previousPageHandler;
     }
 
     public static void quit() {
@@ -45,7 +60,7 @@ public abstract class PageObjectBase {
         return webDriver.findElement(by);
     }
 
-    protected WebElement findVisibleElement(By by) {
+    protected WebElement findPresenceElement(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         return webDriver.findElement(by);

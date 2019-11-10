@@ -19,8 +19,7 @@ public class ElementsTest {
     private final String HISTORY_PAGE_NAME = "История";
     private final String ARCHIVE_PAGE_NAME = "Архив";
     private final String TRASH_PAGE_NAME = "Корзина";
-    private final String DOCUMENT_FORMAT = ".docx";
-    private String packageName;
+    private String packageName = "JZFKKNFJ";
     private String documentName;
 
     @BeforeMethod(description = "")
@@ -31,7 +30,7 @@ public class ElementsTest {
 
     @AfterMethod(description = "")
     public void browserClose() {
-     //   WebDriverSingleton.closeDriver();
+        WebDriverSingleton.closeDriver();
     }
 
     //  @Test(description = "")
@@ -83,7 +82,7 @@ public class ElementsTest {
     @Test(description = "", priority = 2)
     public void createNewDocumentTest() {
         Service service = new Service();
-        documentName = service.createNewDocument(NEW_DOCUMENT_TEXT, packageName) + DOCUMENT_FORMAT;
+        documentName = service.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
         Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
     }
 
@@ -94,6 +93,7 @@ public class ElementsTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertFalse(new ContainsPartObject().checkThatDocumentExist(documentName), "Document didn't delete");
         softAssert.assertTrue(new MainMenu().сlickToGoOnTrashPage().checkThatDocumentExist(documentName), "Document isn't in trash");
+        softAssert.assertAll("Unable to move element to trash");
     }
 
     @Test(description = "", priority = 4)

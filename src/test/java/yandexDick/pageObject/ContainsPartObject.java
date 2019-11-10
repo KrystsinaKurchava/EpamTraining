@@ -1,13 +1,9 @@
 package yandexDick.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class ContainsPartObject extends PageObjectBase {
@@ -20,15 +16,15 @@ public class ContainsPartObject extends PageObjectBase {
     private final By confirmationTrashCleanButton = By.className("js-confirmation-accept");
 
     public String getCommonTitleContainPage() {
-        return findVisibleElement(pageTitleCommon).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(pageTitleCommon).getAttribute(innerHTMLAttribute);
     }
 
     public String getPublicAccessTitleContainPage() {
-        return findVisibleElement(pagePublicAccessTitle).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(pagePublicAccessTitle).getAttribute(innerHTMLAttribute);
     }
 
     public String getHistoryPageTitleContainPage() {
-        return findVisibleElement(pageHistoryTitle).getAttribute(innerHTMLAttribute);
+        return findPresenceElement(pageHistoryTitle).getAttribute(innerHTMLAttribute);
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
@@ -42,25 +38,33 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public NewDocumentCreatePO doubleClickToOpenDoc(String name) {
-        doubleClickByXPathSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
+        doubleClickByXPathSelector("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
         return new NewDocumentCreatePO();
     }
 
     private void doubleClickByXPathSelector(String selector) {
+        WebElement asd = findClickableElement(By.xpath(selector));
         new Actions(webDriver)
-                .moveToElement(findClickableElement(By.xpath(selector)))
-                .doubleClick()
+              //  .moveToElement(asd)
+                .doubleClick(asd)
                 .perform();
     }
 
-    public WebElement findCreatedPack(String name) {
-        By nameOfPack = By.cssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
-        return findClickableElement(nameOfPack);
+    public WebElement findCreatedDoc(String name) {
+        By nameOfDoc = By.xpath("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
+        return findClickableElement(nameOfDoc);
     }
 
-    public WebElement findCreatedDoc(String name) {
-        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
-        return findClickableElement(nameOfDoc);
+    public ContainsPartObject clickCreatedDoc(String name) {
+        By nameOfDoc = By.xpath("//div[@class='listing-item__info']//span[contains(text(),'" + name + "')]/../../..");
+        findClickableElement(nameOfDoc).click();
+        return this;
+    }
+
+    public ContainsPartObject clickDeleteDocButton() {
+        By nameOfDoc = By.className("groupable-buttons__visible-button_name_delete");
+        findClickableElement(nameOfDoc).click();
+        return this;
     }
 
     public ContainsPartObject clickButtonToCleanTrash() {
@@ -74,11 +78,11 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public Boolean checkThatDocumentExist(String name) {
-        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[@title='" + name + "']/../../..");
+        By nameOfDoc = By.cssSelector("//div[@class='listing-item__info']//span[text()='" + name + "']/../../..");
         try {
             findClickableElement(nameOfDoc);
             return true;
-        } catch (NotFoundException e) {
+        } catch(Exception e) {
             return false;
         }
     }

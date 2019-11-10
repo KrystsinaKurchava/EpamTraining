@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import selenium.base.WebDriverSingleton;
 
 import java.util.Random;
 
 public class Service {
     private static final int MIN_STRING_LENGTH = 4;
-    private static final int MAX_STRING_LENGTH = 20;
+    private static final int MAX_STRING_LENGTH = 10;
     private static final int LOGIN_WAITING = 2000;
-    private static final String ALFANUMERICAL_ALL_CAPS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String ALFANUMERICAL_ALL_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random random = new Random();
-    WebDriver webDriver;
 
     public void loginYandexDisk(User user) {
         StartYandexDiskPage goToPage = new StartYandexDiskPage();
@@ -61,37 +61,56 @@ public class Service {
         mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName);
         mainMenu.clickCreateSMTButton();
-        mainMenu.clickCreateNewDocumentButton()
-                .clickDocumentTitle()
-                .enterDocumentTitle(documentName)
+        String mainWindowHandler = mainMenu.getCurrentWindowHandler();
+        NewDocumentCreatePO newDocumentPage = mainMenu.clickCreateNewDocumentButton();
+
+        String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
+        mainMenu.switchToWindow(newDocumentPageWindowHandler);
+        newDocumentPage
+                .switchToMainIFrame()
+                .clickTextInput()
                 .typeText(text)
+                .clickFileMenuButton()
+                .clickRenameButton()
+                .enterDocumentTitle(documentName)
                 .saveDocument()
-                .returnToYandexPage();
+                .clickFileMenuButton()
+                .clickCloseButton();
+        mainMenu.switchToWindow(mainWindowHandler);
+
         return documentName;
     }
 
     public String getDocumentText(String name, String packageName) {
-
-        return new MainMenu().сlickToGoOnFilePage()
+        MainMenu mainMenu = new MainMenu();
+        NewDocumentCreatePO newDocumentCreatePO = mainMenu
+                .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
-                .doubleClickToOpenDoc(name)
+                .doubleClickToOpenDoc(name);
+        String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
+        mainMenu.switchToWindow(newDocumentPageWindowHandler);
+        String text = newDocumentCreatePO
+                .switchToMainIFrame()
                 .getText();
+        newDocumentCreatePO
+                .saveDocument()
+                .clickFileMenuButton()
+                .clickCloseButton();
+        return text.trim();
     }
 
     public void moveElementInTheTrash(String packageName, String documentName) {
-        Actions builder = new Actions(webDriver);
         ContainsPartObject contain = new ContainsPartObject();
         MainMenu mainMenu = new MainMenu();
         mainMenu
                 .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName);
         WebElement trash = mainMenu.getTrashAddress();
-        Action dragAndDrop = builder
+        new Actions(WebDriverSingleton.getWebDriver())
                 .clickAndHold(contain.findCreatedDoc(documentName))
                 .moveToElement(trash)
-                .release(trash)
-                .build();
-        dragAndDrop.perform();
+                .release()
+                .perform();
     }
 
     public void cleanTrash() {
