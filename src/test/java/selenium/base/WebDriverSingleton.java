@@ -2,13 +2,18 @@ package selenium.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.BasicConfigurator;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
@@ -32,9 +37,20 @@ static {
                     WebDriverManager.edgedriver().setup();
                     webDriver = new EdgeDriver();
                 }
-                default: {
+                case "chrome" :{
                     WebDriverManager.chromedriver().setup();
                     webDriver = new ChromeDriver();
+                }
+                default: {
+                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    capabilities.setPlatform(Platform.WINDOWS);
+                    capabilities.setBrowserName("firefox");
+                    try {
+                        webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                                capabilities);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             webDriver.manage().window().maximize();
