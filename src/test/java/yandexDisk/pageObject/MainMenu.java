@@ -1,11 +1,7 @@
 package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class MainMenu extends PageObjectBase {
@@ -58,19 +54,17 @@ public class MainMenu extends PageObjectBase {
     }
 
     public MainMenu clickCreateSMTButton() {
-
         findClickableElement(createSomethingNewButton).click();
         return this;
     }
 
     public MainMenu clickCreateNewPackageButton() {
         findClickableElement(createNewPackageButton).click();
-
         return this;
     }
 
     public MainMenu inputNameOfNewPackage(String name) {
-        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.CONTROL,Keys.SHIFT,Keys.END);
+        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.CONTROL, Keys.SHIFT, Keys.END);
         findClickableElement(nameOfNewPackageInput).sendKeys(Keys.DELETE);
         findClickableElement(nameOfNewPackageInput).sendKeys(name);
         return this;
@@ -84,9 +78,5 @@ public class MainMenu extends PageObjectBase {
     public NewDocumentCreatePageObject clickCreateNewDocumentButton() {
         findClickableElement(createNewDocumentButton).click();
         return new NewDocumentCreatePageObject();
-    }
-
-    public WebElement getTrashAddress() {
-        return findClickableElement(trashPage);
     }
 }

@@ -1,6 +1,5 @@
 package yandexDisk.service;
 
-
 import org.openqa.selenium.NotFoundException;
 import yandexDisk.pageObject.ContainsPartObject;
 import yandexDisk.pageObject.MainMenu;
@@ -13,7 +12,6 @@ import java.util.Random;
 public class YandexDiskService {
     private static final int MIN_STRING_LENGTH = 4;
     private static final int MAX_STRING_LENGTH = 10;
-    private static final int LOGIN_WAITING = 2000;
     private static final String ALFANUMERICAL_ALL_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random random = new Random();
 
@@ -30,13 +28,11 @@ public class YandexDiskService {
     }
 
     public void loginYandexDiskWithEmptyUsername(User user) {
-
         new StartYandexDiskPage().clickToGoOnLoginPage()
                 .inputLoginLabelClick()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton();
     }
-
 
     public static String getRandomString() {
         int stringLength = random.nextInt(MAX_STRING_LENGTH);
@@ -75,8 +71,6 @@ public class YandexDiskService {
                 .clickTextInput()
                 .typeText(text)
                 .saveDocument()
-             //   .clickFileMenuButton()
-             //   .clickCloseFileMenuButton()
                 .clickFileMenuButton()
                 .clickRenameButton()
                 .enterDocumentTitle(documentName)
@@ -86,8 +80,7 @@ public class YandexDiskService {
                 .clickFileMenuButton()
                 .clickExitButton();
         mainMenu.switchToWindow(mainWindowHandler);
-
-           return documentName;
+        return documentName;
     }
 
     public String getDocumentText(String name, String packageName) {
@@ -98,7 +91,6 @@ public class YandexDiskService {
                 .doubleClickToOpenDoc(name);
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
-
         String text = newDocumentCreatePageObject
                 .switchToMainIFrame()
                 .getText();
@@ -125,16 +117,16 @@ public class YandexDiskService {
     }
 
     public Boolean checkButtonsExist() {
-        MainMenu mainManu = new MainMenu();
+        MainMenu mainMenu = new MainMenu();
         try {
-            mainManu.сlickToGoOnTrashPage();
-            mainManu.сlickToGoOnFilePage();
-            mainManu.сlickToGoOnFotoPage();
-            mainManu.сlickToGoOnLastPage();
-            mainManu.сlickToGoOnGeneralAccessPage();
-            mainManu.сlickToGoOnHistoryPage();
-            mainManu.сlickToGoOnArchivePage();
-            mainManu.сlickToGoOnLastPage();
+            mainMenu.сlickToGoOnTrashPage();
+            mainMenu.сlickToGoOnFilePage();
+            mainMenu.сlickToGoOnFotoPage();
+            mainMenu.сlickToGoOnLastPage();
+            mainMenu.сlickToGoOnGeneralAccessPage();
+            mainMenu.сlickToGoOnHistoryPage();
+            mainMenu.сlickToGoOnArchivePage();
+            mainMenu.сlickToGoOnLastPage();
             return true;
         } catch (NotFoundException e) {
             return false;

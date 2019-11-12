@@ -6,9 +6,10 @@ import org.testng.asserts.SoftAssert;
 import selenium.base.PageObjectBase;
 import selenium.bringItOut.pageObject.PastebinHome;
 import selenium.bringItOut.pageObject.PastebinNewPaste;
+import selenium.bringItOut.pageObject.PasterbinsConditions;
 
-public class BringItOutTests {
-    private final String LINK_TO_PASTEBIN = "https://pastebin.com/";
+public class BringItOutTests extends PasterbinsConditions {
+
     private final String TEXT_FOR_PASTE = "git config --global user.name" +
             "  \"New Sheriff in Town\"\n" +
             "git reset $(git commit-tree HEAD^{tree} -m " +
@@ -24,7 +25,7 @@ public class BringItOutTests {
     @Test(description = "Bring It Out Test")
     public void pastebinNewPaste() {
         PastebinHome pastebinHome = new PastebinHome();
-        pastebinHome.goToPage(LINK_TO_PASTEBIN);
+        pastebinHome.goToPage(LINK_FOR_PASTERBIN);
         pastebinHome.createNewPaste(TEXT_FOR_PASTE, TEXT_PASTE_NAME);
         PastebinNewPaste pastebinNewPaste = new PastebinNewPaste();
         SoftAssert softAssert = new SoftAssert();

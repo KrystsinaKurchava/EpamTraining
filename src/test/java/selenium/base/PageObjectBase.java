@@ -2,6 +2,8 @@ package selenium.base;
 
 import org.openqa.selenium.*;
 
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -69,5 +71,33 @@ public abstract class PageObjectBase {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
         wait.until(ExpectedConditions.textToBe(by, text));
         return webDriver.findElement(by);
+    }
+
+    protected Action clickByElement(WebElement element) {
+        return new Actions(webDriver)
+                .moveToElement(element)
+                .click(element)
+                .build();
+    }
+
+    protected Action enterTextToElement(WebElement element, String text) {
+        return new Actions(webDriver)
+                .moveToElement(element)
+                .click()
+                .sendKeys(text)
+                .build();
+    }
+
+    protected void highlightElement(WebElement element) {
+        ((JavascriptExecutor) webDriver).executeScript("\n" +
+                "      rng = document.createRange();\n" +
+                "      rng.selectNode(arguments[0])\n" +
+                "      sel = window.getSelection();\n" +
+                "      sel.removeAllRanges();\n" +
+                "      sel.addRange(rng);", element);
+    }
+
+    protected void clickButtonWithJS(WebElement element) {
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click()", element);
     }
 }

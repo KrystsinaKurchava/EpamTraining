@@ -8,7 +8,8 @@ public class GoogleCloudSearchResult extends PageObjectBase {
     @FindBy(xpath = "//b[text() ='Google Cloud Platform Pricing Calculator']/parent::a")
     private WebElement calculatorLink;
 
-    public void goToTheCalculatorLink() {
+    public GoogleCloudCalculatorPage goToTheCalculatorLink() {
         calculatorLink.click();
+        return new GoogleCloudCalculatorPage();
     }
 }

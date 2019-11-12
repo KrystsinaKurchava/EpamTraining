@@ -26,9 +26,9 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
     @FindBy(css = "md-checkbox[aria-label='Add GPUs']")
     private WebElement addGrupCheckbox;
     @FindBy(id = "select_348")
-    private WebElement numberOfGrupSelect;
+    private WebElement numberOfGPUsSelect;
     @FindBy(id = "select_option_353")
-    private WebElement optionNumberOfGrupValueSelect;
+    private WebElement optionNumberOfGPUsValueSelect;
     @FindBy(id = "select_350")
     private WebElement gpuTypeSelect;
     @FindBy(id = "select_option_360")
@@ -54,91 +54,113 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
         return resultOfCointing.getText();
     }
 
-    public void switchToFrame() {
+    public GoogleCloudCalculatorPage switchToFrame() {
         webDriver.switchTo().frame(frame);
+        return this;
     }
 
-    public void clickPartComputeEngineSelect() {
+    public GoogleCloudCalculatorPage clickPartComputeEngineSelect() {
         partComputeEngineSelect.click();
+        return this;
     }
 
-    public void inputNumberOfInstanceValue(Integer numberOfInstance) {
+    public GoogleCloudCalculatorPage inputNumberOfInstanceValue(Integer numberOfInstance) {
         numberOfInstanceInput.sendKeys(numberOfInstance.toString());
+        return this;
     }
 
-    public void clickOperationSystemSelect() {
+    public GoogleCloudCalculatorPage clickOperationSystemSelect() {
         operationSystemSelect.click();
+        return this;
     }
 
-    public void clickOptionOperationSystemElementSelect() {
+    public GoogleCloudCalculatorPage clickOptionOperationSystemElementSelect() {
         optionOperationSystemElementSelect.click();
+        return this;
     }
 
-    public void clickVMClassSelect() {
+    public GoogleCloudCalculatorPage clickVMClassSelect() {
         vmClassSelect.click();
+        return this;
     }
 
-    public void clickOptionVMRegularSelect() {
+    public GoogleCloudCalculatorPage clickOptionVMRegularSelect() {
         optionVMRegularSelect.click();
+        return this;
     }
 
-    public void scrollToVMClassElement() {
+    public GoogleCloudCalculatorPage scrollToVMClassElement() {
         scrollToElement(vmClassSelect);
+        return this;
     }
 
-    public void clickMachineTypeSelect() {
+    public GoogleCloudCalculatorPage clickMachineTypeSelect() {
         machineTypeSelect.click();
+        return this;
     }
 
-    public void clickOptionMachineTypeSelect() {
+    public GoogleCloudCalculatorPage clickOptionMachineTypeSelect() {
         optionMachineTypeSelect.click();
+        return this;
     }
 
-    public void clickAddGrupCheckbox() {
+    public GoogleCloudCalculatorPage clickAddGrupCheckbox() {
         addGrupCheckbox.click();
+        return this;
     }
 
-    public void clickNumberOfGrupSelect() {
-        numberOfGrupSelect.click();
+    public GoogleCloudCalculatorPage clickNumberOfGrupSelect() {
+        numberOfGPUsSelect.click();
+        return this;
     }
 
-    public void clickOptionNumberOfGrupValueSelect() {
-        optionNumberOfGrupValueSelect.click();
+    public GoogleCloudCalculatorPage clickOptionNumberOfGrupValueSelect() {
+        optionNumberOfGPUsValueSelect.click();
+        return this;
     }
 
-    public void clickGPUTypeSelect() {
+    public GoogleCloudCalculatorPage clickGPUTypeSelect() {
         gpuTypeSelect.click();
+        return this;
     }
 
-    public void clickOptionGPUtypeNvidiaSelect() {
+    public GoogleCloudCalculatorPage clickOptionGPUtypeNvidiaSelect() {
         optionGPUtypeNvidiaSelect.click();
+        return this;
     }
 
-    public void clickLocalSSdSelect() {
+    public GoogleCloudCalculatorPage clickLocalSSdSelect() {
         localSSdSelect.click();
+        return this;
     }
 
-    public void clickOptionLocalSSdValueSelect() {
+    public GoogleCloudCalculatorPage clickOptionLocalSSdValueSelect() {
         optionLocalSSdValueSelect.click();
+        return this;
     }
 
-    public void clickDataCenreLocationSelect() {
+    public GoogleCloudCalculatorPage clickDataCenreLocationSelect() {
         dataCenreLocationSelect.click();
+        return this;
     }
 
-    public void clickOptionDataCenterLocationValueSelect() {
+    public GoogleCloudCalculatorPage clickOptionDataCenterLocationValueSelect() {
         optionDataCenterLocationValueSelect.click();
+        return this;
     }
 
-    public void clickCommitedUsageSelect() {
+    public GoogleCloudCalculatorPage clickCommitedUsageSelect() {
         commitedUsageSelect.click();
+        return this;
     }
 
-    public void clickOptionCommitedUsage1yearSelect() {
+    public GoogleCloudCalculatorPage clickOptionCommitedUsage1yearSelect() {
         optionCommitedUsage1yearSelect.click();
+        return this;
     }
 
-    public void clickAddToEstimateButton() {
+    public GoogleCloudCalculatorPage clickAddToEstimateButton() {
         addToEstimateButton.click();
+        return this;
     }
 }

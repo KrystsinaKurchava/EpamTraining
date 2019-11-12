@@ -3,7 +3,6 @@ package yandexDisk.service;
 import yandexDisk.model.User;
 
 public class UserCreator {
-
     public static final String TESTDATA_USER_NAME = "testdata.user.name";
     public static final String TESTDATA_USER_PASSWORD = "testdata.user.password";
 

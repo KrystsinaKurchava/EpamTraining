@@ -2,8 +2,6 @@ package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class StartYandexDiskPage extends PageObjectBase {
@@ -16,10 +14,9 @@ public class StartYandexDiskPage extends PageObjectBase {
     private final By errorText = By.className("passp-form-field__error");
     private final By profileIcon = By.className("user2");
     private final By enteredUserName = By.className("passp-current-account__display-name");
+
     public String errorMessage() {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(errorText));
-        return webDriver.findElement(errorText).getText();
+        return findVisibleElement(errorText).getText();
     }
 
     public Boolean checkPersonalCabinetExist() {
@@ -30,6 +27,7 @@ public class StartYandexDiskPage extends PageObjectBase {
             return false;
         }
     }
+
     public StartYandexDiskPage waitingForUserName(String userName) {
         findElementWithText(enteredUserName, userName);
         return this;
@@ -64,6 +62,4 @@ public class StartYandexDiskPage extends PageObjectBase {
         findClickableElement(confirmationPasswordButton).click();
         return this;
     }
-
-
 }

@@ -10,13 +10,12 @@ import yandexDisk.pageObject.*;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserCreator;
 
-public class ElementsTest {
-    private final String LINK_FOR_YANDEX_DISK = "https://disk.yandex.by/";
+public class ElementsTest extends YandexConditions {
     private final String NEW_DOCUMENT_TEXT = "Hello world";
     private final String MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE = " page was not found";
     private final String LAST_PAGE_NAME = "Последние файлы";
     private final String FILE_PAGE_NAME = "Файлы";
-    private final String FOTO_PAGE_NAME = "Все фотографии";
+    private final String PHOTO_PAGE_NAME = "Все фотографии";
     private final String GENERAL_ACCESS_PAGE_NAME = "Публичные ссылки";
     private final String HISTORY_PAGE_NAME = "История";
     private final String ARCHIVE_PAGE_NAME = "Архив";
@@ -45,26 +44,26 @@ public class ElementsTest {
     @Test(description = "Get titles from pages ")
     public void compareTittleAndPage() {
         SoftAssert softAssert = new SoftAssert();
-        MainMenu mainManu = new MainMenu();
-        softAssert.assertEquals(mainManu.сlickToGoOnFilePage()
+        MainMenu mainMenu = new MainMenu();
+        softAssert.assertEquals(mainMenu.сlickToGoOnFilePage()
                         .getCommonTitleContainPage(), FILE_PAGE_NAME,
                 FILE_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnLastPage()
+        softAssert.assertEquals(mainMenu.сlickToGoOnLastPage()
                         .getCommonTitleContainPage(), LAST_PAGE_NAME,
                 LAST_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnFotoPage()
-                        .getPublicAccessTitleContainPage(), FOTO_PAGE_NAME,
-                FOTO_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnGeneralAccessPage()
+        softAssert.assertEquals(mainMenu.сlickToGoOnFotoPage()
+                        .getPublicAccessTitleContainPage(), PHOTO_PAGE_NAME,
+                PHOTO_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
+        softAssert.assertEquals(mainMenu.сlickToGoOnGeneralAccessPage()
                         .getPublicAccessTitleContainPage(), GENERAL_ACCESS_PAGE_NAME,
                 GENERAL_ACCESS_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnHistoryPage()
+        softAssert.assertEquals(mainMenu.сlickToGoOnHistoryPage()
                         .getHistoryPageTitleContainPage(), HISTORY_PAGE_NAME,
                 HISTORY_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnArchivePage()
+        softAssert.assertEquals(mainMenu.сlickToGoOnArchivePage()
                         .getCommonTitleContainPage(), ARCHIVE_PAGE_NAME,
                 ARCHIVE_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainManu.сlickToGoOnTrashPage()
+        softAssert.assertEquals(mainMenu.сlickToGoOnTrashPage()
                         .getCommonTitleContainPage(), TRASH_PAGE_NAME,
                 TRASH_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
         softAssert.assertAll("Title page and button is different");
@@ -83,9 +82,8 @@ public class ElementsTest {
     @Test(description = "Create new document", priority = 2)
     public void createNewDocumentTest() {
         YandexDiskService service = new YandexDiskService();
-        documentName = service.createNewDocument("Test", NEW_DOCUMENT_TEXT);
-  //      Assert.assertEquals(service.getDocumentText(documentName, "Test"), NEW_DOCUMENT_TEXT, "Document saved incorrect");
-
+        documentName = service.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
+        Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
     }
 
     @Test(description = "Delete document", priority = 3)
@@ -98,13 +96,11 @@ public class ElementsTest {
         softAssert.assertAll("Unable to move element to trash");
     }
 
-    @Test(description = "CLear trash", priority = 4)
+    @Test(description = "Clear trash", priority = 4)
     public void cleanTrashTest() {
         YandexDiskService service = new YandexDiskService();
         service.cleanTrash();
         Assert.assertFalse(new ContainsPartObject()
                 .checkThatDocumentExist(documentName), "Trash not empty");
     }
-
-    
 }

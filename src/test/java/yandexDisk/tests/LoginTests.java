@@ -9,8 +9,7 @@ import yandexDisk.pageObject.*;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserCreator;
 
-public class LoginTests {
-    private final String LINK_FOR_YANDEX_DISK = "https://disk.yandex.by/";
+public class LoginTests extends YandexConditions {
 
     @BeforeMethod(description = "Prepare before tests")
     public void browserSetUp() {

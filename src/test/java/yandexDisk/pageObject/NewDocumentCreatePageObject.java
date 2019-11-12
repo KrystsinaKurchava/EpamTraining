@@ -8,13 +8,12 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     private final By documentStatus = By.id("BreadcrumbSaveStatus");
     private final By closeButton = By.id("btnjClose-Menu32");
     private final By frame = By.tagName("iframe");
-    private final By closeFileButton = By.id("jbtnBackArrow-Menu32");
-    private final String EXPECTED_CONDITION_TEXT = "Сохранено в Yandex";
     private final By fileMenuButton = By.cssSelector("button[data-unique-id='FileMenu']");
     private final By renameButton = By.id("jbtnRenameDialog-Menu48");
     private final By documentTittleInput = By.id("txtDocumentName");
     private final By confirmationDocumentTittleButton = By.id("WACDialogActionButton");
     private final By documentTitleText = By.id("BreadcrumbTitle");
+    private final String EXPECTED_CONDITION_TEXT = "Сохранено в Yandex";
 
     public NewDocumentCreatePageObject switchToMainIFrame() {
         webDriver.switchTo().frame(findPresenceElement(frame));
@@ -68,11 +67,6 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
 
     public NewDocumentCreatePageObject waitForTitleChanging(String title) {
         findElementWithText(documentTitleText, title);
-        return this;
-    }
-
-    public NewDocumentCreatePageObject clickCloseFileMenuButton() {
-        findClickableElement(closeFileButton).click();
         return this;
     }
 }

@@ -10,11 +10,13 @@ public class GoogleCloudSearchCalculator extends PageObjectBase {
     @FindBy(id = "top-search")
     private WebElement searchForm;
 
-    public void startSearch() {
+    public GoogleCloudSearchResult startSearch() {
         searchForm.submit();
+        return new GoogleCloudSearchResult();
     }
 
-    public void enterSearchLine(String text) {
+    public GoogleCloudSearchCalculator enterSearchLine(String text) {
         searchLine.sendKeys(text);
+        return new GoogleCloudSearchCalculator();
     }
 }
