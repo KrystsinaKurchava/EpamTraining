@@ -36,7 +36,7 @@ public class LoginTests {
 
     @Test(description = "Login with uncorrected username")
     public void loginNegativeWithEmptyUsernameTest() {
-        new YandexDiskService().loginYandexDisk(UserCreator.withEmptyUsername());
+        new YandexDiskService().loginYandexDiskWithEmptyUsername(UserCreator.withEmptyUsername());
         Assert.assertEquals(new StartYandexDiskPage().errorMessage(), "Логин не указан", "Invalid result (username should be empty)");
     }
 }

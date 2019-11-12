@@ -1,8 +1,6 @@
 package yandexDisk.pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.base.PageObjectBase;
 
 public class NewDocumentCreatePageObject extends PageObjectBase {
@@ -10,12 +8,13 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     private final By documentStatus = By.id("BreadcrumbSaveStatus");
     private final By closeButton = By.id("btnjClose-Menu32");
     private final By frame = By.tagName("iframe");
-    private final By сloseFileButton = By.id("jbtnBackArrow-Menu32");
+    private final By closeFileButton = By.id("jbtnBackArrow-Menu32");
     private final String EXPECTED_CONDITION_TEXT = "Сохранено в Yandex";
     private final By fileMenuButton = By.cssSelector("button[data-unique-id='FileMenu']");
     private final By renameButton = By.id("jbtnRenameDialog-Menu48");
     private final By documentTittleInput = By.id("txtDocumentName");
-    private final By confirmationDocumentTittleInput = By.id("WACDialogActionButton");
+    private final By confirmationDocumentTittleButton = By.id("WACDialogActionButton");
+    private final By documentTitleText = By.id("BreadcrumbTitle");
 
     public NewDocumentCreatePageObject switchToMainIFrame() {
         webDriver.switchTo().frame(findPresenceElement(frame));
@@ -24,11 +23,6 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
 
     public NewDocumentCreatePageObject clickTextInput() {
         findClickableElement(toTypePlace).click();
-        return this;
-    }
-
-    public NewDocumentCreatePageObject clickCloseButton() {
-        findClickableElement(closeButton).click();
         return this;
     }
 
@@ -43,9 +37,7 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     }
 
     public NewDocumentCreatePageObject saveDocument() {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.textToBe(documentStatus, EXPECTED_CONDITION_TEXT));
-        webDriver.findElement(documentStatus);
+        findElementWithText(documentStatus, EXPECTED_CONDITION_TEXT);
         return this;
     }
 
@@ -66,12 +58,21 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     public NewDocumentCreatePageObject enterDocumentTitle(String text) {
         findClickableElement(documentTittleInput).clear();
         findClickableElement(documentTittleInput).sendKeys(text);
-        findClickableElement(confirmationDocumentTittleInput).click();
+        return this;
+    }
+
+    public NewDocumentCreatePageObject clickConfirmationDocumentTittleButton() {
+        findClickableElement(confirmationDocumentTittleButton).click();
+        return this;
+    }
+
+    public NewDocumentCreatePageObject waitForTitleChanging(String title) {
+        findElementWithText(documentTitleText, title);
         return this;
     }
 
     public NewDocumentCreatePageObject clickCloseFileMenuButton() {
-        findClickableElement(сloseFileButton).click();
+        findClickableElement(closeFileButton).click();
         return this;
     }
 }

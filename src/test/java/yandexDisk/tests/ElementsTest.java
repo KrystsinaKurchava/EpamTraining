@@ -83,8 +83,8 @@ public class ElementsTest {
     @Test(description = "Create new document", priority = 2)
     public void createNewDocumentTest() {
         YandexDiskService service = new YandexDiskService();
-        documentName = service.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
-        Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
+        documentName = service.createNewDocument("Test", NEW_DOCUMENT_TEXT);
+  //      Assert.assertEquals(service.getDocumentText(documentName, "Test"), NEW_DOCUMENT_TEXT, "Document saved incorrect");
 
     }
 
@@ -106,11 +106,5 @@ public class ElementsTest {
                 .checkThatDocumentExist(documentName), "Trash not empty");
     }
 
-    @Test(description = "Delete document", priority = 3)
-    public void delete() {
-        YandexDiskService service = new YandexDiskService();
-        documentName = service.createNewDocument("Test", NEW_DOCUMENT_TEXT);
-     //   Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
-
-    }
+    
 }

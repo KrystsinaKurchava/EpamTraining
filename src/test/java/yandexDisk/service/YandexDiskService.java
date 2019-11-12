@@ -18,15 +18,25 @@ public class YandexDiskService {
     private static Random random = new Random();
 
     public void loginYandexDisk(User user) {
-        StartYandexDiskPage goToPage = new StartYandexDiskPage();
-        goToPage.clickToGoOnLoginPage()
+        new StartYandexDiskPage()
+                .clickToGoOnLoginPage()
                 .inputLoginLabelClick()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton()
+                .waitingForUserName(user.getUsername())
                 .inputPasswordLabelClick()
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
     }
+
+    public void loginYandexDiskWithEmptyUsername(User user) {
+
+        new StartYandexDiskPage().clickToGoOnLoginPage()
+                .inputLoginLabelClick()
+                .inputLoginDate(user.getUsername())
+                .clickToSignInButton();
+    }
+
 
     public static String getRandomString() {
         int stringLength = random.nextInt(MAX_STRING_LENGTH);
@@ -54,7 +64,6 @@ public class YandexDiskService {
     public String createNewDocument(String packageName, String text) {
         MainMenu mainMenu = new MainMenu();
         String documentName = getRandomString();
-
         new ContainsPartObject().doubleClickToOpenPack(packageName);
         mainMenu.clickCreateSMTButton();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
@@ -66,16 +75,19 @@ public class YandexDiskService {
                 .clickTextInput()
                 .typeText(text)
                 .saveDocument()
-                .clickFileMenuButton()
-                .clickCloseFileMenuButton()
+             //   .clickFileMenuButton()
+             //   .clickCloseFileMenuButton()
                 .clickFileMenuButton()
                 .clickRenameButton()
                 .enterDocumentTitle(documentName)
+                .clickConfirmationDocumentTittleButton()
+                .waitForTitleChanging(documentName)
                 .saveDocument()
                 .clickFileMenuButton()
                 .clickExitButton();
         mainMenu.switchToWindow(mainWindowHandler);
-        return documentName;
+
+           return documentName;
     }
 
     public String getDocumentText(String name, String packageName) {
@@ -86,6 +98,7 @@ public class YandexDiskService {
                 .doubleClickToOpenDoc(name);
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
+
         String text = newDocumentCreatePageObject
                 .switchToMainIFrame()
                 .getText();
@@ -98,8 +111,7 @@ public class YandexDiskService {
 
     public void moveElementInTheTrash(String packageName, String documentName) {
         MainMenu mainMenu = new MainMenu();
-        mainMenu
-                .сlickToGoOnFilePage()
+        mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
                 .clickCreatedDoc(documentName)
                 .clickDeleteDocButton();

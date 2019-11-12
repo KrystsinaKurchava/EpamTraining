@@ -55,8 +55,18 @@ public abstract class PageObjectBase {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         return webDriver.findElement(by);
     }
-
+    protected WebElement findVisibleElement(By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        return webDriver.findElement(by);
+    }
     protected void scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) webDriver).executeScript(SCROLL_ARGUMENT, webElement);
+    }
+
+    protected WebElement findElementWithText(By by, String text) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.textToBe(by, text));
+        return webDriver.findElement(by);
     }
 }
