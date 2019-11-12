@@ -30,8 +30,8 @@ public class TrickEmailsPage extends PageObjectBase {
     }
 
     public void scrollToInputEmailAddress() {
-        WebElement buttonForScroll = findClickableElement(emailAddressInput);
-        scrollToElement(buttonForScroll);
+        WebElement forScrollButton = findClickableElement(emailAddressInput);
+        scrollToElement(forScrollButton);
     }
 
     public void waitForAppearanceExpanderToMail() {

@@ -58,27 +58,27 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
         webDriver.switchTo().frame(frame);
     }
 
-    public void partComputeEngineSelectClick() {
+    public void clickPartComputeEngineSelect() {
         partComputeEngineSelect.click();
     }
 
-    public void numberOfInstanceValueInput(Integer numberOfInstance) {
+    public void inputNumberOfInstanceValue(Integer numberOfInstance) {
         numberOfInstanceInput.sendKeys(numberOfInstance.toString());
     }
 
-    public void operationSystemSelectClick() {
+    public void clickOperationSystemSelect() {
         operationSystemSelect.click();
     }
 
-    public void optionOperationSystemElementSelectClick() {
+    public void clickOptionOperationSystemElementSelect() {
         optionOperationSystemElementSelect.click();
     }
 
-    public void vmClassSelectClick() {
+    public void clickVMClassSelect() {
         vmClassSelect.click();
     }
 
-    public void optionVMRegularSelectClick() {
+    public void clickOptionVMRegularSelect() {
         optionVMRegularSelect.click();
     }
 
@@ -86,59 +86,59 @@ public class GoogleCloudCalculatorPage extends PageObjectBase {
         scrollToElement(vmClassSelect);
     }
 
-    public void machineTypeSelectClick() {
+    public void clickMachineTypeSelect() {
         machineTypeSelect.click();
     }
 
-    public void optionMachineTypeSelectClick() {
+    public void clickOptionMachineTypeSelect() {
         optionMachineTypeSelect.click();
     }
 
-    public void addGrupCheckboxClick() {
+    public void clickAddGrupCheckbox() {
         addGrupCheckbox.click();
     }
 
-    public void numberOfGrupSelectClick() {
+    public void clickNumberOfGrupSelect() {
         numberOfGrupSelect.click();
     }
 
-    public void optionNumberOfGrupValueSelectClick() {
+    public void clickOptionNumberOfGrupValueSelect() {
         optionNumberOfGrupValueSelect.click();
     }
 
-    public void gpuTypeSelectClick() {
+    public void clickGPUTypeSelect() {
         gpuTypeSelect.click();
     }
 
-    public void optionGPUtypeNvidiaSelectClick() {
+    public void clickOptionGPUtypeNvidiaSelect() {
         optionGPUtypeNvidiaSelect.click();
     }
 
-    public void localSSdSelectClick() {
+    public void clickLocalSSdSelect() {
         localSSdSelect.click();
     }
 
-    public void optionLocalSSdValueSelectClick() {
+    public void clickOptionLocalSSdValueSelect() {
         optionLocalSSdValueSelect.click();
     }
 
-    public void dataCenreLocationSelectClick() {
+    public void clickDataCenreLocationSelect() {
         dataCenreLocationSelect.click();
     }
 
-    public void optionDataCenterLocationValueSelectClick() {
+    public void clickOptionDataCenterLocationValueSelect() {
         optionDataCenterLocationValueSelect.click();
     }
 
-    public void commitedUsageSelectClick() {
+    public void clickCommitedUsageSelect() {
         commitedUsageSelect.click();
     }
 
-    public void optionCommitedUsage1yearSelectClick() {
+    public void clickOptionCommitedUsage1yearSelect() {
         optionCommitedUsage1yearSelect.click();
     }
 
-    public void addToEstimateButtonClick() {
+    public void clickAddToEstimateButton() {
         addToEstimateButton.click();
     }
 }
