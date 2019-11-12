@@ -1,72 +1,71 @@
 package selenium.base.googleCloud;
 
-import org.openqa.selenium.WebDriver;
-
 public class GoogleCloudService {
     private String mailHandler;
     private final Integer NUMBER_OF_INSTANCE = 4;
-    protected WebDriver webDriver;
-
-    public GoogleCloudService(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
+    private final String CLOUD_GOOGLE_LINK = "https://cloud.google.com/";
 
     public String enterFormValues() {
-        GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(webDriver);
+        GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage();
         googleCloudCalculatorPage.switchToFrame();
-        googleCloudCalculatorPage.selectPartComputeEngineClick();
+        googleCloudCalculatorPage.clickPartComputeEngineSelect();
         googleCloudCalculatorPage.inputNumberOfInstanceValue(NUMBER_OF_INSTANCE);
-        googleCloudCalculatorPage.selectOperationSystemClick();
-        googleCloudCalculatorPage.selectOptionOperationSystemElementClick();
-        googleCloudCalculatorPage.selectVMClassClick();
-        googleCloudCalculatorPage.selectOptionVMRegularClick();
+        googleCloudCalculatorPage.clickOperationSystemSelect();
+        googleCloudCalculatorPage.clickOptionOperationSystemElementSelect();
+        googleCloudCalculatorPage.clickVMClassSelect();
+        googleCloudCalculatorPage.clickOptionVMRegularSelect();
         googleCloudCalculatorPage.scrollToVMClassElement();
-        googleCloudCalculatorPage.selectMachineTypeClick();
-        googleCloudCalculatorPage.selectOptionMachineTypeClick();
-        googleCloudCalculatorPage.checkboxAddGrup();
-        googleCloudCalculatorPage.selectNumberOfGrupClick();
-        googleCloudCalculatorPage.selectOptionNumberOfGrupValueClick();
-        googleCloudCalculatorPage.selectGPUtypeClick();
-        googleCloudCalculatorPage.selectOptionGPUtypeNvidiaClick();
-        googleCloudCalculatorPage.selectLocalSSdClick();
-        googleCloudCalculatorPage.selectOptionLocalSSdValueClick();
-        googleCloudCalculatorPage.selectDataCenreLocationClick();
-        googleCloudCalculatorPage.selectOptionDataCenterLocationValueClick();
-        googleCloudCalculatorPage.selectCommitedUsageClick();
-        googleCloudCalculatorPage.selectOptionCommitedUsage1yearClick();
-        googleCloudCalculatorPage.buttonAddToEstimateClick();
+        googleCloudCalculatorPage.clickMachineTypeSelect();
+        googleCloudCalculatorPage.clickOptionMachineTypeSelect();
+        googleCloudCalculatorPage.clickAddGrupCheckbox();
+        googleCloudCalculatorPage.clickNumberOfGrupSelect();
+        googleCloudCalculatorPage.clickOptionNumberOfGrupValueSelect();
+        googleCloudCalculatorPage.clickGPUTypeSelect();
+        googleCloudCalculatorPage.clickOptionGPUtypeNvidiaSelect();
+        googleCloudCalculatorPage.clickLocalSSdSelect();
+        googleCloudCalculatorPage.clickOptionLocalSSdValueSelect();
+        googleCloudCalculatorPage.clickDataCenreLocationSelect();
+        googleCloudCalculatorPage.clickOptionDataCenterLocationValueSelect();
+        googleCloudCalculatorPage.clickCommitedUsageSelect();
+        googleCloudCalculatorPage.clickOptionCommitedUsage1yearSelect();
+        googleCloudCalculatorPage.clickAddToEstimateButton();
         return googleCloudCalculatorPage.getResultOfCointing();
     }
 
     public String getRentCost() {
-        TrickEmailsPage trickEmailsPage = new TrickEmailsPage(webDriver);
-        webDriver.switchTo().window(mailHandler);
+        TrickEmailsPage trickEmailsPage = new TrickEmailsPage();
+        trickEmailsPage.switchToWindow(mailHandler);
         trickEmailsPage.scrollToInputEmailAddress();
         trickEmailsPage.waitForAppearanceExpanderToMail();
         return trickEmailsPage.getMoneyValue();
     }
 
     public void sendEmail(String mail) {
-        GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage(webDriver);
-        googleCloudCalculatorEmailPage.buttonToSentEmailClick();
+        GoogleCloudCalculatorEmailPage googleCloudCalculatorEmailPage = new GoogleCloudCalculatorEmailPage();
+        googleCloudCalculatorEmailPage.clickSendEmailButton();
         googleCloudCalculatorEmailPage.enterEmailAddress(mail);
         googleCloudCalculatorEmailPage.scrollToEmailAddress();
         googleCloudCalculatorEmailPage.sendEmail();
     }
 
-    public GoogleCloudSearchResult searchForCalculator(String text) {
-        GoogleCloudSearchCalculator googleCloudSearch = new GoogleCloudSearchCalculator(webDriver);
+    public void searchForCalculator(String text) {
+        GoogleCloudSearchCalculator googleCloudSearch = new GoogleCloudSearchCalculator();
+        googleCloudSearch.goToPage(CLOUD_GOOGLE_LINK);
         googleCloudSearch.enterSearchLine(text);
         googleCloudSearch.startSearch();
-        return new GoogleCloudSearchResult(webDriver);
     }
 
-    public String createNewEmail(String handler) {
-        TrickEmailsPage tenMailPage = new TrickEmailsPage(webDriver);
-        mailHandler = tenMailPage.openMailPage(webDriver.getWindowHandle());
-        webDriver.switchTo().window(mailHandler);
+    public void goToTheCalculatorLink() {
+        new GoogleCloudSearchResult().goToTheCalculatorLink();
+    }
+
+    public String createNewEmail() {
+        TrickEmailsPage tenMailPage = new TrickEmailsPage();
+        String mainHandler = tenMailPage.getCurrentWindowHandler();
+        mailHandler = tenMailPage.openMailPage(tenMailPage.getCurrentWindowHandler());
+        tenMailPage.switchToWindow(mailHandler);
         String email = tenMailPage.createNewEmail();
-        webDriver.switchTo().window(handler);
+        tenMailPage.switchToWindow(mainHandler);
         return email;
     }
 }

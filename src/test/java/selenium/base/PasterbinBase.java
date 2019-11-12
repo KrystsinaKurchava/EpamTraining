@@ -1,22 +1,17 @@
 package selenium.base;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public abstract class PasterbinBase extends PageObjectBase {
     @FindBy(id = "paste_code")
-    protected WebElement inputTextInNewPaste;
+    protected WebElement textInNewPasteInput;
     @FindBy(xpath = "//*[@class='select2-selection__rendered' and @title='Never']/..")
-    protected WebElement selectPasteExpiration;
+    protected WebElement pasteExpirationSelect;
     @FindBy(xpath = "//*[@name='paste_name']")
-    protected WebElement inputPasteName;
+    protected WebElement pasteNameInput;
     @FindBy(xpath = "//*[@id='submit']")
-    protected WebElement buttonForCreateNewPaste;
-
-    public PasterbinBase(WebDriver webDriver) {
-        super(webDriver);
-    }
+    protected WebElement forCreateNewPasteButton;
 
     public abstract void createNewPaste(String textForPaste, String textPasteName);
 }

@@ -1,6 +1,5 @@
 package selenium.bringItOut.pageObject;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import selenium.base.PageObjectBase;
@@ -12,17 +11,12 @@ public class PastebinNewPaste extends PageObjectBase {
     private WebElement pasteText;
     private final String ATTRIBUTE_FOR_CHECK = "class";
 
-    public PastebinNewPaste(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     public String getTitle() {
         return webDriver.getTitle();
     }
 
     public String getText() {
         return pasteText.getText();
-
     }
 
     public String checkBash() {
