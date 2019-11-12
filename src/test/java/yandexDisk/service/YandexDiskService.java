@@ -2,6 +2,7 @@ package yandexDisk.service;
 
 
 import org.openqa.selenium.NotFoundException;
+import yandexDisk.pageObject.ContainsPartObject;
 import yandexDisk.pageObject.MainMenu;
 import yandexDisk.pageObject.NewDocumentCreatePageObject;
 import yandexDisk.pageObject.StartYandexDiskPage;
@@ -25,11 +26,6 @@ public class YandexDiskService {
                 .inputPasswordLabelClick()
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
-        try {
-            Thread.sleep(LOGIN_WAITING);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static String getRandomString() {
@@ -46,6 +42,7 @@ public class YandexDiskService {
     public String createNewPackage() {
         MainMenu mainManu = new MainMenu();
         String packageName = getRandomString();
+        mainManu.сlickToGoOnFotoPage();
         mainManu.сlickToGoOnFilePage();
         mainManu.clickCreateSMTButton();
         mainManu.clickCreateNewPackageButton()
@@ -57,8 +54,8 @@ public class YandexDiskService {
     public String createNewDocument(String packageName, String text) {
         MainMenu mainMenu = new MainMenu();
         String documentName = getRandomString();
-        mainMenu.сlickToGoOnFilePage()
-                .doubleClickToOpenPack(packageName);
+
+        new ContainsPartObject().doubleClickToOpenPack(packageName);
         mainMenu.clickCreateSMTButton();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
         NewDocumentCreatePageObject newDocumentPage = mainMenu.clickCreateNewDocumentButton();
@@ -95,7 +92,7 @@ public class YandexDiskService {
         newDocumentCreatePageObject
                 .saveDocument()
                 .clickFileMenuButton()
-                .clickCloseButton();
+                .clickExitButton();
         return text.trim();
     }
 
@@ -118,9 +115,10 @@ public class YandexDiskService {
     public Boolean checkButtonsExist() {
         MainMenu mainManu = new MainMenu();
         try {
-            mainManu.сlickToGoOnFilePage();
             mainManu.сlickToGoOnTrashPage();
+            mainManu.сlickToGoOnFilePage();
             mainManu.сlickToGoOnFotoPage();
+            mainManu.сlickToGoOnLastPage();
             mainManu.сlickToGoOnGeneralAccessPage();
             mainManu.сlickToGoOnHistoryPage();
             mainManu.сlickToGoOnArchivePage();

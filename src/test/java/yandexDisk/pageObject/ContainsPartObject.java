@@ -22,6 +22,11 @@ public class ContainsPartObject extends PageObjectBase {
         return findPresenceElement(publicAccessPageTitle).getAttribute(innerHTMLAttribute);
     }
 
+    public String getLastTitlePage() {
+        return findPresenceElement(By.cssSelector(".listing__items>.listing__group-title")).getAttribute(innerHTMLAttribute);
+    }
+
+
     public String getHistoryPageTitleContainPage() {
         return findPresenceElement(historyPageTitle).getAttribute(innerHTMLAttribute);
     }

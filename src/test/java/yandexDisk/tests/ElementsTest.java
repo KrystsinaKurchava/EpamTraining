@@ -46,12 +46,12 @@ public class ElementsTest {
     public void compareTittleAndPage() {
         SoftAssert softAssert = new SoftAssert();
         MainMenu mainManu = new MainMenu();
-        softAssert.assertEquals(mainManu.сlickToGoOnLastPage()
-                        .getPublicAccessTitleContainPage(), LAST_PAGE_NAME,
-                LAST_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
         softAssert.assertEquals(mainManu.сlickToGoOnFilePage()
                         .getCommonTitleContainPage(), FILE_PAGE_NAME,
                 FILE_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
+        softAssert.assertEquals(mainManu.сlickToGoOnLastPage()
+                        .getCommonTitleContainPage(), LAST_PAGE_NAME,
+                LAST_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
         softAssert.assertEquals(mainManu.сlickToGoOnFotoPage()
                         .getPublicAccessTitleContainPage(), FOTO_PAGE_NAME,
                 FOTO_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
@@ -85,6 +85,7 @@ public class ElementsTest {
         YandexDiskService service = new YandexDiskService();
         documentName = service.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
         Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
+
     }
 
     @Test(description = "Delete document", priority = 3)
@@ -103,5 +104,13 @@ public class ElementsTest {
         service.cleanTrash();
         Assert.assertFalse(new ContainsPartObject()
                 .checkThatDocumentExist(documentName), "Trash not empty");
+    }
+
+    @Test(description = "Delete document", priority = 3)
+    public void delete() {
+        YandexDiskService service = new YandexDiskService();
+        documentName = service.createNewDocument("Test", NEW_DOCUMENT_TEXT);
+     //   Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
+
     }
 }
