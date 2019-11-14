@@ -3,23 +3,18 @@ package yandexDisk.tests;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import selenium.base.WebDriverSingleton;
 import yandexDisk.pageObject.*;
+import yandexDisk.service.ScreenShots;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserCreator;
 
+@Listeners({ScreenShots.class})
 public class ElementsTest extends YandexConditions {
     private final String NEW_DOCUMENT_TEXT = "Hello world";
-    private final String MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE = " page was not found";
-    private final String LAST_PAGE_NAME = "Последние файлы";
-    private final String FILE_PAGE_NAME = "Файлы";
-    private final String PHOTO_PAGE_NAME = "Все фотографии";
-    private final String GENERAL_ACCESS_PAGE_NAME = "Публичные ссылки";
-    private final String HISTORY_PAGE_NAME = "История";
-    private final String ARCHIVE_PAGE_NAME = "Архив";
-    private final String TRASH_PAGE_NAME = "Корзина";
     private String packageName;
     private String documentName;
 
@@ -32,41 +27,6 @@ public class ElementsTest extends YandexConditions {
     @AfterMethod(description = "Close browser")
     public void browserClose() {
         WebDriverSingleton.closeDriver();
-    }
-
-    @Test(description = "Check locate elements")
-    public void checkExistButton() {
-        Assert.assertTrue(new YandexDiskService()
-                        .checkButtonsExist(),
-                "Some element is not located");
-    }
-
-    @Test(description = "Get titles from pages ")
-    public void compareTittleAndPage() {
-        SoftAssert softAssert = new SoftAssert();
-        MainMenu mainMenu = new MainMenu();
-        softAssert.assertEquals(mainMenu.сlickToGoOnFilePage()
-                        .getCommonTitleContainPage(), FILE_PAGE_NAME,
-                FILE_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnLastPage()
-                        .getCommonTitleContainPage(), LAST_PAGE_NAME,
-                LAST_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnFotoPage()
-                        .getPublicAccessTitleContainPage(), PHOTO_PAGE_NAME,
-                PHOTO_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnGeneralAccessPage()
-                        .getPublicAccessTitleContainPage(), GENERAL_ACCESS_PAGE_NAME,
-                GENERAL_ACCESS_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnHistoryPage()
-                        .getHistoryPageTitleContainPage(), HISTORY_PAGE_NAME,
-                HISTORY_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnArchivePage()
-                        .getCommonTitleContainPage(), ARCHIVE_PAGE_NAME,
-                ARCHIVE_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertEquals(mainMenu.сlickToGoOnTrashPage()
-                        .getCommonTitleContainPage(), TRASH_PAGE_NAME,
-                TRASH_PAGE_NAME + MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE);
-        softAssert.assertAll("Title page and button is different");
     }
 
     @Test(description = "Create new package", priority = 1)

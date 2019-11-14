@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="testng-login" verbose="1" >
-    <test name="LoginTests"   >
+<suite name="Smoke test" verbose="1" >
+    <test name="Check working click button"   >
         <classes>
             <class name="yandexDisk.tests.LoginTests" />
+            <class name="yandexDisk.tests.ClickButtonTest" />
         </classes>
     </test>
 </suite>

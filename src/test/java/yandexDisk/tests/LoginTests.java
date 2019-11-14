@@ -3,12 +3,15 @@ package yandexDisk.tests;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import selenium.base.WebDriverSingleton;
 import yandexDisk.pageObject.*;
+import yandexDisk.service.ScreenShots;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserCreator;
 
+@Listeners({ScreenShots.class})
 public class LoginTests extends YandexConditions {
 
     @BeforeMethod(description = "Prepare before tests")
