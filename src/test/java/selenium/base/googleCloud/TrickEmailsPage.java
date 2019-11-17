@@ -26,11 +26,11 @@ public class TrickEmailsPage extends PageObjectBase {
     }
 
     public String createNewEmail() {
-        return findClickableElement(emailAddressInputLocator).getAttribute(ATTRIBUTE_VALUE);
+        return waitForVisibility(emailAddressInputLocator).getAttribute(ATTRIBUTE_VALUE);
     }
 
     public TrickEmailsPage scrollToInputEmailAddress() {
-        WebElement forScrollButton = findClickableElement(emailAddressInputLocator);
+        WebElement forScrollButton = waitForVisibility(emailAddressInputLocator);
         scrollToElement(forScrollButton);
         return this;
     }
@@ -42,6 +42,6 @@ public class TrickEmailsPage extends PageObjectBase {
     }
 
     public String getMoneyValue() {
-        return findClickableElement(cellMoney).getText();
+        return waitForVisibility(cellMoney).getText();
     }
 }

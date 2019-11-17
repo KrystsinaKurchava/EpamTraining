@@ -14,10 +14,10 @@ public abstract class PageObjectBase {
     protected static final int TIME_OUT_FOR_WAIT = 30;
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";
 
-    protected   WebDriver webDriver;
+    protected WebDriver webDriver;
 
     public PageObjectBase() {
-        webDriver= WebDriverSingleton.getWebDriver();
+        webDriver = WebDriverSingleton.getWebDriver();
         PageFactory.initElements(webDriver, this);
     }
 
@@ -45,24 +45,23 @@ public abstract class PageObjectBase {
 
     public static void quit() {
         WebDriverSingleton.getWebDriver().quit();
-       }
-
-    protected WebElement findClickableElement(By by) {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-        return webDriver.findElement(by);
     }
 
-    protected WebElement findPresenceElement(By by) {
+    protected WebElement waitForVisibility(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.presenceOfElementLocated(by));
-        return webDriver.findElement(by);
+        return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
+
+    protected WebElement waitForPresence(By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
     protected WebElement findVisibleElement(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        return webDriver.findElement(by);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
+
     protected void scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) webDriver).executeScript(SCROLL_ARGUMENT, webElement);
     }
@@ -86,6 +85,12 @@ public abstract class PageObjectBase {
                 .click()
                 .sendKeys(text)
                 .build();
+    }
+
+    protected void doubleClickByXPathSelector(String selector) {
+        new Actions(webDriver)
+                .doubleClick(waitForVisibility(By.xpath(selector)))
+                .perform();
     }
 
     protected void highlightElement(WebElement element) {

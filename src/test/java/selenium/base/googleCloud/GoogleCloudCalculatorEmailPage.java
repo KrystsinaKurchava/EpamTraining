@@ -17,18 +17,18 @@ public class GoogleCloudCalculatorEmailPage extends PageObjectBase {
     }
 
     public GoogleCloudCalculatorEmailPage enterEmailAddress(String mail) {
-        findClickableElement(emailAddressInput).sendKeys(mail);
+        waitForVisibility(emailAddressInput).sendKeys(mail);
         return this;
     }
 
     public GoogleCloudCalculatorEmailPage scrollToEmailAddress() {
-        WebElement buttonForScroll = findClickableElement(emailAddressInput);
+        WebElement buttonForScroll = waitForVisibility(emailAddressInput);
         scrollToElement(buttonForScroll);
         return this;
     }
 
     public GoogleCloudCalculatorEmailPage sendEmail() {
-        findClickableElement(sendEmailButton).click();
+        waitForVisibility(sendEmailButton).click();
         return this;
     }
 }

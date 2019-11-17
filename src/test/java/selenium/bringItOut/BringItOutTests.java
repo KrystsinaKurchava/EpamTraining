@@ -6,9 +6,9 @@ import org.testng.asserts.SoftAssert;
 import selenium.base.PageObjectBase;
 import selenium.bringItOut.pageObject.PastebinHome;
 import selenium.bringItOut.pageObject.PastebinNewPaste;
-import selenium.bringItOut.pageObject.PasterbinsConditions;
+import selenium.bringItOut.pageObject.PasterbinsConstants;
 
-public class BringItOutTests extends PasterbinsConditions {
+public class BringItOutTests extends PasterbinsConstants {
 
     private final String TEXT_FOR_PASTE = "git config --global user.name" +
             "  \"New Sheriff in Town\"\n" +

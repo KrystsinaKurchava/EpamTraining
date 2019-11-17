@@ -7,7 +7,7 @@ import selenium.base.PageObjectBase;
 public class MainMenu extends PageObjectBase {
     private final By filePage = By.id("/disk");
     private final By trashPage = By.id("/trash");
-    private final By fotoPage = By.cssSelector("a[href='/client/photo']");
+    private final By photoPage = By.cssSelector("a[href='/client/photo']");
     private final By generalAccessPage = By.cssSelector("a[href='/client/shared']");
     private final By historyPage = By.cssSelector("a[href='/client/journal']");
     private final By archivePage = By.cssSelector("a[href='/client/mail']");
@@ -19,64 +19,64 @@ public class MainMenu extends PageObjectBase {
     private final By saveButton = By.className("confirmation-dialog__button");
 
     public ContainsPartObject сlickToGoOnFilePage() {
-        findClickableElement(filePage).click();
+        waitForVisibility(filePage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnTrashPage() {
-        findClickableElement(trashPage).click();
+        waitForVisibility(trashPage).click();
         return new ContainsPartObject();
     }
 
-    public ContainsPartObject сlickToGoOnFotoPage() {
-        findClickableElement(fotoPage).click();
+    public ContainsPartObject сlickToGoOnPhotoPage() {
+        waitForVisibility(photoPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnGeneralAccessPage() {
-        findClickableElement(generalAccessPage).click();
+        waitForVisibility(generalAccessPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnHistoryPage() {
-        findClickableElement(historyPage).click();
+        waitForVisibility(historyPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnArchivePage() {
-        findClickableElement(archivePage).click();
+        waitForVisibility(archivePage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnLastPage() {
-        findClickableElement(lastPage).click();
+        waitForVisibility(lastPage).click();
         return new ContainsPartObject();
     }
 
     public MainMenu clickCreateSMTButton() {
-        findClickableElement(createSomethingNewButton).click();
+        waitForVisibility(createSomethingNewButton).click();
         return this;
     }
 
     public MainMenu clickCreateNewPackageButton() {
-        findClickableElement(createNewPackageButton).click();
+        waitForVisibility(createNewPackageButton).click();
         return this;
     }
 
     public MainMenu inputNameOfNewPackage(String name) {
-        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.CONTROL, Keys.SHIFT, Keys.END);
-        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.DELETE);
-        findClickableElement(nameOfNewPackageInput).sendKeys(name);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(Keys.CONTROL, Keys.SHIFT, Keys.END);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(Keys.DELETE);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(name);
         return this;
     }
 
     public ContainsPartObject saveButtonClick() {
-        findClickableElement(saveButton).click();
+        waitForVisibility(saveButton).click();
         return new ContainsPartObject();
     }
 
-    public NewDocumentCreatePageObject clickCreateNewDocumentButton() {
-        findClickableElement(createNewDocumentButton).click();
-        return new NewDocumentCreatePageObject();
+    public CreateNewDocumentPage clickCreateNewDocumentButton() {
+        waitForVisibility(createNewDocumentButton).click();
+        return new CreateNewDocumentPage();
     }
 }

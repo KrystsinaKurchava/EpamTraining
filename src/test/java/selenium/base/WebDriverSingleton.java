@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -28,17 +29,17 @@ public class WebDriverSingleton {
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
             switch (System.getProperty("browser")) {
-                case "firefox": {
+                case BrowserType.FIREFOX: {
                     WebDriverManager.firefoxdriver().setup();
                     webDriver = new FirefoxDriver();
                     break;
                 }
-                case "edge": {
+                case BrowserType.EDGE: {
                     WebDriverManager.edgedriver().setup();
                     webDriver = new EdgeDriver();
                     break;
                 }
-                case "chrome": {
+                case BrowserType.CHROME: {
                     WebDriverManager.chromedriver().setup();
                     webDriver = new ChromeDriver();
                     break;
@@ -46,7 +47,7 @@ public class WebDriverSingleton {
                 default: {
                     DesiredCapabilities capabilities = new DesiredCapabilities();
                     capabilities.setPlatform(Platform.WINDOWS);
-                    capabilities.setBrowserName("firefox");
+                    capabilities.setBrowserName(BrowserType.CHROME);
                     try {
                         webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
                                 capabilities);
@@ -55,10 +56,7 @@ public class WebDriverSingleton {
                     }
                 }
             }
-            webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().setScriptTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-            webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-            webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
+            manageDriver();
         }
         return webDriver;
     }
@@ -66,5 +64,12 @@ public class WebDriverSingleton {
     public static void closeDriver() {
         webDriver.quit();
         webDriver = null;
+    }
+
+    private static void manageDriver() {
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().setScriptTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
     }
 }

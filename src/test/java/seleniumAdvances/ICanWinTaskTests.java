@@ -4,10 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import selenium.base.PageObjectBase;
-import selenium.bringItOut.pageObject.PasterbinsConditions;
+import selenium.bringItOut.pageObject.PasterbinsConstants;
 import seleniumAdvances.pageObject.PastebinPageObjectAdvances;
 
-public class ICanWinTaskTests extends PasterbinsConditions {
+public class ICanWinTaskTests extends PasterbinsConstants {
 
 
     @AfterTest(description = "Closing browser after tests run")

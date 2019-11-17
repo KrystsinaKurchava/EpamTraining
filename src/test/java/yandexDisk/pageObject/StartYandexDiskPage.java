@@ -15,13 +15,13 @@ public class StartYandexDiskPage extends PageObjectBase {
     private final By profileIcon = By.className("user2");
     private final By enteredUserName = By.className("passp-current-account__display-name");
 
-    public String errorMessage() {
+    public String getErrorMessage() {
         return findVisibleElement(errorText).getText();
     }
 
-    public Boolean checkPersonalCabinetExist() {
+    public Boolean isPersonalCabinetExist() {
         try {
-            findClickableElement(profileIcon);
+            waitForVisibility(profileIcon);
             return true;
         } catch (NotFoundException e) {
             return false;
@@ -34,32 +34,32 @@ public class StartYandexDiskPage extends PageObjectBase {
     }
 
     public StartYandexDiskPage clickToGoOnLoginPage() {
-        findClickableElement(enterButton).click();
+        waitForVisibility(enterButton).click();
         return this;
     }
 
     public StartYandexDiskPage inputLoginLabelClick() {
-        findClickableElement(loginLabelInput).click();
+        waitForVisibility(loginLabelInput).click();
         return this;
     }
 
     public StartYandexDiskPage inputLoginDate(String username) {
-        findClickableElement(loginInput).sendKeys(username);
+        waitForVisibility(loginInput).sendKeys(username);
         return this;
     }
 
     public StartYandexDiskPage inputPasswordLabelClick() {
-        findClickableElement(passwordLabelInput).click();
+        waitForVisibility(passwordLabelInput).click();
         return this;
     }
 
     public StartYandexDiskPage inputPasswordDate(String password) {
-        findClickableElement(passwordInput).sendKeys(password);
+        waitForVisibility(passwordInput).sendKeys(password);
         return this;
     }
 
     public StartYandexDiskPage clickToSignInButton() {
-        findClickableElement(confirmationPasswordButton).click();
+        waitForVisibility(confirmationPasswordButton).click();
         return this;
     }
 }
