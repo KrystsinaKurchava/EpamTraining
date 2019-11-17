@@ -15,17 +15,22 @@ public class ContainsPartObject extends PageObjectBase {
     private final By deleteButtonLocator = By.className("groupable-buttons__visible-button_name_delete");
     private final static String PACKAGE_SELECTOR = "//div[@class='listing-item__info']//span[text()='%s']/../../..";
     private final static String DOCUMENT_SELECTOR = "//div[@class='listing-item__info']//span[contains(text(),'%s')]/../../..";
+    private final MainMenu mainMenu = new MainMenu();
+
+    public MainMenu getMainMenu(){
+        return mainMenu;
+    }
 
     public String getCommonTitleContainPage() {
-        return findPresenceElement(commonPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(commonPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public String getPublicAccessTitleContainPage() {
-        return findPresenceElement(publicAccessPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(publicAccessPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public String getHistoryPageTitleContainPage() {
-        return findPresenceElement(historyPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(historyPageTitle).getAttribute(innerHTMLAttribute);
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
@@ -34,7 +39,7 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public String getPackageName() {
-        return findClickableElement(packageName).getText();
+        return waitForVisibility(packageName).getText();
     }
 
     public NewDocumentCreatePageObject doubleClickToOpenDoc(String name) {
@@ -42,35 +47,29 @@ public class ContainsPartObject extends PageObjectBase {
         return new NewDocumentCreatePageObject();
     }
 
-    private void doubleClickByXPathSelector(String selector) {
-        new Actions(webDriver)
-                .doubleClick(findClickableElement(By.xpath(selector)))
-                .perform();
-    }
-
     public ContainsPartObject clickCreatedDoc(String name) {
-        findClickableElement(By.xpath(String.format(DOCUMENT_SELECTOR, name))).click();
+        waitForVisibility(By.xpath(String.format(DOCUMENT_SELECTOR, name))).click();
         return this;
     }
 
     public ContainsPartObject clickDeleteDocButton() {
-        findClickableElement(deleteButtonLocator).click();
+        waitForVisibility(deleteButtonLocator).click();
         return this;
     }
 
     public ContainsPartObject clickButtonToCleanTrash() {
-        findClickableElement(trashCleanButton).click();
+        waitForVisibility(trashCleanButton).click();
         return this;
     }
 
     public ContainsPartObject clickButtonToConfirmationCleanTrash() {
-        findClickableElement(confirmationTrashCleanButton).click();
+        waitForVisibility(confirmationTrashCleanButton).click();
         return this;
     }
 
     public Boolean checkThatDocumentExist(String name) {
         try {
-            findClickableElement(By.xpath(String.format(DOCUMENT_SELECTOR, name)));
+            waitForVisibility(By.xpath(String.format(DOCUMENT_SELECTOR, name)));
             return true;
         } catch (Exception e) {
             return false;

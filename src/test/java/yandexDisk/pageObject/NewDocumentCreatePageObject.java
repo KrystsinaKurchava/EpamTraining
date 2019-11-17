@@ -16,22 +16,22 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     private final String EXPECTED_CONDITION_TEXT = "Сохранено в Yandex";
 
     public NewDocumentCreatePageObject switchToMainIFrame() {
-        webDriver.switchTo().frame(findPresenceElement(frame));
+        webDriver.switchTo().frame(waitForPresence(frame));
         return this;
     }
 
     public NewDocumentCreatePageObject clickTextInput() {
-        findClickableElement(toTypePlace).click();
+        waitForVisibility(toTypePlace).click();
         return this;
     }
 
     public NewDocumentCreatePageObject clickExitButton() {
-        findClickableElement(closeButton).click();
+        waitForVisibility(closeButton).click();
         return this;
     }
 
     public NewDocumentCreatePageObject typeText(String text) {
-        findClickableElement(toTypePlace).sendKeys(text);
+        waitForVisibility(toTypePlace).sendKeys(text);
         return this;
     }
 
@@ -41,27 +41,27 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     }
 
     public String getText() {
-        return findClickableElement(toTypePlace).getText();
+        return waitForVisibility(toTypePlace).getText();
     }
 
     public NewDocumentCreatePageObject clickFileMenuButton() {
-        findClickableElement(fileMenuButton).click();
+        waitForVisibility(fileMenuButton).click();
         return this;
     }
 
     public NewDocumentCreatePageObject clickRenameButton() {
-        findClickableElement(renameButton).click();
+        waitForVisibility(renameButton).click();
         return this;
     }
 
     public NewDocumentCreatePageObject enterDocumentTitle(String text) {
-        findClickableElement(documentTittleInput).clear();
-        findClickableElement(documentTittleInput).sendKeys(text);
+        waitForVisibility(documentTittleInput).clear();
+        waitForVisibility(documentTittleInput).sendKeys(text);
         return this;
     }
 
     public NewDocumentCreatePageObject clickConfirmationDocumentTittleButton() {
-        findClickableElement(confirmationDocumentTittleButton).click();
+        waitForVisibility(confirmationDocumentTittleButton).click();
         return this;
     }
 

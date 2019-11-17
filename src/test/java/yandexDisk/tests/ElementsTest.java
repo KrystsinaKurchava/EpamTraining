@@ -8,25 +8,27 @@ import org.testng.asserts.SoftAssert;
 import selenium.base.WebDriverSingleton;
 import yandexDisk.pageObject.*;
 import yandexDisk.service.YandexDiskService;
-import yandexDisk.service.UserCreator;
+import yandexDisk.service.UserFactory;
 
 public class ElementsTest extends YandexConditions {
+    protected YandexDiskService yandexDiskService;
     private final String NEW_DOCUMENT_TEXT = "Hello world";
     private final String MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE = " page was not found";
-    private final String LAST_PAGE_NAME = "Последние файлы";
-    private final String FILE_PAGE_NAME = "Файлы";
-    private final String PHOTO_PAGE_NAME = "Все фотографии";
-    private final String GENERAL_ACCESS_PAGE_NAME = "Публичные ссылки";
-    private final String HISTORY_PAGE_NAME = "История";
-    private final String ARCHIVE_PAGE_NAME = "Архив";
-    private final String TRASH_PAGE_NAME = "Корзина";
+    private final String LAST_PAGE_NAME = "Recent files";
+    private final String FILE_PAGE_NAME = "Files";
+    private final String PHOTO_PAGE_NAME = "All photos";
+    private final String GENERAL_ACCESS_PAGE_NAME = "Public links";
+    private final String HISTORY_PAGE_NAME = "History";
+    private final String ARCHIVE_PAGE_NAME = "Archive";
+    private final String TRASH_PAGE_NAME = "Trash";
     private String packageName;
     private String documentName;
 
     @BeforeMethod(description = "Prepare page before tests")
-    public void browserSetUp() {
+    public void loginIntoYandexDisk() {
         WebDriverSingleton.getWebDriver().get(LINK_FOR_YANDEX_DISK);
-        new YandexDiskService().loginYandexDisk(UserCreator.withCredentialsFromProperty());
+        yandexDiskService = new YandexDiskService();
+        yandexDiskService.loginYandexDisk(UserFactory.withCredentialsFromProperty());
     }
 
     @AfterMethod(description = "Close browser")
@@ -70,26 +72,24 @@ public class ElementsTest extends YandexConditions {
     }
 
     @Test(description = "Create new package", priority = 1)
-    public void createNewPackageTest() {
-        packageName = new YandexDiskService().createNewPackage();
-        new ContainsPartObject()
+    public void createNewPackage() {
+        packageName = yandexDiskService.createNewPackage();
+        ContainsPartObject containsPartObject = new ContainsPartObject();
+        containsPartObject
                 .doubleClickToOpenPack(packageName);
-        Assert.assertEquals(new ContainsPartObject()
-                        .getPackageName(), packageName,
+        Assert.assertEquals(containsPartObject.getPackageName(), packageName,
                 "Package was not created or inaccessible");
     }
 
     @Test(description = "Create new document", priority = 2)
-    public void createNewDocumentTest() {
-        YandexDiskService service = new YandexDiskService();
-        documentName = service.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
-        Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
+    public void createNewDocument() {
+        documentName = yandexDiskService.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
+        Assert.assertEquals(yandexDiskService.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
     }
 
     @Test(description = "Delete document", priority = 3)
-    public void moveDocumentToTrashTest() {
-        YandexDiskService service = new YandexDiskService();
-        service.moveElementInTheTrash(packageName, documentName);
+    public void moveDocumentToTrash() {
+        yandexDiskService.moveElementInTheTrash(packageName, documentName);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertFalse(new ContainsPartObject().checkThatDocumentExist(documentName), "Document didn't delete");
         softAssert.assertTrue(new MainMenu().сlickToGoOnTrashPage().checkThatDocumentExist(documentName), "Document isn't in trash");
@@ -98,8 +98,7 @@ public class ElementsTest extends YandexConditions {
 
     @Test(description = "Clear trash", priority = 4)
     public void cleanTrashTest() {
-        YandexDiskService service = new YandexDiskService();
-        service.cleanTrash();
+        yandexDiskService.cleanTrash();
         Assert.assertFalse(new ContainsPartObject()
                 .checkThatDocumentExist(documentName), "Trash not empty");
     }

@@ -15,7 +15,7 @@ public class PastebinPageObjectAdvances extends PasterbinBase {
     @Override
     public void createNewPaste(String textForPaste, String textPasteName) {
         clickByElement(pasteExpirationSelect).perform();
-        clickByElement(findClickableElement(tenMinutesListElement)).perform();
+        clickByElement(waitForVisibility(tenMinutesListElement)).perform();
         enterTextToElement(textInNewPasteInput, textForPaste).perform();
         enterTextToElement(pasteNameInput, textPasteName).perform();
         highlightElement(notice);

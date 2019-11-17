@@ -15,9 +15,9 @@ public class PastebinHome extends PasterbinBase {
     public void createNewPaste(String textForPaste, String textPasteName) {
         textInNewPasteInput.sendKeys(textForPaste);
         selectSyntax.click();
-        findClickableElement(bashListElement).click();
+        waitForVisibility(bashListElement).click();
         pasteExpirationSelect.click();
-        findClickableElement(tenMinutesListElement).click();
+        waitForVisibility(tenMinutesListElement).click();
         pasteNameInput.sendKeys(textPasteName);
         forCreateNewPasteButton.click();
     }

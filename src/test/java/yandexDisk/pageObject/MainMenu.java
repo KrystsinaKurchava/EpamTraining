@@ -19,64 +19,64 @@ public class MainMenu extends PageObjectBase {
     private final By saveButton = By.className("confirmation-dialog__button");
 
     public ContainsPartObject сlickToGoOnFilePage() {
-        findClickableElement(filePage).click();
+        waitForVisibility(filePage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnTrashPage() {
-        findClickableElement(trashPage).click();
+        waitForVisibility(trashPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnFotoPage() {
-        findClickableElement(fotoPage).click();
+        waitForVisibility(fotoPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnGeneralAccessPage() {
-        findClickableElement(generalAccessPage).click();
+        waitForVisibility(generalAccessPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnHistoryPage() {
-        findClickableElement(historyPage).click();
+        waitForVisibility(historyPage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnArchivePage() {
-        findClickableElement(archivePage).click();
+        waitForVisibility(archivePage).click();
         return new ContainsPartObject();
     }
 
     public ContainsPartObject сlickToGoOnLastPage() {
-        findClickableElement(lastPage).click();
+        waitForVisibility(lastPage).click();
         return new ContainsPartObject();
     }
 
     public MainMenu clickCreateSMTButton() {
-        findClickableElement(createSomethingNewButton).click();
+        waitForVisibility(createSomethingNewButton).click();
         return this;
     }
 
     public MainMenu clickCreateNewPackageButton() {
-        findClickableElement(createNewPackageButton).click();
+        waitForVisibility(createNewPackageButton).click();
         return this;
     }
 
     public MainMenu inputNameOfNewPackage(String name) {
-        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.CONTROL, Keys.SHIFT, Keys.END);
-        findClickableElement(nameOfNewPackageInput).sendKeys(Keys.DELETE);
-        findClickableElement(nameOfNewPackageInput).sendKeys(name);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(Keys.CONTROL, Keys.SHIFT, Keys.END);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(Keys.DELETE);
+        waitForVisibility(nameOfNewPackageInput).sendKeys(name);
         return this;
     }
 
     public ContainsPartObject saveButtonClick() {
-        findClickableElement(saveButton).click();
+        waitForVisibility(saveButton).click();
         return new ContainsPartObject();
     }
 
     public NewDocumentCreatePageObject clickCreateNewDocumentButton() {
-        findClickableElement(createNewDocumentButton).click();
+        waitForVisibility(createNewDocumentButton).click();
         return new NewDocumentCreatePageObject();
     }
 }
