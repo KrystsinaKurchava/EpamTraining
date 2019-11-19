@@ -46,21 +46,21 @@ public class ElementsTest extends YandexConditions {
         Assert.assertEquals(service.getDocumentText(documentName, packageName), NEW_DOCUMENT_TEXT, "Document saved incorrect");
     }
 
-    @Test(description = "Delete document", priority = 3)
-    public void moveDocumentToTrashTest() {
-        YandexDiskService service = new YandexDiskService();
-        service.moveElementInTheTrash(packageName, documentName);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(new ContainsPartObject().checkThatDocumentExist(documentName), "Document didn't delete");
-        softAssert.assertTrue(new MainMenu().сlickToGoOnTrashPage().checkThatDocumentExist(documentName), "Document isn't in trash");
-        softAssert.assertAll("Unable to move element to trash");
-    }
-
-//    @Test(description = "Clear trash", priority = 4)
-//    public void cleanTrashTest() {
+//    @Test(description = "Delete document", priority = 3)
+//    public void moveDocumentToTrashTest() {
 //        YandexDiskService service = new YandexDiskService();
-//        service.cleanTrash();
-//        Assert.assertFalse(new ContainsPartObject()
-//                .checkThatDocumentExist(documentName), "Trash not empty");
+//        service.moveElementInTheTrash(packageName, documentName);
+//        SoftAssert softAssert = new SoftAssert();
+//        softAssert.assertFalse(new ContainsPartObject().checkThatDocumentExist(documentName), "Document didn't delete");
+//        softAssert.assertTrue(new MainMenu().сlickToGoOnTrashPage().checkThatDocumentExist(documentName), "Document isn't in trash");
+//        softAssert.assertAll("Unable to move element to trash");
 //    }
+
+    @Test(description = "Clear trash", priority = 4)
+    public void cleanTrashTest() {
+        YandexDiskService service = new YandexDiskService();
+        service.cleanTrash();
+        Assert.assertFalse(new ContainsPartObject()
+                .checkThatDocumentExist(documentName), "Trash not empty");
+    }
 }
