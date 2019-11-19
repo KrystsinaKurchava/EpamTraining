@@ -56,11 +56,11 @@ public class ElementsTest extends YandexConditions {
         softAssert.assertAll("Unable to move element to trash");
     }
 
-    @Test(description = "Clear trash", priority = 4)
-    public void cleanTrashTest() {
-        YandexDiskService service = new YandexDiskService();
-        service.cleanTrash();
-        Assert.assertFalse(new ContainsPartObject()
-                .checkThatDocumentExist(documentName), "Trash not empty");
-    }
+//    @Test(description = "Clear trash", priority = 4)
+//    public void cleanTrashTest() {
+//        YandexDiskService service = new YandexDiskService();
+//        service.cleanTrash();
+//        Assert.assertFalse(new ContainsPartObject()
+//                .checkThatDocumentExist(documentName), "Trash not empty");
+//    }
 }
