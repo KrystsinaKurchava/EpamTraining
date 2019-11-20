@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="testng-elements" verbose="1" >
+    <test name="ElementsTest"   >
+        <classes>
+            <class name="yandexDisk.tests.ElementsTest" />
+        </classes>
+    </test>
+</suite>

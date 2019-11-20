@@ -1,36 +1,23 @@
 package selenium.base;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
+import java.util.Set;
 
 public abstract class PageObjectBase {
-    protected static WebDriver webDriver;
     protected static final int TIME_OUT_FOR_WAIT = 30;
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";
 
-    static {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setPlatform(Platform.WINDOWS);
-        capabilities.setBrowserName("firefox");
-        try {
-            webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
-                    capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
-    }
+    protected WebDriver webDriver;
 
     public PageObjectBase() {
+        webDriver = WebDriverSingleton.getWebDriver();
         PageFactory.initElements(webDriver, this);
     }
 
@@ -46,17 +33,76 @@ public abstract class PageObjectBase {
         return webDriver.getWindowHandle();
     }
 
-    public static void quit() {
-        webDriver.quit();
+    public String getOtherWindowHandler() {
+        String previousPageHandler = getCurrentWindowHandler();
+        Set<String> handles = webDriver.getWindowHandles();
+        for (String handler : handles)
+            if (!previousPageHandler.equals(handler)) {
+                return handler;
+            }
+        return previousPageHandler;
     }
 
-    protected WebElement findClickableElement(By by) {
+    public static void quit() {
+        WebDriverSingleton.getWebDriver().quit();
+    }
+
+    protected WebElement waitForVisibility(By by) {
         WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-        return webDriver.findElement(by);
+        return wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    protected WebElement waitForPresence(By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    protected WebElement findVisibleElement(By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     protected void scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) webDriver).executeScript(SCROLL_ARGUMENT, webElement);
+    }
+
+    protected WebElement findElementWithText(By by, String text) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIME_OUT_FOR_WAIT);
+        wait.until(ExpectedConditions.textToBe(by, text));
+        return webDriver.findElement(by);
+    }
+
+    protected Action clickByElement(WebElement element) {
+        return new Actions(webDriver)
+                .moveToElement(element)
+                .click(element)
+                .build();
+    }
+
+    protected Action enterTextToElement(WebElement element, String text) {
+        return new Actions(webDriver)
+                .moveToElement(element)
+                .click()
+                .sendKeys(text)
+                .build();
+    }
+
+    protected void doubleClickByXPathSelector(String selector) {
+        new Actions(webDriver)
+                .doubleClick(waitForVisibility(By.xpath(selector)))
+                .perform();
+    }
+
+    protected void highlightElement(WebElement element) {
+        ((JavascriptExecutor) webDriver).executeScript("\n" +
+                "      rng = document.createRange();\n" +
+                "      rng.selectNode(arguments[0])\n" +
+                "      sel = window.getSelection();\n" +
+                "      sel.removeAllRanges();\n" +
+                "      sel.addRange(rng);", element);
+    }
+
+    protected void clickButtonWithJS(WebElement element) {
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click()", element);
     }
 }

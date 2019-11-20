@@ -11,20 +11,24 @@ public class GoogleCloudCalculatorEmailPage extends PageObjectBase {
     private final By emailAddressInput = new By.ById("input_415");
     private final By sendEmailButton = new By.ByCssSelector("#dialogContent_421 button.cpc-button");
 
-    public void clickSendEmailButton() {
+    public GoogleCloudCalculatorEmailPage clickSendEmailButton() {
         forSendButton.click();
+        return this;
     }
 
-    public void enterEmailAddress(String mail) {
-        findClickableElement(emailAddressInput).sendKeys(mail);
+    public GoogleCloudCalculatorEmailPage enterEmailAddress(String mail) {
+        waitForVisibility(emailAddressInput).sendKeys(mail);
+        return this;
     }
 
-    public void scrollToEmailAddress() {
-        WebElement buttonForScroll = findClickableElement(emailAddressInput);
+    public GoogleCloudCalculatorEmailPage scrollToEmailAddress() {
+        WebElement buttonForScroll = waitForVisibility(emailAddressInput);
         scrollToElement(buttonForScroll);
+        return this;
     }
 
-    public void sendEmail() {
-        findClickableElement(sendEmailButton).click();
+    public GoogleCloudCalculatorEmailPage sendEmail() {
+        waitForVisibility(sendEmailButton).click();
+        return this;
     }
 }

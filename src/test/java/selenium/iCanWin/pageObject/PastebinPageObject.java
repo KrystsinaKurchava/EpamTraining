@@ -10,7 +10,7 @@ public class PastebinPageObject extends PasterbinBase {
     public void createNewPaste(String textForPaste, String textPasteName) {
         textInNewPasteInput.sendKeys(textForPaste);
         pasteExpirationSelect.click();
-        findClickableElement(tenMinutesListElement).click();
+        waitForVisibility(tenMinutesListElement).click();
         pasteNameInput.sendKeys(textPasteName);
         forCreateNewPasteButton.click();
     }

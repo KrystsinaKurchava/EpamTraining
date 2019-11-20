@@ -4,12 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import selenium.base.PageObjectBase;
+import selenium.bringItOut.pageObject.PasterbinsConditions;
 import seleniumAdvances.pageObject.PastebinPageObjectAdvances;
 
-public class ICanWinTaskTests {
-    private final String LINK_FOR_PASTERBIN = "https://pastebin.com/";
-    private final String NEW_PASTE_TEXT = "Hello from WebDriver";
-    private final String PASTE_NAME_TEXT = "helloweb";
+public class ICanWinTaskTests extends PasterbinsConditions {
+
 
     @AfterTest(description = "Closing browser after tests run")
     public void driverClose() {
