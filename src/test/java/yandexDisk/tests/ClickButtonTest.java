@@ -3,16 +3,13 @@ package yandexDisk.tests;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import selenium.base.WebDriverSingleton;
 import yandexDisk.pageObject.MainMenu;
-import yandexDisk.service.TestListener;
 import yandexDisk.service.UserFactory;
 import yandexDisk.service.YandexDiskService;
 
-@Listeners({TestListener.class})
 public class ClickButtonTest extends YandexConditions {
     protected YandexDiskService yandexDiskService;
     private final String MESSAGE_FOR_CASE_WITHOUT_COINCIDENCE = " page was not found";
@@ -38,7 +35,7 @@ public class ClickButtonTest extends YandexConditions {
 
     @Test(description = "Check locate elements")
     public void checkExistButton() {
-        Assert.assertTrue(yandexDiskService.checkButtonsExist(),
+        Assert.assertTrue(yandexDiskService.isButtonExist(),
                 "Some element is not located");
     }
 

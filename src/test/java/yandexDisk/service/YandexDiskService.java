@@ -103,7 +103,7 @@ public class YandexDiskService {
                 .clickButtonToConfirmationCleanTrash();
     }
 
-    public Boolean checkButtonsExist() {
+    public Boolean isButtonExist() {
         MainMenu mainMenu = new MainMenu();
         try {
             mainMenu.сlickToGoOnTrashPage()

@@ -11,7 +11,6 @@ import yandexDisk.service.TestListener;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserFactory;
 
-@Listeners({TestListener.class})
 public class LoginTests extends YandexConditions {
     protected YandexDiskService yandexDiskService;
 

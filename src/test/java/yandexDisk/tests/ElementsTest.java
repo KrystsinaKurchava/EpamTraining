@@ -30,7 +30,7 @@ public class ElementsTest extends YandexConditions {
 
     @Test(description = "Check locate elements")
     public void checkExistButton() {
-        Assert.assertTrue(new YandexDiskService().checkButtonsExist(),
+        Assert.assertTrue(new YandexDiskService().isButtonExist(),
                 "Some element is not located");
     }
 

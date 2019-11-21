@@ -9,7 +9,6 @@ import seleniumAdvances.pageObject.PastebinPageObjectAdvances;
 
 public class ICanWinTaskTests extends PasterbinsConstants {
 
-
     @AfterTest(description = "Closing browser after tests run")
     public void driverClose() {
         PageObjectBase.quit();
