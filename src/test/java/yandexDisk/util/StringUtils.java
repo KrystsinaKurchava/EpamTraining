@@ -18,5 +18,4 @@ public class StringUtils {
         }
         return stringBuilder.toString();
     }
-
 }

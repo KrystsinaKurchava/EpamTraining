@@ -3,9 +3,11 @@ package yandexDisk.tests;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import selenium.base.WebDriverSingleton;
 import yandexDisk.pageObject.*;
+import yandexDisk.service.TestListener;
 import yandexDisk.service.YandexDiskService;
 import yandexDisk.service.UserFactory;
 
@@ -32,12 +34,12 @@ public class LoginTests extends YandexConditions {
     @Test(description = "Login with uncorrected password")
     public void loginNegativeWithEmptyPassword() {
         yandexDiskService.loginYandexDisk(UserFactory.withEmptyPassword());
-        Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), "Пароль не указан", "Invalid result(password should be empty)");
+        Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), "Пароль не указан", "Didn't get result about empty password");
     }
 
     @Test(description = "Login with uncorrected username")
     public void loginNegativeWithEmptyUsername() {
         yandexDiskService.loginYandexDiskWithEmptyUsername(UserFactory.withEmptyUsername());
-        Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), "Логин не указан", "Invalid result (username should be empty)");
+        Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), "Логин не указан", "Didn't get result about empty username");
     }
 }

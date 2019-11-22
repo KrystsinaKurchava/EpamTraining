@@ -3,7 +3,7 @@ package yandexDisk.pageObject;
 import org.openqa.selenium.By;
 import selenium.base.PageObjectBase;
 
-public class NewDocumentCreatePageObject extends PageObjectBase {
+public class CreateNewDocumentPage extends PageObjectBase {
     private final By toTypePlace = By.id("WACViewPanel_EditingElement");
     private final By documentStatus = By.id("BreadcrumbSaveStatus");
     private final By closeButton = By.id("btnjClose-Menu32");
@@ -15,57 +15,57 @@ public class NewDocumentCreatePageObject extends PageObjectBase {
     private final By documentTitleText = By.id("BreadcrumbTitle");
     private final String EXPECTED_CONDITION_TEXT = "Сохранено в Yandex";
 
-    public NewDocumentCreatePageObject switchToMainIFrame() {
+    public CreateNewDocumentPage switchToMainIFrame() {
         webDriver.switchTo().frame(waitForPresence(frame));
         return this;
     }
 
-    public NewDocumentCreatePageObject clickTextInput() {
+    public CreateNewDocumentPage clickTextInput() {
         waitForVisibility(toTypePlace).click();
         return this;
     }
 
-    public NewDocumentCreatePageObject clickExitButton() {
+    public CreateNewDocumentPage clickExitButton() {
         waitForVisibility(closeButton).click();
         return this;
     }
 
-    public NewDocumentCreatePageObject typeText(String text) {
+    public CreateNewDocumentPage typeText(String text) {
         waitForVisibility(toTypePlace).sendKeys(text);
         return this;
     }
 
-    public NewDocumentCreatePageObject saveDocument() {
+    public CreateNewDocumentPage saveDocument() {
         findElementWithText(documentStatus, EXPECTED_CONDITION_TEXT);
         return this;
     }
 
-    public String getText() {
+    public String getDocumentText() {
         return waitForVisibility(toTypePlace).getText();
     }
 
-    public NewDocumentCreatePageObject clickFileMenuButton() {
+    public CreateNewDocumentPage clickFileMenuButton() {
         waitForVisibility(fileMenuButton).click();
         return this;
     }
 
-    public NewDocumentCreatePageObject clickRenameButton() {
+    public CreateNewDocumentPage clickRenameButton() {
         waitForVisibility(renameButton).click();
         return this;
     }
 
-    public NewDocumentCreatePageObject enterDocumentTitle(String text) {
+    public CreateNewDocumentPage enterDocumentTitle(String text) {
         waitForVisibility(documentTittleInput).clear();
         waitForVisibility(documentTittleInput).sendKeys(text);
         return this;
     }
 
-    public NewDocumentCreatePageObject clickConfirmationDocumentTittleButton() {
+    public CreateNewDocumentPage clickConfirmationDocumentTittleButton() {
         waitForVisibility(confirmationDocumentTittleButton).click();
         return this;
     }
 
-    public NewDocumentCreatePageObject waitForTitleChanging(String title) {
+    public CreateNewDocumentPage waitForTitleChanging(String title) {
         findElementWithText(documentTitleText, title);
         return this;
     }

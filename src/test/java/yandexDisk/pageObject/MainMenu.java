@@ -7,7 +7,7 @@ import selenium.base.PageObjectBase;
 public class MainMenu extends PageObjectBase {
     private final By filePage = By.id("/disk");
     private final By trashPage = By.id("/trash");
-    private final By fotoPage = By.cssSelector("a[href='/client/photo']");
+    private final By photoPage = By.cssSelector("a[href='/client/photo']");
     private final By generalAccessPage = By.cssSelector("a[href='/client/shared']");
     private final By historyPage = By.cssSelector("a[href='/client/journal']");
     private final By archivePage = By.cssSelector("a[href='/client/mail']");
@@ -28,8 +28,8 @@ public class MainMenu extends PageObjectBase {
         return new ContainsPartObject();
     }
 
-    public ContainsPartObject сlickToGoOnFotoPage() {
-        waitForVisibility(fotoPage).click();
+    public ContainsPartObject сlickToGoOnPhotoPage() {
+        waitForVisibility(photoPage).click();
         return new ContainsPartObject();
     }
 
@@ -75,8 +75,8 @@ public class MainMenu extends PageObjectBase {
         return new ContainsPartObject();
     }
 
-    public NewDocumentCreatePageObject clickCreateNewDocumentButton() {
+    public CreateNewDocumentPage clickCreateNewDocumentButton() {
         waitForVisibility(createNewDocumentButton).click();
-        return new NewDocumentCreatePageObject();
+        return new CreateNewDocumentPage();
     }
 }

@@ -3,7 +3,7 @@ package yandexDisk.service;
 import org.openqa.selenium.NotFoundException;
 import yandexDisk.pageObject.ContainsPartObject;
 import yandexDisk.pageObject.MainMenu;
-import yandexDisk.pageObject.NewDocumentCreatePageObject;
+import yandexDisk.pageObject.CreateNewDocumentPage;
 import yandexDisk.pageObject.StartYandexDiskPage;
 import yandexDisk.model.User;
 import yandexDisk.util.StringUtils;
@@ -31,7 +31,7 @@ public class YandexDiskService {
     public String createNewPackage() {
         String packageName = new StringUtils().getRandomString();
         new MainMenu()
-                .сlickToGoOnFotoPage()
+                .сlickToGoOnPhotoPage()
                 .getMainMenu()
                 .сlickToGoOnFilePage()
                 .getMainMenu()
@@ -46,7 +46,7 @@ public class YandexDiskService {
         MainMenu mainMenu = new MainMenu();
         String documentName = new StringUtils().getRandomString();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
-        NewDocumentCreatePageObject newDocumentPage = new ContainsPartObject()
+        CreateNewDocumentPage newDocumentPage = new ContainsPartObject()
                 .doubleClickToOpenPack(packageName)
                 .getMainMenu()
                 .clickCreateSMTButton()
@@ -72,16 +72,16 @@ public class YandexDiskService {
 
     public String getDocumentText(String name, String packageName) {
         MainMenu mainMenu = new MainMenu();
-        NewDocumentCreatePageObject newDocumentCreatePageObject = mainMenu
+        CreateNewDocumentPage createNewDocumentPage = mainMenu
                 .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
                 .doubleClickToOpenDoc(name);
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
-        String text = newDocumentCreatePageObject
+        String text = createNewDocumentPage
                 .switchToMainIFrame()
-                .getText();
-        newDocumentCreatePageObject
+                .getDocumentText();
+        createNewDocumentPage
                 .saveDocument()
                 .clickFileMenuButton()
                 .clickExitButton();
@@ -103,14 +103,14 @@ public class YandexDiskService {
                 .clickButtonToConfirmationCleanTrash();
     }
 
-    public Boolean checkButtonsExist() {
+    public Boolean isButtonExist() {
         MainMenu mainMenu = new MainMenu();
         try {
             mainMenu.сlickToGoOnTrashPage()
                     .getMainMenu()
                     .сlickToGoOnFilePage()
                     .getMainMenu()
-                    .сlickToGoOnFotoPage()
+                    .сlickToGoOnPhotoPage()
                     .getMainMenu()
                     .сlickToGoOnLastPage()
                     .getMainMenu()
