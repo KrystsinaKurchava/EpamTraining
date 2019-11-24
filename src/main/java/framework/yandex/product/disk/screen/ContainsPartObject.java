@@ -8,9 +8,9 @@ import org.openqa.selenium.TimeoutException;
 public class ContainsPartObject extends PageObjectBase {
     private static final String INNER_HTML_ATTRIBUTE = "innerHTML";
     private final By PUBLIC_ACCESS_PAGE_TITLE_LOCATOR = By.cssSelector(".listing-stub__desc>h1");
-    private final By HYSTORY_PAGE_TITTLE_LOCATOR = By.cssSelector(".journal-filter__header");
+    private final By HISTORY_PAGE_TITTLE_LOCATOR = By.cssSelector(".journal-filter__header");
     private final By COMMON_PAGE_TITTLE_LOCATOR = By.cssSelector(".listing-heading__title");
-    private final By TRACH_CLEAN_BUTTON_LOCATOR = By.className("client-listing__clean-trash-button");
+    private final By TRASH_CLEAN_BUTTON_LOCATOR = By.className("client-listing__clean-trash-button");
     private final By CONFIRMATION_TRASH_CLEAN_BUTTON_LOCATOR = By.className("js-confirmation-accept");
     private final By PACKAGE_NAME_LOCATOR = By.className("listing-heading__title");
     private final By DELETE_BUTTON_LOCATOR = By.className("groupable-buttons__visible-button_name_delete");
@@ -31,7 +31,7 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public String getHistoryPageContainPageTitle() {
-        return waitForPresence(HYSTORY_PAGE_TITTLE_LOCATOR).getAttribute(INNER_HTML_ATTRIBUTE);
+        return waitForPresence(HISTORY_PAGE_TITTLE_LOCATOR).getAttribute(INNER_HTML_ATTRIBUTE);
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
@@ -59,7 +59,7 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public ContainsPartObject clickButtonToCleanTrash() {
-        highlightElementAndClick(TRACH_CLEAN_BUTTON_LOCATOR);
+        highlightElementAndClick(TRASH_CLEAN_BUTTON_LOCATOR);
         return this;
     }
 

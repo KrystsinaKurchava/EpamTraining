@@ -1,11 +1,9 @@
 package framework.util;
 
-import framework.listener.TestListener;
-import framework.loger.Log;
+import framework.logger.Log;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -87,13 +85,13 @@ public class WebDriverSingleton {
         File screenCapture = ((TakesScreenshot) webDriver)
                 .getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(screenCapture, new File(
+            File screenShot = new File(
                     "target/screenshots/"
                             + getCurrentTimeAsString() +
-                            ".png"));
-            Log.info("Screenshot taken: file:"+screenCapture.getAbsolutePath());
-            Log.info("Screenshot taken: file:<a href=\"screenCapture.getAbsolutePath()\"'target=\"blank\">screenshot.file</a>");
-                   } catch (IOException e) {
+                            ".png");
+            FileUtils.copyFile(screenCapture, screenShot);
+            Log.info("Screenshot taken: file:<a href=\"file:///"+screenShot.getAbsolutePath()+"\" 'target=\"blank\">screenshot.file</a>");
+        } catch (IOException e) {
             Log.error("Failed to save screenshot: " + e.getLocalizedMessage());
         }
     }

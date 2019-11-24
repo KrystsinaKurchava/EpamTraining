@@ -9,7 +9,7 @@ public class MainMenu extends PageObjectBase {
     private final By TRASH_PAGE_LOCATOR = By.id("/trash");
     private final By PHOTO_PAGE_LOCATOR = By.cssSelector("a[href='/client/photo']");
     private final By GENERAL_ACCESS_PAGE_LOCATOR = By.cssSelector("a[href='/client/shared']");
-    private final By HYSTORY_PAGE_LOCATOR = By.cssSelector("a[href='/client/journal']");
+    private final By HISTORY_PAGE_LOCATOR = By.cssSelector("a[href='/client/journal']");
     private final By ARCHIVE_PAGE_LOCATOR = By.cssSelector("a[href='/client/mail']");
     private final By LAST_PAGE_LOCATOR = By.cssSelector("a[href='/client/recent']");
     private final By CREATE_SOMETHING_NEW_BUTTON_LOCATOR = By.cssSelector(".create-resource-popup-with-anchor>button");
@@ -39,7 +39,7 @@ public class MainMenu extends PageObjectBase {
     }
 
     public ContainsPartObject сlickToGoOnHistoryPage() {
-        highlightElementAndClick(HYSTORY_PAGE_LOCATOR);
+        highlightElementAndClick(HISTORY_PAGE_LOCATOR);
         return new ContainsPartObject();
     }
 

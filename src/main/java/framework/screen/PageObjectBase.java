@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
 
-import static framework.loger.Log.logger;
-
 public abstract class PageObjectBase {
     protected static final int TIME_OUT_FOR_WAIT = 30;
     private final String SCROLL_ARGUMENT = "arguments[0].scrollIntoView();";

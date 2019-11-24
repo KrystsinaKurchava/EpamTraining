@@ -1,6 +1,6 @@
 package framework.yandex.product.disk.service;
 
-import framework.loger.Log;
+import framework.logger.Log;
 import framework.yandex.product.disk.screen.ContainsPartObject;
 import framework.yandex.product.disk.screen.CreateNewDocumentPage;
 import framework.yandex.product.disk.screen.MainMenu;
