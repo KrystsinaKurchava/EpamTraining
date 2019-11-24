@@ -3,8 +3,8 @@
 <suite name="Smoke test" verbose="1" >
     <test name="Check working click button"   >
         <classes>
-            <class name="yandexDisk.tests.LoginTests" />
-            <class name="yandexDisk.tests.ClickButtonTest" />
+            <class name="yandex.product.disk.login.LoginTests" />
+            <class name="yandex.product.disk.login.ClickButtonTest" />
         </classes>
     </test>
 </suite>

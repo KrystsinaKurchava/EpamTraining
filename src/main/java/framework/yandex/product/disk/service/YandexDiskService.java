@@ -1,15 +1,18 @@
-package yandexDisk.service;
+package framework.yandex.product.disk.service;
 
+import framework.loger.Log;
+import framework.yandex.product.disk.screen.ContainsPartObject;
+import framework.yandex.product.disk.screen.CreateNewDocumentPage;
+import framework.yandex.product.disk.screen.MainMenu;
+import framework.yandex.product.disk.screen.StartYandexDiskPage;
 import org.openqa.selenium.NotFoundException;
-import yandexDisk.pageObject.ContainsPartObject;
-import yandexDisk.pageObject.MainMenu;
-import yandexDisk.pageObject.CreateNewDocumentPage;
-import yandexDisk.pageObject.StartYandexDiskPage;
-import yandexDisk.model.User;
-import yandexDisk.util.StringUtils;
+import framework.bo.User;
+import framework.util.StringUtils;
 
 public class YandexDiskService {
     public void loginYandexDisk(User user) {
+        Log.info("Login in yandex disk with " + user.getUsername()
+                + " username and " + user.getPassword() + " password");
         new StartYandexDiskPage()
                 .clickToGoOnLoginPage()
                 .inputLoginLabelClick()
@@ -22,6 +25,8 @@ public class YandexDiskService {
     }
 
     public void loginYandexDiskWithEmptyUsername(User user) {
+        Log.info("Login in yandex disk with empty username and "
+                + user.getPassword() + " password");
         new StartYandexDiskPage().clickToGoOnLoginPage()
                 .inputLoginLabelClick()
                 .inputLoginDate(user.getUsername())
@@ -30,6 +35,8 @@ public class YandexDiskService {
 
     public String createNewPackage() {
         String packageName = new StringUtils().getRandomString();
+        Log.info("Creating new package with  "
+                + packageName + " name");
         new MainMenu()
                 .сlickToGoOnPhotoPage()
                 .getMainMenu()
@@ -46,12 +53,17 @@ public class YandexDiskService {
         MainMenu mainMenu = new MainMenu();
         String documentName = new StringUtils().getRandomString();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
+        Log.info("Creating new document with  "
+                + documentName + " name on " + packageName + " package");
+        Log.debug("Opening package and choice to create new document");
         CreateNewDocumentPage newDocumentPage = new ContainsPartObject()
                 .doubleClickToOpenPack(packageName)
                 .getMainMenu()
                 .clickCreateSMTButton()
                 .clickCreateNewDocumentButton();
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
+        Log.debug("Switch to document window, type text " + text + " and rename document." +
+                " New name is " + documentName);
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
         newDocumentPage
                 .switchToMainIFrame()
@@ -72,6 +84,7 @@ public class YandexDiskService {
 
     public String getDocumentText(String name, String packageName) {
         MainMenu mainMenu = new MainMenu();
+        Log.info("Getting " + name + " document text");
         CreateNewDocumentPage createNewDocumentPage = mainMenu
                 .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
@@ -89,6 +102,8 @@ public class YandexDiskService {
     }
 
     public void moveElementInTheTrash(String packageName, String documentName) {
+        Log.info("Moving " + documentName + " document in the trash from "
+                + packageName + " package");
         MainMenu mainMenu = new MainMenu();
         mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
@@ -97,6 +112,7 @@ public class YandexDiskService {
     }
 
     public void cleanTrash() {
+        Log.info("Clean trash");
         new MainMenu()
                 .сlickToGoOnTrashPage()
                 .clickButtonToCleanTrash()
@@ -105,6 +121,7 @@ public class YandexDiskService {
 
     public Boolean isButtonExist() {
         MainMenu mainMenu = new MainMenu();
+        Log.info("Checking that button exist");
         try {
             mainMenu.сlickToGoOnTrashPage()
                     .getMainMenu()

@@ -1,9 +1,9 @@
 package selenium.bringItOut;
 
+import framework.screen.PageObjectBase;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import selenium.base.PageObjectBase;
 import selenium.bringItOut.pageObject.PastebinHome;
 import selenium.bringItOut.pageObject.PastebinNewPaste;
 import selenium.bringItOut.pageObject.PasterbinsConstants;

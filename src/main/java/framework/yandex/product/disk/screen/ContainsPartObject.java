@@ -1,19 +1,19 @@
-package yandexDisk.pageObject;
+package framework.yandex.product.disk.screen;
 
+import framework.screen.PageObjectBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.TimeoutException;
-import selenium.base.PageObjectBase;
 
 public class ContainsPartObject extends PageObjectBase {
-    private static final String innerHTMLAttribute = "innerHTML";
-    private final By publicAccessPageTitle = By.cssSelector(".listing-stub__desc>h1");
-    private final By historyPageTitle = By.cssSelector(".journal-filter__header");
-    private final By commonPageTitle = By.cssSelector(".listing-heading__title");
-    private final By trashCleanButton = By.className("client-listing__clean-trash-button");
-    private final By confirmationTrashCleanButton = By.className("js-confirmation-accept");
-    private final By packageName = By.className("listing-heading__title");
-    private final By deleteButtonLocator = By.className("groupable-buttons__visible-button_name_delete");
+    private static final String INNER_HTML_ATTRIBUTE = "innerHTML";
+    private final By PUBLIC_ACCESS_PAGE_TITLE_LOCATOR = By.cssSelector(".listing-stub__desc>h1");
+    private final By HYSTORY_PAGE_TITTLE_LOCATOR = By.cssSelector(".journal-filter__header");
+    private final By COMMON_PAGE_TITTLE_LOCATOR = By.cssSelector(".listing-heading__title");
+    private final By TRACH_CLEAN_BUTTON_LOCATOR = By.className("client-listing__clean-trash-button");
+    private final By CONFIRMATION_TRASH_CLEAN_BUTTON_LOCATOR = By.className("js-confirmation-accept");
+    private final By PACKAGE_NAME_LOCATOR = By.className("listing-heading__title");
+    private final By DELETE_BUTTON_LOCATOR = By.className("groupable-buttons__visible-button_name_delete");
     private final static String PACKAGE_SELECTOR_PATTERN = "//div[@class='listing-item__info']//span[text()='%s']/../../..";
     private final static String DOCUMENT_SELECTOR_PATTERN = "//div[@class='listing-item__info']//span[contains(text(),'%s')]/../../..";
     private final MainMenu mainMenu = new MainMenu();
@@ -23,15 +23,15 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public String getCommonContainPageTitle() {
-        return waitForPresence(commonPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(COMMON_PAGE_TITTLE_LOCATOR).getAttribute(INNER_HTML_ATTRIBUTE);
     }
 
     public String getPublicAccessContainPageTitle() {
-        return waitForPresence(publicAccessPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(PUBLIC_ACCESS_PAGE_TITLE_LOCATOR).getAttribute(INNER_HTML_ATTRIBUTE);
     }
 
     public String getHistoryPageContainPageTitle() {
-        return waitForPresence(historyPageTitle).getAttribute(innerHTMLAttribute);
+        return waitForPresence(HYSTORY_PAGE_TITTLE_LOCATOR).getAttribute(INNER_HTML_ATTRIBUTE);
     }
 
     public ContainsPartObject doubleClickToOpenPack(String name) {
@@ -39,8 +39,8 @@ public class ContainsPartObject extends PageObjectBase {
         return this;
     }
 
-    public String getPackageName() {
-        return waitForVisibility(packageName).getText();
+    public String getPACKAGE_NAME_LOCATOR() {
+        return waitForVisibility(PACKAGE_NAME_LOCATOR).getText();
     }
 
     public CreateNewDocumentPage doubleClickToOpenDoc(String name) {
@@ -54,17 +54,17 @@ public class ContainsPartObject extends PageObjectBase {
     }
 
     public ContainsPartObject clickDeleteDocButton() {
-        waitForVisibility(deleteButtonLocator).click();
+        highlightElementAndClick(DELETE_BUTTON_LOCATOR);
         return this;
     }
 
     public ContainsPartObject clickButtonToCleanTrash() {
-        waitForVisibility(trashCleanButton).click();
+        highlightElementAndClick(TRACH_CLEAN_BUTTON_LOCATOR);
         return this;
     }
 
     public ContainsPartObject clickButtonToConfirmationCleanTrash() {
-        waitForVisibility(confirmationTrashCleanButton).click();
+        highlightElementAndClick(CONFIRMATION_TRASH_CLEAN_BUTTON_LOCATOR);
         return this;
     }
 

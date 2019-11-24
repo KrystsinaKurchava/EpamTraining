@@ -1,4 +1,4 @@
-package yandexDisk.model;
+package framework.bo;
 
 public class User {
     private String username;

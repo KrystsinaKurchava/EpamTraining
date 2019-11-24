@@ -1,7 +1,7 @@
-package yandexDisk.tests;
+package framework.yandex.product.disk.screen;
 
 import org.testng.annotations.Listeners;
-import yandexDisk.service.TestListener;
+import framework.listener.TestListener;
 
 @Listeners({TestListener.class})
 public class YandexConditions {

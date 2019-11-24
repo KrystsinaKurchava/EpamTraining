@@ -1,9 +1,9 @@
 package selenium.hardcore;
 
+import framework.screen.PageObjectBase;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import selenium.base.PageObjectBase;
 import selenium.base.googleCloud.GoogleCloudService;
 import selenium.base.googleCloud.ComparingResults;
 

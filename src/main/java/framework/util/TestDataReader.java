@@ -1,4 +1,4 @@
-package yandexDisk.service;
+package framework.util;
 
 import java.util.ResourceBundle;
 

@@ -1,9 +1,9 @@
 package selenium.base.googleCloud;
 
+import framework.screen.PageObjectBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.base.PageObjectBase;
 
 import java.util.Set;
 

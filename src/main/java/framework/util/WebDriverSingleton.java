@@ -1,8 +1,14 @@
-package selenium.base;
+package framework.util;
 
+import framework.listener.TestListener;
+import framework.loger.Log;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,8 +17,12 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
@@ -71,5 +81,25 @@ public class WebDriverSingleton {
         webDriver.manage().timeouts().setScriptTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
         webDriver.manage().timeouts().implicitlyWait(TIME_OUT_FOR_WAIT, TimeUnit.SECONDS);
+    }
+
+    public static void saveScreenshot() {
+        File screenCapture = ((TakesScreenshot) webDriver)
+                .getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenCapture, new File(
+                    "target/screenshots/"
+                            + getCurrentTimeAsString() +
+                            ".png"));
+            Log.info("Screenshot taken: file:"+screenCapture.getAbsolutePath());
+            Log.info("Screenshot taken: file:<a href=\"screenCapture.getAbsolutePath()\"'target=\"blank\">screenshot.file</a>");
+                   } catch (IOException e) {
+            Log.error("Failed to save screenshot: " + e.getLocalizedMessage());
+        }
+    }
+
+    private static String getCurrentTimeAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
+        return ZonedDateTime.now().format(formatter);
     }
 }

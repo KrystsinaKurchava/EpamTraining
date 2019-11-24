@@ -1,5 +1,6 @@
 package selenium.base;
 
+import framework.screen.PageObjectBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

@@ -1,9 +1,9 @@
 package selenium.base.googleCloud;
 
+import framework.screen.PageObjectBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import selenium.base.PageObjectBase;
 
 public class GoogleCloudCalculatorEmailPage extends PageObjectBase {
     @FindBy(id = "email_quote")

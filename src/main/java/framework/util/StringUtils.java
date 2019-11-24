@@ -1,4 +1,4 @@
-package yandexDisk.util;
+package framework.util;
 
 import java.util.Random;
 
