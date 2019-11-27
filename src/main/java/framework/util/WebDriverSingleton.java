@@ -1,6 +1,7 @@
 package framework.util;
 
 import framework.logger.Log;
+import framework.runner.Parameters;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.BasicConfigurator;
@@ -36,7 +37,7 @@ public class WebDriverSingleton {
 
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
-            switch (System.getProperty("browser")) {
+            switch (Parameters.instance().getBrowserType()) {
                 case BrowserType.FIREFOX: {
                     WebDriverManager.firefoxdriver().setup();
                     webDriver = new FirefoxDriver();

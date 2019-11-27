@@ -1,4 +1,4 @@
-package framework.yandex.product.disk.screen;
+package framework.yandexDisk.product.disk.screen;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

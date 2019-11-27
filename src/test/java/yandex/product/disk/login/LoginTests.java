@@ -1,9 +1,9 @@
 package yandex.product.disk.login;
 
 import framework.bo.UserFactory;
-import framework.yandex.product.disk.screen.StartYandexDiskPage;
-import framework.yandex.product.disk.service.YandexDiskService;
-import framework.yandex.product.disk.screen.YandexConditions;
+import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;
+import framework.yandexDisk.product.disk.service.YandexDiskService;
+import framework.yandexDisk.product.disk.screen.YandexConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

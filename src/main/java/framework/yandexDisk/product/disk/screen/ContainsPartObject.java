@@ -1,4 +1,4 @@
-package framework.yandex.product.disk.screen;
+package framework.yandexDisk.product.disk.screen;
 
 import framework.screen.PageObjectBase;
 import org.openqa.selenium.By;

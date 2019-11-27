@@ -3,7 +3,8 @@
 <suite name="Yandex tests" verbose="1" >
     <test name="yandex-all"   >
         <packages>
-            <package name="yandexDisk" />
+            <package name="yandex.product.disk.elements" />
+            <package name="yandex.product.disk.login" />
         </packages>
     </test>
 </suite>

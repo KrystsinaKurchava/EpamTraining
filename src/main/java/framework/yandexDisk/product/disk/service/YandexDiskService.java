@@ -1,10 +1,10 @@
-package framework.yandex.product.disk.service;
+package framework.yandexDisk.product.disk.service;
 
 import framework.logger.Log;
-import framework.yandex.product.disk.screen.ContainsPartObject;
-import framework.yandex.product.disk.screen.CreateNewDocumentPage;
-import framework.yandex.product.disk.screen.MainMenu;
-import framework.yandex.product.disk.screen.StartYandexDiskPage;
+import framework.yandexDisk.product.disk.screen.ContainsPartObject;
+import framework.yandexDisk.product.disk.screen.CreateNewDocumentPage;
+import framework.yandexDisk.product.disk.screen.MainMenu;
+import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;
 import org.openqa.selenium.NotFoundException;
 import framework.bo.User;
 import framework.util.StringUtils;

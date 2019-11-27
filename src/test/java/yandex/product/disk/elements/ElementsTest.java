@@ -1,10 +1,10 @@
 package yandex.product.disk.elements;
 
 import framework.bo.UserFactory;
-import framework.yandex.product.disk.screen.ContainsPartObject;
-import framework.yandex.product.disk.screen.MainMenu;
-import framework.yandex.product.disk.service.YandexDiskService;
-import framework.yandex.product.disk.screen.YandexConditions;
+import framework.yandexDisk.product.disk.screen.ContainsPartObject;
+import framework.yandexDisk.product.disk.screen.MainMenu;
+import framework.yandexDisk.product.disk.service.YandexDiskService;
+import framework.yandexDisk.product.disk.screen.YandexConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
