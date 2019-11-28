@@ -1,4 +1,4 @@
-package yandex.product.disk.login;
+package framework.test.yandex.product.disk.login;
 
 import framework.bo.UserFactory;
 import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;

@@ -1,4 +1,4 @@
-package yandex.product.disk.elements;
+package framework.test.yandex.product.disk.elements;
 
 import framework.bo.UserFactory;
 import framework.yandexDisk.product.disk.screen.ContainsPartObject;

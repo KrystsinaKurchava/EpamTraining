@@ -11,7 +11,7 @@ public final class Parameters {
         return suite;
     }
 
-    @Parameter(names = {"--suite, -s"},  description = "Suite")
+    @Parameter(names = {"--suite", "-s"},  description = "Suite")
     private String suite="yandex-all";
 
     @Parameter(names = {"--help"}, help = false, description = "Help")
@@ -47,7 +47,7 @@ public final class Parameters {
     }
 
     public String getBrowserType() {
-        return browserType.toUpperCase();
+        return browserType.toLowerCase();
 
     }
 }
