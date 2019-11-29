@@ -2,16 +2,12 @@ package framework.runner;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
-import framework.listener.TestListener;
 import framework.logger.Log;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.TestNG;
-import org.testng.annotations.Listeners;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 public class TestRunner {
