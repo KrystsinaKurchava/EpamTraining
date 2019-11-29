@@ -15,11 +15,11 @@ public class YandexDiskService {
                 + " username and " + user.getPassword() + " password");
         new StartYandexDiskPage()
                 .clickToGoOnLoginPage()
-                .inputLoginLabelClick()
+                .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton()
                 .waitingForUserName(user.getUsername())
-                .inputPasswordLabelClick()
+                .clickInputPasswordLabel()
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
     }
@@ -28,7 +28,7 @@ public class YandexDiskService {
         Log.info("Login in yandex disk with empty username and "
                 + user.getPassword() + " password");
         new StartYandexDiskPage().clickToGoOnLoginPage()
-                .inputLoginLabelClick()
+                .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton();
     }

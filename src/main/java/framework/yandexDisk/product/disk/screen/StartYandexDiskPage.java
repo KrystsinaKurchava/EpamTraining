@@ -38,7 +38,7 @@ public class StartYandexDiskPage extends PageObjectBase {
         return this;
     }
 
-    public StartYandexDiskPage inputLoginLabelClick() {
+    public StartYandexDiskPage clickLoginLabelInput() {
        waitForVisibility(LOGIN_LABEL_INPUT_LOCATOR);
         return this;
     }
@@ -48,7 +48,7 @@ public class StartYandexDiskPage extends PageObjectBase {
         return this;
     }
 
-    public StartYandexDiskPage inputPasswordLabelClick() {
+    public StartYandexDiskPage clickInputPasswordLabel() {
         highlightElementAndClick(PASSWORD_LABEL_INPUT_LOCATOR);
         return this;
     }
