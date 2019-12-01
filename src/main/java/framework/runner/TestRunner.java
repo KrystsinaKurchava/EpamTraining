@@ -48,12 +48,12 @@ public class TestRunner {
 
     private static List<String> getTestSuiteLink() {
          ArrayList<String> linksList= new ArrayList<String>();
-        linksList.add( String.format("./src/test/resources/%s.xml", (Parameters.instance().getSuite())));
+        linksList.add( String.format("./%s/%s.xml", Parameters.instance().getResourcesAddress(),(Parameters.instance().getSuite())));
        return linksList;
     }
 
     private static String getLog4jLink() {
 
-        return String.format("./src/test/resources/%s.properties", (Parameters.instance().getLogPropertiesFile()));
+        return String.format("./%s/%s.properties", Parameters.instance().getResourcesAddress(),(Parameters.instance().getLogPropertiesFile()));
     }
 }

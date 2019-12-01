@@ -29,8 +29,23 @@ public final class Parameters {
     @Parameter(names = {"--logProperties", "-Lprop"}, description = "Properties type")
     private String logPropertiesFile="log4j";
 
+    public String getResourcesAddress() {
+        return resourcesAddress;
+    }
+
+    public String getOutputAddress() {
+        return outputAddress;
+    }
+
+    @Parameter(names = {"--resourcesAddress", "-r"}, description = "Resources address")
+    private String resourcesAddress="resources";
+
+    @Parameter(names = {"--outputAddress", "-o"}, description = "Output data address")
+    private String outputAddress="output";
+
     private Parameters(){
     }
+
     public String getPropertiesFile() {
         return propertiesFile;
     }

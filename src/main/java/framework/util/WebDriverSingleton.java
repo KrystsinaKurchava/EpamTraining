@@ -87,7 +87,8 @@ public class WebDriverSingleton {
                 .getScreenshotAs(OutputType.FILE);
         try {
             File screenShot = new File(
-                    "target/screenshots/"
+                    Parameters.instance().getOutputAddress() +
+                            "/screenshots/"
                             + getCurrentTimeAsString() +
                             ".png");
             FileUtils.copyFile(screenCapture, screenShot);

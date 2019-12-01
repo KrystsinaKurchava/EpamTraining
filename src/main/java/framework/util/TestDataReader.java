@@ -14,7 +14,7 @@ public class TestDataReader {
 
     private static ResourceBundle getEnvironmentLink() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(String.format("./src/test/resources/%s.properties", (Parameters.instance().getPropertiesFile())));
+            FileInputStream fileInputStream = new FileInputStream(String.format("%s/%s.properties", Parameters.instance().getResourcesAddress(), Parameters.instance().getPropertiesFile()));
             resourceBundle = new PropertyResourceBundle(fileInputStream);
         } catch (IOException e) {
             e.printStackTrace();
