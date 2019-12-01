@@ -41,7 +41,7 @@ public class ElementsTest extends YandexConditions {
         packageName = yandexDiskService.createNewPackage();
         ContainsPartObject containsPartObject = new ContainsPartObject();
         containsPartObject.doubleClickToOpenPack(packageName);
-        Assert.assertEquals(containsPartObject.getPACKAGE_NAME_LOCATOR(), packageName,
+        Assert.assertEquals(containsPartObject.getPackageName(), packageName,
                 "Package was not created or inaccessible");
     }
 

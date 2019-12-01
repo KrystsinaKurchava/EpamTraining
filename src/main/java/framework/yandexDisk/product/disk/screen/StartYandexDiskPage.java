@@ -39,22 +39,22 @@ public class StartYandexDiskPage extends PageObjectBase {
     }
 
     public StartYandexDiskPage clickLoginLabelInput() {
-       waitForVisibility(LOGIN_LABEL_INPUT_LOCATOR);
+        waitForVisibility(LOGIN_LABEL_INPUT_LOCATOR);
         return this;
     }
 
     public StartYandexDiskPage inputLoginDate(String username) {
-        highlightElementAndSendText(LOGIN_INPUT_LOCATOR,username);
+        highlightElementAndSendText(LOGIN_INPUT_LOCATOR, username);
         return this;
     }
 
-    public StartYandexDiskPage clickInputPasswordLabel() {
+    public StartYandexDiskPage clickPasswordLabelInput() {
         highlightElementAndClick(PASSWORD_LABEL_INPUT_LOCATOR);
         return this;
     }
 
     public StartYandexDiskPage inputPasswordDate(String password) {
-        highlightElementAndSendText(PASSWORD_INPUT_LOCATOR,password);
+        highlightElementAndSendText(PASSWORD_INPUT_LOCATOR, password);
         return this;
     }
 

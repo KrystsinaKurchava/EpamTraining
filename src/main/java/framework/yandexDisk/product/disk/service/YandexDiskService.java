@@ -10,23 +10,33 @@ import framework.bo.User;
 import framework.util.StringUtils;
 
 public class YandexDiskService {
+    private final String LOGIN_YANDEX_DISK_LOG_TEXT = "Login in yandex disk with %s" +
+            " username and %s password";
+    private final String LOGIN_YANDEX_DISK_WITH_EMPTY_USERNAME_LOG_TEXT = "Login in yandex disk with empty username and %s" +
+            " password";
+    private final String CREATE_NEW_PACKAGE_LOG_TEXT = "Creating new package with %s" +
+            "name";
+    private final String CREATE_NEW_DOCUMENT_LOG_TEXT = "Creating new document with  " +
+            "%s name on %s package";
+    private final String GET_DOCUMENT_TEXT_LOG_TEXT = "Getting %s document text";
+    private final String MOVE_ELEMENT_IN_THE_TRASH = "Moving %s document in the trash from " +
+            "%s package";
+
     public void loginYandexDisk(User user) {
-        Log.info("Login in yandex disk with " + user.getUsername()
-                + " username and " + user.getPassword() + " password");
+        Log.info(String.format(LOGIN_YANDEX_DISK_LOG_TEXT, user.getUsername(), user.getPassword()));
         new StartYandexDiskPage()
                 .clickToGoOnLoginPage()
                 .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton()
                 .waitingForUserName(user.getUsername())
-                .clickInputPasswordLabel()
+                .clickPasswordLabelInput()
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
     }
 
     public void loginYandexDiskWithEmptyUsername(User user) {
-        Log.info("Login in yandex disk with empty username and "
-                + user.getPassword() + " password");
+        Log.info(String.format(LOGIN_YANDEX_DISK_WITH_EMPTY_USERNAME_LOG_TEXT, user.getPassword()));
         new StartYandexDiskPage().clickToGoOnLoginPage()
                 .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
@@ -35,8 +45,7 @@ public class YandexDiskService {
 
     public String createNewPackage() {
         String packageName = new StringUtils().getRandomString();
-        Log.info("Creating new package with  "
-                + packageName + " name");
+        Log.info(String.format(CREATE_NEW_PACKAGE_LOG_TEXT, packageName));
         new MainMenu()
                 .сlickToGoOnPhotoPage()
                 .getMainMenu()
@@ -53,8 +62,7 @@ public class YandexDiskService {
         MainMenu mainMenu = new MainMenu();
         String documentName = new StringUtils().getRandomString();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
-        Log.info("Creating new document with  "
-                + documentName + " name on " + packageName + " package");
+        Log.info(String.format(CREATE_NEW_DOCUMENT_LOG_TEXT, documentName, packageName));
         Log.debug("Opening package and choice to create new document");
         CreateNewDocumentPage newDocumentPage = new ContainsPartObject()
                 .doubleClickToOpenPack(packageName)
@@ -62,8 +70,7 @@ public class YandexDiskService {
                 .clickCreateSMTButton()
                 .clickCreateNewDocumentButton();
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
-        Log.debug("Switch to document window, type text " + text + " and rename document." +
-                " New name is " + documentName);
+        Log.debug("Switch to document window, type text and rename document.");
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
         newDocumentPage
                 .switchToMainIFrame()
@@ -84,7 +91,7 @@ public class YandexDiskService {
 
     public String getDocumentText(String name, String packageName) {
         MainMenu mainMenu = new MainMenu();
-        Log.info("Getting " + name + " document text");
+        Log.info(String.format(GET_DOCUMENT_TEXT_LOG_TEXT, name));
         CreateNewDocumentPage createNewDocumentPage = mainMenu
                 .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
@@ -102,8 +109,7 @@ public class YandexDiskService {
     }
 
     public void moveElementInTheTrash(String packageName, String documentName) {
-        Log.info("Moving " + documentName + " document in the trash from "
-                + packageName + " package");
+        Log.info(String.format(MOVE_ELEMENT_IN_THE_TRASH, documentName, packageName));
         MainMenu mainMenu = new MainMenu();
         mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)

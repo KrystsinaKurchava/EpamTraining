@@ -39,7 +39,7 @@ public class ContainsPartObject extends PageObjectBase {
         return this;
     }
 
-    public String getPACKAGE_NAME_LOCATOR() {
+    public String getPackageName() {
         return waitForVisibility(PACKAGE_NAME_LOCATOR).getText();
     }
 

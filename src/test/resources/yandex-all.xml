@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Yandex tests" verbose="1" >
+<suite name="Yandex tests" verbose="4" thread-count="2" parallel="classes">
     <test name="yandex-all"   >
         <packages>
             <package name="framework.test.yandex.product.disk.elements" />

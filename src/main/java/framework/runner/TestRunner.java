@@ -12,18 +12,10 @@ import java.util.List;
 
 public class TestRunner {
     public static void main(String[] args) {
-    PropertyConfigurator.configure(TestRunner.getLog4jLink());
-    parseCla(args);
-    createTestSuite().run();
-
-}
-    public void setSuiteName(String suiteName) {
-        this.suiteName = suiteName;
+        PropertyConfigurator.configure(TestRunner.getLog4jLink());
+        parseCla(args);
+        createTestSuite().run();
     }
-
-    String suiteName;
-
-
 
     private static void parseCla(String[] args) {
         Log.info("Parse command line args with JCommander");
@@ -47,13 +39,12 @@ public class TestRunner {
     }
 
     private static List<String> getTestSuiteLink() {
-         ArrayList<String> linksList= new ArrayList<String>();
-        linksList.add( String.format("./%s/%s.xml", Parameters.instance().getResourcesAddress(),(Parameters.instance().getSuite())));
-       return linksList;
+        ArrayList<String> linksList = new ArrayList<String>();
+        linksList.add(String.format("./%s/%s.xml", Parameters.instance().getResourcesAddress(), (Parameters.instance().getSuite())));
+        return linksList;
     }
 
     private static String getLog4jLink() {
-
-        return String.format("./%s/%s.properties", Parameters.instance().getResourcesAddress(),(Parameters.instance().getLogPropertiesFile()));
+        return String.format("./%s/%s.properties", Parameters.instance().getResourcesAddress(), (Parameters.instance().getLogPropertiesFile()));
     }
 }
