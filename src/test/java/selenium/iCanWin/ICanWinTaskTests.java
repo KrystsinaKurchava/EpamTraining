@@ -1,9 +1,9 @@
 package selenium.iCanWin;
 
+import framework.screen.PageObjectBase;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
-import selenium.base.PageObjectBase;
 import selenium.bringItOut.pageObject.PasterbinsConstants;
 import selenium.bringItOut.pageObject.PastebinNewPaste;
 import selenium.iCanWin.pageObject.PastebinPageObject;

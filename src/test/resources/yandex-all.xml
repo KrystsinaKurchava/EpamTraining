@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Yandex tests" verbose="1" >
+<suite name="Yandex tests" verbose="4" thread-count="2" parallel="classes">
     <test name="yandex-all"   >
         <packages>
-            <package name="yandexDisk" />
+            <package name="framework.test.yandex.product.disk.elements" />
+            <package name="framework.test.yandex.product.disk.login" />
         </packages>
     </test>
 </suite>

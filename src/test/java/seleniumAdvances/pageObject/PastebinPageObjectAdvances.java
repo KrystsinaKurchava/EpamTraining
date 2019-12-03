@@ -18,7 +18,7 @@ public class PastebinPageObjectAdvances extends PasterbinBase {
         clickByElement(waitForVisibility(tenMinutesListElement)).perform();
         enterTextToElement(textInNewPasteInput, textForPaste).perform();
         enterTextToElement(pasteNameInput, textPasteName).perform();
-        highlightElement(notice);
+        selectText(notice);
         clickButtonWithJS(forCreateNewPasteButton);
     }
 

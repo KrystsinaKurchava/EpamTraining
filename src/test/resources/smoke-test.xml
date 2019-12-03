@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke test" verbose="1" >
-    <test name="Check working click button"   >
+<suite name="Smoke test" verbose="4" thread-count="2" parallel="classes">
+    <test name="Check working click button">
         <classes>
-            <class name="yandexDisk.tests.LoginTests" />
-            <class name="yandexDisk.tests.ClickButtonTest" />
+            <class name="framework.test.yandex.product.disk.login.LoginTests"/>
+            <class name="framework.test.yandex.product.disk.login.ClickButtonTest"/>
         </classes>
     </test>
 </suite>

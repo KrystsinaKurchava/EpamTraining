@@ -1,8 +1,8 @@
 package selenium.base.googleCloud;
 
+import framework.screen.PageObjectBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import selenium.base.PageObjectBase;
 
 public class GoogleCloudCalculatorPage extends PageObjectBase {
     @FindBy(css = "#maia-main iframe")

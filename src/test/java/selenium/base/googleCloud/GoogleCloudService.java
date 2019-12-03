@@ -1,6 +1,6 @@
 package selenium.base.googleCloud;
 
-import selenium.base.WebDriverSingleton;
+import framework.util.WebDriverSingleton;
 
 public class GoogleCloudService {
     private String mailHandler;

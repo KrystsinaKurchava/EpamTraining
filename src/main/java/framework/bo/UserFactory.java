@@ -1,6 +1,6 @@
-package yandexDisk.service;
+package framework.bo;
 
-import yandexDisk.model.User;
+import framework.util.TestDataReader;
 
 public class UserFactory {
     public static final String TESTDATA_USER_NAME = "testdata.user.name";

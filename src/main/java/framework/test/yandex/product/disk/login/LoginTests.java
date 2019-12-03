@@ -1,15 +1,14 @@
-package yandexDisk.tests;
+package framework.test.yandex.product.disk.login;
 
+import framework.bo.UserFactory;
+import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;
+import framework.yandexDisk.product.disk.service.YandexDiskService;
+import framework.yandexDisk.product.disk.screen.YandexConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import selenium.base.WebDriverSingleton;
-import yandexDisk.pageObject.*;
-import yandexDisk.service.TestListener;
-import yandexDisk.service.YandexDiskService;
-import yandexDisk.service.UserFactory;
+import framework.util.WebDriverSingleton;
 
 public class LoginTests extends YandexConditions {
     protected YandexDiskService yandexDiskService;

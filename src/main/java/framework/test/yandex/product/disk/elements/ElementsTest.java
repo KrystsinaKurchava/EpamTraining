@@ -1,14 +1,16 @@
-package yandexDisk.tests;
+package framework.test.yandex.product.disk.elements;
 
+import framework.bo.UserFactory;
+import framework.yandexDisk.product.disk.screen.ContainsPartObject;
+import framework.yandexDisk.product.disk.screen.MainMenu;
+import framework.yandexDisk.product.disk.service.YandexDiskService;
+import framework.yandexDisk.product.disk.screen.YandexConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import selenium.base.WebDriverSingleton;
-import yandexDisk.pageObject.*;
-import yandexDisk.service.YandexDiskService;
-import yandexDisk.service.UserFactory;
+import framework.util.WebDriverSingleton;
 
 public class ElementsTest extends YandexConditions {
     private final String NEW_DOCUMENT_TEXT = "Hello world";

@@ -1,35 +1,51 @@
-package yandexDisk.service;
+package framework.yandexDisk.product.disk.service;
 
+import framework.logger.Log;
+import framework.yandexDisk.product.disk.screen.ContainsPartObject;
+import framework.yandexDisk.product.disk.screen.CreateNewDocumentPage;
+import framework.yandexDisk.product.disk.screen.MainMenu;
+import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;
 import org.openqa.selenium.NotFoundException;
-import yandexDisk.pageObject.ContainsPartObject;
-import yandexDisk.pageObject.MainMenu;
-import yandexDisk.pageObject.CreateNewDocumentPage;
-import yandexDisk.pageObject.StartYandexDiskPage;
-import yandexDisk.model.User;
-import yandexDisk.util.StringUtils;
+import framework.bo.User;
+import framework.util.StringUtils;
 
 public class YandexDiskService {
+    private final String LOGIN_YANDEX_DISK_LOG_TEXT = "Login in yandex disk with %s" +
+            " username and %s password";
+    private final String LOGIN_YANDEX_DISK_WITH_EMPTY_USERNAME_LOG_TEXT = "Login in yandex disk with empty username and %s" +
+            " password";
+    private final String CREATE_NEW_PACKAGE_LOG_TEXT = "Creating new package with %s" +
+            "name";
+    private final String CREATE_NEW_DOCUMENT_LOG_TEXT = "Creating new document with  " +
+            "%s name on %s package";
+    private final String GET_DOCUMENT_TEXT_LOG_TEXT = "Getting %s document text";
+    private final String MOVE_ELEMENT_IN_THE_TRASH = "Moving %s document in the trash from " +
+            "%s package";
+
     public void loginYandexDisk(User user) {
+        Log.info(String.format(LOGIN_YANDEX_DISK_LOG_TEXT, user.getUsername(), user.getPassword()));
         new StartYandexDiskPage()
                 .clickToGoOnLoginPage()
-                .inputLoginLabelClick()
+                .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton()
                 .waitingForUserName(user.getUsername())
-                .inputPasswordLabelClick()
+                .clickPasswordLabelInput()
                 .inputPasswordDate(user.getPassword())
                 .clickToSignInButton();
     }
 
     public void loginYandexDiskWithEmptyUsername(User user) {
+        Log.info(String.format(LOGIN_YANDEX_DISK_WITH_EMPTY_USERNAME_LOG_TEXT, user.getPassword()));
         new StartYandexDiskPage().clickToGoOnLoginPage()
-                .inputLoginLabelClick()
+                .clickLoginLabelInput()
                 .inputLoginDate(user.getUsername())
                 .clickToSignInButton();
     }
 
     public String createNewPackage() {
         String packageName = new StringUtils().getRandomString();
+        Log.info(String.format(CREATE_NEW_PACKAGE_LOG_TEXT, packageName));
         new MainMenu()
                 .сlickToGoOnPhotoPage()
                 .getMainMenu()
@@ -46,12 +62,15 @@ public class YandexDiskService {
         MainMenu mainMenu = new MainMenu();
         String documentName = new StringUtils().getRandomString();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
+        Log.info(String.format(CREATE_NEW_DOCUMENT_LOG_TEXT, documentName, packageName));
+        Log.debug("Opening package and choice to create new document");
         CreateNewDocumentPage newDocumentPage = new ContainsPartObject()
                 .doubleClickToOpenPack(packageName)
                 .getMainMenu()
                 .clickCreateSMTButton()
                 .clickCreateNewDocumentButton();
         String newDocumentPageWindowHandler = mainMenu.getOtherWindowHandler();
+        Log.debug("Switch to document window, type text and rename document.");
         mainMenu.switchToWindow(newDocumentPageWindowHandler);
         newDocumentPage
                 .switchToMainIFrame()
@@ -72,6 +91,7 @@ public class YandexDiskService {
 
     public String getDocumentText(String name, String packageName) {
         MainMenu mainMenu = new MainMenu();
+        Log.info(String.format(GET_DOCUMENT_TEXT_LOG_TEXT, name));
         CreateNewDocumentPage createNewDocumentPage = mainMenu
                 .сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
@@ -89,6 +109,7 @@ public class YandexDiskService {
     }
 
     public void moveElementInTheTrash(String packageName, String documentName) {
+        Log.info(String.format(MOVE_ELEMENT_IN_THE_TRASH, documentName, packageName));
         MainMenu mainMenu = new MainMenu();
         mainMenu.сlickToGoOnFilePage()
                 .doubleClickToOpenPack(packageName)
@@ -97,6 +118,7 @@ public class YandexDiskService {
     }
 
     public void cleanTrash() {
+        Log.info("Clean trash");
         new MainMenu()
                 .сlickToGoOnTrashPage()
                 .clickButtonToCleanTrash()
@@ -105,6 +127,7 @@ public class YandexDiskService {
 
     public Boolean isButtonExist() {
         MainMenu mainMenu = new MainMenu();
+        Log.info("Checking that button exist");
         try {
             mainMenu.сlickToGoOnTrashPage()
                     .getMainMenu()

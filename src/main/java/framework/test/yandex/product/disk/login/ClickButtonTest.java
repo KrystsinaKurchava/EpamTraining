@@ -1,14 +1,15 @@
-package yandexDisk.tests;
+package framework.test.yandex.product.disk.login;
 
+import framework.yandexDisk.product.disk.screen.MainMenu;
+import framework.bo.UserFactory;
+import framework.yandexDisk.product.disk.service.YandexDiskService;
+import framework.yandexDisk.product.disk.screen.YandexConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import selenium.base.WebDriverSingleton;
-import yandexDisk.pageObject.MainMenu;
-import yandexDisk.service.UserFactory;
-import yandexDisk.service.YandexDiskService;
+import framework.util.WebDriverSingleton;
 
 public class ClickButtonTest extends YandexConditions {
     protected YandexDiskService yandexDiskService;
