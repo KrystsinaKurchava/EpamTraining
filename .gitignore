@@ -5,6 +5,7 @@
 .idea
 target
 test-output
+output
 # Log file
 *.log
 
