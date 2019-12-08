@@ -8,11 +8,14 @@ public final class Parameters {
 
     @Parameter(names = {"--suite", "-s"}, description = "Suite")
     private String suite = "smoke-test";
+    
     @Parameter(names = {"--help"}, help = false, description = "Help")
     private boolean help;
+
     @Parameter(names = {"--browser", "-br"}, description = "Browser type",
             required = true)
     private String browserType = BrowserType.CHROME;
+
     @Parameter(names = {"--properties", "-prop"}, description = "Properties type")
     private String propertiesFile = "qa";
 
