@@ -17,7 +17,7 @@ public class WorkWithMailStepsDefs {
         new YandexDiskService().loginYandexDisk(UserFactory.withCredentialsFromProperty());
     }
 
-    @When("^user wants to click (.*) button which has (.*) name$")
+    @When("^user (want to click|click) (.*) menu's button which has (.*) name$")
     public void userClicksButton(String name, String system) {
         new MainMenu().сlickButtonPattern(system);
         switch (name.toLowerCase()) {
@@ -33,7 +33,7 @@ public class WorkWithMailStepsDefs {
         }
     }
 
-    @Then("^(.*) title ang getted title is equal$")
+    @Then("^(?:(.*) title and getted|getted title and (.*)) title is equal$")
     public void expectedAngGettedTitleIsEqual(String expected) {
         Assert.assertEquals(tittleOnPage, expected, "Title page and button is different");
     }

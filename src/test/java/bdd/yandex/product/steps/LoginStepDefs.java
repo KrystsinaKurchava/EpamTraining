@@ -77,11 +77,9 @@ public class LoginStepDefs {
         Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), message, "Error message is invalid");
     }
 
-
     @After
     public void tearDown(){
         Log.info("Close browser");
         WebDriverSingleton.closeDriver();
     }
-
 }
