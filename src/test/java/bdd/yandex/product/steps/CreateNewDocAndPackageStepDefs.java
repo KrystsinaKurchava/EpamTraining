@@ -1,15 +1,13 @@
 package bdd.yandex.product.steps;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import framework.yandexDisk.product.disk.screen.ContainsPartObject;
-import framework.yandexDisk.product.disk.screen.StartYandexDiskPage;
 import framework.yandexDisk.product.disk.service.YandexDiskService;
 import org.testng.Assert;
 
-public class CreateNewDocAndPackageDefs {
+public class CreateNewDocAndPackageStepDefs {
     private YandexDiskService yandexDiskService = new YandexDiskService();
     private ContainsPartObject containsPartObject = new ContainsPartObject();
 

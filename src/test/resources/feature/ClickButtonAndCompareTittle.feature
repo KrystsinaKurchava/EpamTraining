@@ -7,7 +7,7 @@ Feature: Work with yandex mail
     And user logged in successfully
 
   @all
-  @buttonsCheck
+    @buttonsCheck
   Scenario Outline: Check that user is on the correct page after his click on some button
     When User clicks <name> menu's button which has <system> name
     Then got title and <expected> title is equal
@@ -21,6 +21,3 @@ Feature: Work with yandex mail
       | Archive       | mail    | Archive      |
       | Newest        | recent  | Recent       |
       | Photo         | photo   | All photos   |
-
-
-

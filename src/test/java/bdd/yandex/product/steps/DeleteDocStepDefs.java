@@ -8,7 +8,7 @@ import framework.yandexDisk.product.disk.screen.MainMenu;
 import framework.yandexDisk.product.disk.service.YandexDiskService;
 import org.testng.Assert;
 
-public class DeleteDocDefs {
+public class DeleteDocStepDefs {
     private YandexDiskService yandexDiskService = new YandexDiskService();
     private ContainsPartObject containsPartObject = new ContainsPartObject();
     private MainMenu mainMenu = new MainMenu();

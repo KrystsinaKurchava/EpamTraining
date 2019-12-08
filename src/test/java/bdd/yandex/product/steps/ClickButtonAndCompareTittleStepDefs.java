@@ -9,7 +9,7 @@ import framework.yandexDisk.product.disk.screen.MainMenu;
 import framework.yandexDisk.product.disk.service.YandexDiskService;
 import org.testng.Assert;
 
-public class WorkWithMailStepsDefs {
+public class ClickButtonAndCompareTittleStepDefs {
     private String tittleOnPage;
 
     @And("^[U|u]ser logged in successfully$")
@@ -24,6 +24,7 @@ public class WorkWithMailStepsDefs {
             case "history":
                 tittleOnPage = new ContainsPartObject().getHistoryPageContainPageTitle();
                 break;
+            case "newest":
             case "public access":
             case "photo":
                 tittleOnPage = new ContainsPartObject().getPublicAccessContainPageTitle();

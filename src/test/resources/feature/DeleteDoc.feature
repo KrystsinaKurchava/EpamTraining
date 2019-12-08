@@ -18,4 +18,3 @@ Feature: Like yandex mail user I want
   Scenario: Check trash cleaning
     Given user cleaned trash
     Then trash doesn't contain document TestDocument
-

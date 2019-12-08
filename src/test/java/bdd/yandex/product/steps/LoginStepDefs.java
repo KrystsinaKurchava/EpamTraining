@@ -19,7 +19,7 @@ public class LoginStepDefs {
 
     @Given("^[U|u]ser is on login page$")
     public void userIsOnLoginPage() {
-     WebDriverSingleton.getWebDriver().get(LINK_FOR_YANDEX_DISK);
+        WebDriverSingleton.getWebDriver().get(LINK_FOR_YANDEX_DISK);
     }
 
     @Given("^[U|u]ser has valid credentials$")
@@ -78,7 +78,7 @@ public class LoginStepDefs {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         Log.info("Close browser");
         WebDriverSingleton.closeDriver();
     }

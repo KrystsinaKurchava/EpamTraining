@@ -9,13 +9,12 @@ Feature: Like yandex mail user I want
   @all
   @creating
   Scenario: Check new package creating
-    Given user created new package with name TestPackage
-    When user open the package TestPackage
-    Then created package name is TestPackage
+    Given user created new package with name TestPackageName
+    When user open the package TestPackageName
+    Then created package name is TestPackageName
 
   @all
   @creating
   Scenario: Check new document creating
-    Given user created new document with name TestDocument with text TestText in package TestPackage
-    Then document TestDocument in package TestPackage has text TestText
-
+    Given user created new document with name TestDocumentName with text TestTextContain in package TestPackageName
+    Then document TestDocumentName in package TestPackageName has text TestTextContain

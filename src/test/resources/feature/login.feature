@@ -6,7 +6,7 @@ Feature: Yandex login
     Given User is on login page
 
   @all
-  @login
+    @login
   Scenario Outline: Successful login with valid credentials
     Given User has valid credentials
     When user clicks login button
