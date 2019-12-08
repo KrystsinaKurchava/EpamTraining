@@ -43,8 +43,7 @@ public class YandexDiskService {
                 .clickToSignInButton();
     }
 
-    public String createNewPackage() {
-        String packageName = new StringUtils().getRandomString();
+    public String createNewPackage(String packageName) {
         Log.info(String.format(CREATE_NEW_PACKAGE_LOG_TEXT, packageName));
         new MainMenu()
                 .сlickToGoOnPhotoPage()
@@ -58,9 +57,8 @@ public class YandexDiskService {
         return packageName;
     }
 
-    public String createNewDocument(String packageName, String text) {
+    public String createNewDocument(String packageName, String documentName, String text) {
         MainMenu mainMenu = new MainMenu();
-        String documentName = new StringUtils().getRandomString();
         String mainWindowHandler = mainMenu.getCurrentWindowHandler();
         Log.info(String.format(CREATE_NEW_DOCUMENT_LOG_TEXT, documentName, packageName));
         Log.debug("Opening package and choice to create new document");

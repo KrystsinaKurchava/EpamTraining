@@ -3,11 +3,12 @@ Feature: Yandex login
   to see my mail box after successful login
 
   Background:
-    Given user is on login page
+    Given User is on login page
 
   @all
+  @login
   Scenario Outline: Successful login with valid credentials
-    Given user has valid credentials
+    Given User has valid credentials
     When user clicks login button
     And user enters <login> login
     And user enters  <password> password
@@ -17,15 +18,18 @@ Feature: Yandex login
       | login                 | password        |
       | kkurcheva             | yuF3hq5eXPhJXLd |
       | krystsinademokurchava | Nmbpp3kwdRE5VQA |
+
   @all
+  @login
   Scenario: Unsuccessful login with invalid login
-    Given user has invalid login
+    Given User has invalid login
     When user clicks login button
     And user enters login
     Then user has error Логин не указан
+
   @all
   Scenario: Unsuccessful login with invalid password
-    Given user has invalid password
+    Given User has invalid password
     When user clicks login button
     And user enters login
     And user enters password

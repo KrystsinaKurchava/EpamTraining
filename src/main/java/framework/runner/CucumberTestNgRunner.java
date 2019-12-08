@@ -7,7 +7,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         strict = true,
         features = "src/test/resources/feature",
         glue = "bdd.yandex.product.steps",
-        tags = {/*"@all",*/ "@workWithMail"},
+        tags = {"@buttonsCheck"},
         plugin = {"json:target/cucumber-report.json",
                 "html:target/cucumber-report"
         }

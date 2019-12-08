@@ -12,12 +12,12 @@ import org.testng.Assert;
 public class WorkWithMailStepsDefs {
     private String tittleOnPage;
 
-    @And("^user logged in successfully$")
+    @And("^[U|u]ser logged in successfully$")
     public void userLoggedInSuccessfully() {
         new YandexDiskService().loginYandexDisk(UserFactory.withCredentialsFromProperty());
     }
 
-    @When("^user (want to click|click) (.*) menu's button which has (.*) name$")
+    @When("^[U|u]ser clicks (.*) menu's button which has (.*) name$")
     public void userClicksButton(String name, String system) {
         new MainMenu().сlickButtonPattern(system);
         switch (name.toLowerCase()) {
@@ -25,6 +25,7 @@ public class WorkWithMailStepsDefs {
                 tittleOnPage = new ContainsPartObject().getHistoryPageContainPageTitle();
                 break;
             case "public access":
+            case "photo":
                 tittleOnPage = new ContainsPartObject().getPublicAccessContainPageTitle();
                 break;
             default:
@@ -33,8 +34,8 @@ public class WorkWithMailStepsDefs {
         }
     }
 
-    @Then("^(?:(.*) title and getted|getted title and (.*)) title is equal$")
-    public void expectedAngGettedTitleIsEqual(String expected) {
+    @Then("^got title and (.*) title is equal$")
+    public void expectedAngGotTitleIsEqual(String expected) {
         Assert.assertEquals(tittleOnPage, expected, "Title page and button is different");
     }
 }

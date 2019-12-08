@@ -1,6 +1,7 @@
 package framework.test.yandex.product.disk.elements;
 
 import framework.bo.UserFactory;
+import framework.util.StringUtils;
 import framework.yandexDisk.product.disk.screen.ContainsPartObject;
 import framework.yandexDisk.product.disk.screen.MainMenu;
 import framework.yandexDisk.product.disk.service.YandexDiskService;
@@ -38,7 +39,8 @@ public class ElementsTest extends YandexConditions {
 
     @Test(description = "Create new package", priority = 1)
     public void createNewPackage() {
-        packageName = yandexDiskService.createNewPackage();
+        packageName = new StringUtils().getRandomString();
+        yandexDiskService.createNewPackage(packageName);
         ContainsPartObject containsPartObject = new ContainsPartObject();
         containsPartObject.doubleClickToOpenPack(packageName);
         Assert.assertEquals(containsPartObject.getPackageName(), packageName,
@@ -47,7 +49,8 @@ public class ElementsTest extends YandexConditions {
 
     @Test(description = "Create new document", priority = 2)
     public void createNewDocument() {
-        documentName = yandexDiskService.createNewDocument(packageName, NEW_DOCUMENT_TEXT);
+        documentName = new StringUtils().getRandomString();
+        yandexDiskService.createNewDocument(packageName, documentName, NEW_DOCUMENT_TEXT);
         Assert.assertEquals(yandexDiskService.getDocumentText(documentName, packageName),
                 NEW_DOCUMENT_TEXT, "Document saved incorrect");
     }

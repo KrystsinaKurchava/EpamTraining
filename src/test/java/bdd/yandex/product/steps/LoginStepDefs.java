@@ -17,62 +17,62 @@ public class LoginStepDefs {
     protected final String LINK_FOR_YANDEX_DISK = "https://disk.yandex.by/";
     private User user;
 
-    @Given("^user is on login page$")
+    @Given("^[U|u]ser is on login page$")
     public void userIsOnLoginPage() {
      WebDriverSingleton.getWebDriver().get(LINK_FOR_YANDEX_DISK);
     }
 
-    @Given("^user has valid credentials$")
+    @Given("^[U|u]ser has valid credentials$")
     public void userHasValidCredentials() {
         user = new UserFactory().withCredentialsFromProperty();
     }
 
-    @When("^user clicks login button$")
+    @When("^[U|u]ser clicks login button$")
     public void userClicksLoginButton() {
         startYandexDiskPage.clickToGoOnLoginPage();
     }
 
-    @And("^user enters login$")
+    @And("^[U|u]ser enters login$")
     public void usersEntersLogin() {
         startYandexDiskPage.clickLoginLabelInput().inputLoginDate(user.getUsername()).clickToSignInButton();
     }
 
-    @And("^user enters password$")
+    @And("^[U|u]ser enters password$")
     public void userEntersPassword() {
         startYandexDiskPage.clickPasswordLabelInput().inputPasswordDate(user.getPassword()).clickToSignInButton();
     }
 
-    @And("^user clicks sign in button$")
+    @And("^[U|u]ser clicks sign in button$")
     public void userClicksSignInButton() {
         startYandexDiskPage.clickToSignInButton();
     }
 
-    @Given("^user has invalid login$")
+    @Given("^[U|u]ser has invalid login$")
     public void userHasInvalidLogin() {
         user = new UserFactory().withEmptyUsername();
     }
 
-    @Then("^user is on Personal page$")
+    @Then("^[U|u]ser is on Personal page$")
     public void userIsOnFilePage() {
         Assert.assertTrue(startYandexDiskPage.isPersonalCabinetExist(), "Login hasn't done");
     }
 
-    @Given("^user has invalid password$")
+    @Given("^[U|u]ser has invalid password$")
     public void userHasInvalidPassword() {
         user = new UserFactory().withEmptyPassword();
     }
 
-    @And("^user enters (.*) login$")
+    @And("^[U|u]ser enters (.*) login$")
     public void usersEntersLoginLogin(String login) {
         startYandexDiskPage.clickLoginLabelInput().inputLoginDate(login).clickToSignInButton();
     }
 
-    @And("^user enters  (.*) password$")
+    @And("^[U|u]ser enters  (.*) password$")
     public void userEntersPasswordPassword(String password) {
         startYandexDiskPage.clickLoginLabelInput().inputPasswordDate(password);
     }
 
-    @Then("^user has error (.*)$")
+    @Then("^[U|u]ser has error (.*)$")
     public void userHasErrorMessage(String message) {
         Assert.assertEquals(new StartYandexDiskPage().getErrorMessage(), message, "Error message is invalid");
     }

@@ -3,23 +3,24 @@ Feature: Work with yandex mail
   to see that button click is load correct page
 
   Background:
-    Given user is on login page
+    Given User is on login page
     And user logged in successfully
 
-  @workWithMail
+  @all
+  @buttonsCheck
   Scenario Outline: Check that user is on the correct page after his click on some button
-    When user want to click <name> menu's button which has <system> name
-    Then getted title and <expected> title is equal
+    When User clicks <name> menu's button which has <system> name
+    Then got title and <expected> title is equal
 
     Examples:
-      | name   | system | expected   |
-#      | Trash         | Trash   | Trash        |
-#      | File          | disk    | Files        |
-#      | Public access | shared  | Public links |
-#      | History       | journal | History      |
-#   | Archive       | mail    | Archive      |
-      | Newest | recent | Recent     |
-      | Photo  | photo  | All photos |
+      | name          | system  | expected     |
+      | Trash         | Trash   | Trash        |
+      | File          | disk    | Files        |
+      | Public access | shared  | Public links |
+      | History       | journal | History      |
+      | Archive       | mail    | Archive      |
+      | Newest        | recent  | Recent       |
+      | Photo         | photo   | All photos   |
 
 
 
