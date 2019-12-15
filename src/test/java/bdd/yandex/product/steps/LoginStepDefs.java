@@ -34,12 +34,12 @@ public class LoginStepDefs {
 
     @And("^[U|u]ser enters login$")
     public void usersEntersLogin() {
-        startYandexDiskPage.clickLoginLabelInput().inputLoginDate(user.getUsername()).clickToSignInButton();
+        startYandexDiskPage.clickLoginLabelInput().inputLoginDate(user.getUsername());
     }
 
     @And("^[U|u]ser enters password$")
     public void userEntersPassword() {
-        startYandexDiskPage.clickPasswordLabelInput().inputPasswordDate(user.getPassword()).clickToSignInButton();
+        startYandexDiskPage.clickPasswordLabelInput().inputPasswordDate(user.getPassword());
     }
 
     @And("^[U|u]ser clicks sign in button$")
@@ -63,12 +63,12 @@ public class LoginStepDefs {
     }
 
     @And("^[U|u]ser enters (.*) login$")
-    public void usersEntersLoginLogin(String login) {
-        startYandexDiskPage.clickLoginLabelInput().inputLoginDate(login).clickToSignInButton();
+    public void usersEntersLogin(String login) {
+        startYandexDiskPage.clickLoginLabelInput().inputLoginDate(login);
     }
 
     @And("^[U|u]ser enters  (.*) password$")
-    public void userEntersPasswordPassword(String password) {
+    public void userEntersPassword(String password) {
         startYandexDiskPage.clickLoginLabelInput().inputPasswordDate(password);
     }
 

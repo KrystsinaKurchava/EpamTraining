@@ -31,7 +31,6 @@ public class ClickButtonAndCompareTittleStepDefs {
                 break;
             default:
                 tittleOnPage = new ContainsPartObject().getCommonContainPageTitle();
-                break;
         }
     }
 
