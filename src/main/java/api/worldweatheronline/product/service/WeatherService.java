@@ -19,6 +19,7 @@ public class WeatherService {
     private final String TEMPERATURE_NODE_NAME = "tempC";
     private final String PRECIPITATE_NODE_NAME = "precipMM";
     private final String DATE_NODE_NAME = "date";
+    private final int BORDER_CRITERIA = 0;
 
     public XmlPath getDateFromWeatherService() {
         Response weatherResponse = ApiUtils.doGetResponseFromApi(LINK_FOR_WEATHER_FOR_DATES);
@@ -34,12 +35,11 @@ public class WeatherService {
             for (Node hour : hours) {
                 double temperature = Double.parseDouble(hour.getNode(TEMPERATURE_NODE_NAME).value());
                 double precipitate = Double.parseDouble(hour.getNode(PRECIPITATE_NODE_NAME).value());
-                if (temperature > 0 && precipitate > 0) {
+                if (temperature > BORDER_CRITERIA && precipitate > BORDER_CRITERIA) {
                     dates.add(DateUtils.getDate(weather.getNode(DATE_NODE_NAME).value()));
                 }
             }
         }
-
         return dates;
     }
 }

@@ -15,12 +15,10 @@ public class HolidayService {
     public boolean isBelarusStateHoliday(Date date) {
         int year = DateUtils.getYear(date);
         String uri = String.format(HOLIDAYS_FOR_COUNTRY_AND_YEAR_URL, BELARUS_CODE, year);
-
         Holidays response = ApiUtils
                 .doGetResponseFromApi(uri)
                 .getBody()
                 .as(Holidays.class);
-
         for (Holiday holiday : response) {
             if (DateUtils.isEqualWithoutTime(holiday.date, date))
                 return true;

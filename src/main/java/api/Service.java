@@ -46,7 +46,6 @@ public class Service {
         if (holidayService.isBelarusStateHoliday(workingDay) || DateUtils.isWeekend(date)) {
             workingDay = DateUtils.getDayWithOffset(workingDay, step);
         }
-
         return workingDay;
     }
 }
