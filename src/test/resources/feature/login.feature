@@ -11,6 +11,7 @@ Feature: Yandex login
     Given User has valid credentials
     When user clicks login button
     And user enters <login> login
+    And user clicks sign in button
     And user enters  <password> password
     And user clicks sign in button
     Then user is on Personal page
@@ -25,6 +26,7 @@ Feature: Yandex login
     Given User has invalid login
     When user clicks login button
     And user enters login
+    And user clicks sign in button
     Then user has error Логин не указан
 
   @all
@@ -32,6 +34,7 @@ Feature: Yandex login
     Given User has invalid password
     When user clicks login button
     And user enters login
+    And user clicks sign in button
     And user enters password
     And user clicks sign in button
     Then user has error Пароль не указан
