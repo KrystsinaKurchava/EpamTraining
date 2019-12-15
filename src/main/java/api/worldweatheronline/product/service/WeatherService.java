@@ -2,6 +2,7 @@ package api.worldweatheronline.product.service;
 
 import api.utils.ApiUtils;
 import api.utils.DateUtils;
+import framework.logger.Log;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.path.xml.element.Node;
 import io.restassured.response.Response;
@@ -22,11 +23,13 @@ public class WeatherService {
     private final int BORDER_CRITERIA = 0;
 
     public XmlPath getDateFromWeatherService() {
+        Log.info("Get response from weather service");
         Response weatherResponse = ApiUtils.doGetResponseFromApi(LINK_FOR_WEATHER_FOR_DATES);
         return weatherResponse.getBody().xmlPath();
     }
 
     public HashSet<Date> filterDateFromWeatherResponse(XmlPath bodyXMLResponse) {
+        Log.info("Filter date from weather response");
         Node node = bodyXMLResponse.getNode(ROOT_NODE_NAME);
         List<Node> children = node.getNodes(WEATHER_NODE_NAME);
         HashSet<Date> dates = new HashSet<>();

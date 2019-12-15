@@ -4,6 +4,7 @@ import api.holidayapi.product.models.Holiday;
 import api.holidayapi.product.models.Holidays;
 import api.utils.ApiUtils;
 import api.utils.DateUtils;
+import framework.logger.Log;
 
 import java.util.Date;
 
@@ -13,6 +14,7 @@ public class HolidayService {
     private final String BELARUS_CODE = "BY";
 
     public boolean isBelarusStateHoliday(Date date) {
+        Log.info("Check day is Belarus State Holiday %s", DateUtils.getStringFromDate(date));
         int year = DateUtils.getYear(date);
         String uri = String.format(HOLIDAYS_FOR_COUNTRY_AND_YEAR_URL, BELARUS_CODE, year);
         Holidays response = ApiUtils

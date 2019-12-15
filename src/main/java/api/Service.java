@@ -27,11 +27,9 @@ public class Service {
         Log.info("Get official rates for %s dates", StringUtils.join(dates.toArray(), ARRAY_SEPARATOR));
         int count = 0;
         for (Date date : dates) {
-            date = GetBankWorkingDay(date, CURRENT_DATE_STEP);
-
+            date = getBankWorkingDay(date, CURRENT_DATE_STEP);
             Date nextWorkingDay = DateUtils.getDayWithOffset(date, NEXT_DATE_STEP);
-            nextWorkingDay = GetBankWorkingDay(nextWorkingDay, NEXT_DATE_STEP);
-
+            nextWorkingDay = getBankWorkingDay(nextWorkingDay, NEXT_DATE_STEP);
             double dateOfficialRate = officialRateService.getUsdOfficialRate(date);
             double nextWorkingDayOfficialRate = officialRateService.getUsdOfficialRate(nextWorkingDay);
             if (dateOfficialRate < nextWorkingDayOfficialRate) {
@@ -41,7 +39,7 @@ public class Service {
         return count;
     }
 
-    private Date GetBankWorkingDay(Date date, int step) {
+    private Date getBankWorkingDay(Date date, int step) {
         Date workingDay = date;
         if (holidayService.isBelarusStateHoliday(workingDay) || DateUtils.isWeekend(date)) {
             workingDay = DateUtils.getDayWithOffset(workingDay, step);
