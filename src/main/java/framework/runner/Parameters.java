@@ -28,6 +28,12 @@ public final class Parameters {
     @Parameter(names = {"--outputAddress", "-o"}, description = "Output data address")
     private String outputAddress = "target";
 
+    @Parameter(names = {"--gridHost","-grHst"},  description = "Grid host address")
+    private String gridHost = "localhost";
+
+    @Parameter(names = {"--port", "-pr"}, description = "Port number")
+    private String gridPortNumber ="5444";
+
     private Parameters() {
     }
 
@@ -64,5 +70,13 @@ public final class Parameters {
 
     public String getBrowserType() {
         return browserType.toLowerCase();
+    }
+
+    public String getGridHost() {
+        return gridHost;
+    }
+
+    public String getGridPortNumber() {
+        return gridPortNumber;
     }
 }
