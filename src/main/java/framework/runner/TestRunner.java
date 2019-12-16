@@ -12,18 +12,16 @@ import java.util.List;
 
 public class TestRunner {
     public static void main(String[] args) {
-        PropertyConfigurator.configure(TestRunner.getLog4jLink());
         parseCommandLineArguments(args);
+        PropertyConfigurator.configure(TestRunner.getLog4jLink());
         createTestSuite().run();
     }
 
     private static void parseCommandLineArguments(String[] args) {
-        Log.info("Parse command line args with JCommander");
         JCommander jCommander = new JCommander(Parameters.instance());
         try {
             jCommander.parse(args);
         } catch (ParameterException e) {
-            Log.error("Can't parse parameters");
             System.exit(1);
         }
         if (Parameters.instance().isHelp()) {
