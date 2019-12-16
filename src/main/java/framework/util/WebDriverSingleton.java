@@ -58,7 +58,8 @@ public class WebDriverSingleton {
                     capabilities.setPlatform(Platform.WINDOWS);
                     capabilities.setBrowserName(BrowserType.CHROME);
                     try {
-                        webDriver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                        webDriver.set(new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub",
+                                Parameters.instance().getGridHost(),Parameters.instance().getGridPortNumber())),
                                 capabilities));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
