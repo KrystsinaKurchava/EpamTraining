@@ -13,11 +13,11 @@ import java.util.List;
 public class TestRunner {
     public static void main(String[] args) {
         PropertyConfigurator.configure(TestRunner.getLog4jLink());
-        parseCla(args);
+        parseCommandLineArguments(args);
         createTestSuite().run();
     }
 
-    private static void parseCla(String[] args) {
+    private static void parseCommandLineArguments(String[] args) {
         Log.info("Parse command line args with JCommander");
         JCommander jCommander = new JCommander(Parameters.instance());
         try {

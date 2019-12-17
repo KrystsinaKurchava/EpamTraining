@@ -1,5 +1,6 @@
 package framework.yandexDisk.product.disk.screen;
 
+import framework.util.WebDriverSingleton;
 import org.testng.annotations.Listeners;
 import framework.listener.TestListener;
 

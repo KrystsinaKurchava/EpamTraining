@@ -15,7 +15,7 @@ public class ContainsPartObject extends PageObjectBase {
     private final By PACKAGE_NAME_LOCATOR = By.className("listing-heading__title");
     private final By DELETE_BUTTON_LOCATOR = By.className("groupable-buttons__visible-button_name_delete");
     private final static String PACKAGE_SELECTOR_PATTERN = "//div[@class='listing-item__info']//span[text()='%s']/../../..";
-    private final static String DOCUMENT_SELECTOR_PATTERN = "//div[@class='listing-item__info']//span[contains(text(),'%s')]/../../..";
+    private final static String DOCUMENT_SELECTOR_PATTERN = "//div[@class='listing-item__info']//span[contains(@title,'%s')]/../../..";
     private final MainMenu mainMenu = new MainMenu();
 
     public MainMenu getMainMenu() {

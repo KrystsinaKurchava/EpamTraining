@@ -17,6 +17,13 @@ public class MainMenu extends PageObjectBase {
     private final By CREATE_NEW_DOCUMENT_BUTTON_LOCATOR = By.xpath("//span[contains(@class, 'file-icon_doc')]/parent::button");
     private final By NAME_OF_NEW_PACKAGE_INPUT_LOCATOR = By.cssSelector(".rename-dialog__rename-form input");
     private final By SAVE_BUTTON_LOCATOR = By.className("confirmation-dialog__button");
+    private final String buttonPattern = "a[href='/client/%s']";
+
+    public ContainsPartObject сlickButtonPattern(String buttonName) {
+        By buttonLocator =  By.cssSelector(String.format(buttonPattern,buttonName.toLowerCase()));
+        highlightElementAndClick(buttonLocator);
+        return new ContainsPartObject();
+    }
 
     public ContainsPartObject сlickToGoOnFilePage() {
         highlightElementAndClick(FILE_PAGE_LOCATOR);
