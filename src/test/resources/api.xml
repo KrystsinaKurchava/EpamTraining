@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Api test" verbose="4">
+    <test name="Check hypothesis about dependency about Thursday rain and rating increase">
+        <classes>
+            <class name="api.WeatherTest"/>
+        </classes>
+    </test>
+</suite>
