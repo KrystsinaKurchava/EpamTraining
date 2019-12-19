@@ -39,9 +39,9 @@ public class DateUtils {
         return dateFormat.format(date);
     }
 
-    public static boolean isEqualWithoutTime(Date date1, Date date2) {
+    public static boolean isEqualWithoutTime(Date equivalentDate, Date dateForComparing) {
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-        return dateFormat.format(date1).equals(dateFormat.format(date2));
+        return dateFormat.format(equivalentDate).equals(dateFormat.format(dateForComparing));
     }
 
     public static boolean isWeekend(Date date) {

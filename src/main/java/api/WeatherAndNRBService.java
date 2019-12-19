@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Service {
+public class WeatherAndNRBService {
     private WeatherService weatherService = new WeatherService();
     private OfficialRateService officialRateService = new OfficialRateService();
     private HolidayService holidayService = new HolidayService();
@@ -38,6 +38,12 @@ public class Service {
         }
         return count;
     }
+
+    /**
+     * Get informationa about the change official rate on this day and the next day.
+     * If the day is holiday, roll to the working day
+     * Return result of enumeration and comparison among themselves.
+     */
 
     private Date getBankWorkingDay(Date date, int step) {
         Date workingDay = date;

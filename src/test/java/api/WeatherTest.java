@@ -10,10 +10,10 @@ public class WeatherTest {
     private final int TEST_CRITERIA = 2;
 
     @Test(description = "Check hypothesis about dependency about Thursday rain and rating increase")
-    public void CheckThursdayTheory() {
-        Service service = new Service();
-        HashSet<Date> dates = service.getThursdayRunningDates();
-        int count = service.getOfficialRateChangesCount(dates);
+    public void checkThursdayTheory() {
+        WeatherAndNRBService weatherAndNRBService = new WeatherAndNRBService();
+        HashSet<Date> dates = weatherAndNRBService.getThursdayRunningDates();
+        int count = weatherAndNRBService.getOfficialRateChangesCount(dates);
         Assert.assertTrue(dates.size() % count <= TEST_CRITERIA, "Dependency is not proved");
     }
 }
