@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Service {
+public class WeatherAndNRBService {
     private WeatherService weatherService = new WeatherService();
     private OfficialRateService officialRateService = new OfficialRateService();
     private HolidayService holidayService = new HolidayService();
@@ -22,6 +22,12 @@ public class Service {
         Log.info("Get raining Thursdays hashset");
         return weatherService.filterDateFromWeatherResponse(weatherService.getDateFromWeatherService());
     }
+
+    /**
+     * Get information about the change official rate on this day and the next.
+     * If the day is holiday, roll to the working day
+     * Return result of enumeration and comparison among themselves.
+     */
 
     public int getOfficialRateChangesCount(HashSet<Date> dates) {
         Log.info("Get official rates for %s dates", StringUtils.join(dates.toArray(), ARRAY_SEPARATOR));
